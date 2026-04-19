@@ -1,0 +1,80 @@
+<section class='character tab gear {{tab.cssClass}}' data-group='primary' data-tab='devotions'>
+
+  <ol class='gear-list'>
+    <li class='item gear-header primBackCol devotion-grid'>
+      <div class='left'>{{localize 'TYPES.Item.devotion'}}</div>
+      <div class='centre'>{{localize 'AOV.ideals'}}</div>
+      <div class='centre' title="{{localize 'AOV.devPoints'}}">{{localize 'AOV.devPointsAbbr'}}</div>
+    </li>
+    {{#each devotions as |item id|}}
+    <li class='item devotion-grid' data-item-id='{{item._id}}' data-drag='true' data-document-class='Item'>
+      <div class="gear-name new-row left rollable" title='{{localize "AOV.viewDoc" type=(localize "TYPES.Item.devotion")}}'
+        data-action='viewDoc'>{{item.name}}</div>
+      <div class='gear-name centre'>{{item.system.ideals}}</div>
+
+      <div class="skill-inline" style="padding-top: 5px;">
+        <select class="gear-input" data-handle-change name="system.dp" data-field="dp">
+          {{selectOptions ../dpOptions selected=item.system.dp}}
+        </select>
+      </div>
+
+
+
+      {{#unless ../isLocked}}
+      <div class='gear-controls centre'>
+        <a class='item-delete centre' title='{{localize "AOV.deleteDoc" type=(localize "TYPES.Item.devotion")}}'
+          data-action="deleteDoc">
+          <i class='fas fa-trash'></i>
+        </a>
+      </div>
+      {{/unless}}
+    </li>
+    {{/each}}
+  </ol>
+
+  <br>
+
+  <ol class='gear-list'>
+    <li class='item gear-header {{#if singleColour}}primBackCol{{else}}secBackCol{{/if}} passion-grid'>
+      <div class='left new-row'>{{localize 'TYPES.Item.passion'}}</div>
+      <div class='centre' title="{{localize 'AOV.xpAbbrHint'}}">{{localize 'AOV.xpAbbr'}}</div>
+      <div class='centre' title="{{localize 'AOV.totalScore'}}">%</div>
+      <div class='centre'></div>
+    </li>
+    {{#each passions as |item id|}}
+    <li class='item passion-grid' data-item-id='{{item._id}}' data-drag='true' data-document-class='Item'>
+      <div class="new-row gear-name left rollable" title='{{localize "AOV.viewDoc" type=(localize "TYPES.Item.passion")}}'
+        data-action='viewDoc'>{{item.name}}</div>
+      {{#unless item.system.noXP}}
+      <div class='gear-name centre' data-action="itemToggle" data-property="xpCheck"><a>
+          {{#if item.system.xpCheck}}
+          <i class="fa-regular fa-square-check"></i>
+          {{else}}
+          <i class="fa-regular fa-square"></i>
+          {{/if}}
+        </a></div>
+      {{else}}
+      <div></div>
+      {{/unless}}
+      </a></div>
+      <div class='gear-name centre rollable terIcon' data-action="diceroll" data-property="passion" data-skill-id="{{item._id}}" data-tooltip="AOV.rolls.passionRoll">{{item.system.total}}</div>
+      {{#if ../isLocked}}
+        <div class='gear-name centre' data-action="itemToggle" data-property="augment"><a>
+          {{#if item.system.augment}}
+            <i title="{{localize 'AOV.augmentUsed'}}" class="terIcon fa-solid fa-hand-holding-magic"></i>
+          {{/if}}
+        </div>
+      {{else}}
+        <div class='gear-controls centre'>
+          <a class='item-delete centre' title='{{localize "AOV.deleteDoc" type=(localize "TYPES.Item.passion")}}'
+            data-action="deleteDoc">
+            <i class='fas fa-trash'></i>
+          </a>
+        </div>
+      {{/if}}
+    </li>
+    {{/each}}
+  </ol>
+
+
+</section>

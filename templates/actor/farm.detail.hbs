@@ -1,0 +1,54 @@
+<section class='farm tab details draggable {{tab.cssClass}}' data-group='primary' data-tab='details'>
+
+  <div class="gear-detail-grid">
+    <div class="bold">{{localize 'AOV.farmSize'}}</div>
+    <input class="gear-input" name='system.size' type='number' value='{{actor.system.size}}'/>
+    <div class="new-row"></div>
+    <br>
+
+    <div class="new-row bold">{{localize 'AOV.farmType'}}</div>
+    <div class="">
+      <select class="gear-input" data-handle-change name="system.farmType">
+        {{selectOptions farmTypeOptions selected=actor.system.farmType}}
+      </select>
+    </div>
+    <div class="new-row"></div>
+    <br>
+
+    <div class="bold new-row">{{localize 'AOV.cattle'}}</div>
+    <input class="gear-input" name='system.cattle' type='number' value='{{actor.system.cattle}}'/>
+    <div class="new-row"></div>
+    <br>
+
+    <div class="bold new-row">{{localize 'AOV.sheep'}}</div>
+    <input class="gear-input" name='system.sheep' type='number' value='{{actor.system.sheep}}'/>
+    <div class="new-row"></div>
+    <br>
+
+    <div class="bold new-row">{{localize 'AOV.horses'}}</div>
+    <input class="gear-input" name='system.horses' type='number' value='{{actor.system.horses}}'/>
+    <div class="new-row"></div>
+    <br>
+
+    <div class="new-row bold">{{localize 'AOV.farmCirc'}}</div>
+    {{#if isGM}}
+      <div class="">
+        <select class="gear-input" data-handle-change name="system.status">
+          {{selectOptions farmCircOptions selected=actor.system.status}}
+        </select>
+      </div>
+    {{else}}
+      <div class="centre">{{farmCircName}}</div>
+    {{/if}}
+    <div class="new-row"></div>
+    <br>
+
+
+    <div class="new-row bold">{{localize 'AOV.farmValue'}}</div>
+    <input class="gear-input" name='system.value' type='number' value='{{actor.system.value}}'/>
+    <div class="new-row"></div>
+    <br>
+
+
+  </div>
+</section>

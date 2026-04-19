@@ -1,0 +1,216 @@
+.journal-entry-content, .journal-entry-page, .journal-entry-pages {
+  background-image: url('../art-assets/parchment-white.jpg');
+    color: var(--aov-jnl-main-col);
+}
+
+.journal-page-header h1 {
+  color: var(--aov-jnl-main-col);
+}
+
+.aov.journal-sheet,
+.aovJnl {
+  font-family: var(--aov-primary-font);
+  color: var(--aov-jnl-main-col);
+  text-align:justify;
+
+    p {
+      margin: 0px;
+    }
+
+    .noJustify {
+      text-align: start;
+    }
+
+    h3, .secTitle {
+      color: var(--aov-jnl-pri-col);
+      font-family: var(--aov-secondary-font);
+      font-size: 20px;
+      margin-bottom: 0px;
+    }
+
+    h4, h5 {
+      margin-bottom: 0px;
+    }
+
+    .title, h4 {
+      color: var(--aov-jnl-pri-col);
+      font-family: var(--aov-secondary-font);
+      font-size: 18px;
+    }
+
+    h5 {
+      color: var(--aov-jnl-pri-col);
+      font-family: var(--aov-secondary-font);
+      font-size: 16px;
+      font-style: italic;
+    }
+
+
+    .quote {
+      text-align:center;
+      text-transform:uppercase;
+      color: var(--aov-jnl-sec-col);
+      font-family: var(--aov-secondary-font);
+      font-weight: bold;
+    }
+
+    .attrib {
+      font-family: var(--aov-secondary-font);
+      text-align:center;
+      color: var(--aov-jnl-sec-col);
+
+    }
+
+    .indent {
+      text-indent: 20px;
+    }
+
+    .upper {
+      text-transform: uppercase;
+    }
+
+    .centre {
+      text-align: center;
+    }
+
+    .main {
+      color: var(--aov-jnl-main-col);
+    }
+
+    .play {
+      color: var(--aov-jnl-sec-col);
+      border: 1px black solid;
+      padding:5px;
+      margin: 5px;
+      background-color:cornsilk;
+      .heading {
+        font-family: var(--aov-secondary-font);
+        text-align: center;
+        font-size:18px;
+      }
+    }
+
+    .rules {
+      color: var(--aov-jnl-ter-col);
+      border: 1px black solid;
+      padding:5px;
+      margin: 5px;
+      background-color:cornsilk;
+      .heading {
+        font-family: var(--aov-secondary-font);
+        text-align: center;
+        font-size:18px;
+      }
+      h3 {
+        color: var(--aov-jnl-ter-col);
+        text-align: center;
+        text-transform:uppercase;
+      }
+      h4 {
+      color: var(--aov-jnl-ter-col);
+      font-family: var(--aov-secondary-font);
+      font-size: 18px;
+      }
+    }
+
+    .action {
+      color: var(--aov-jnl-pri-col);
+      border: 1px black solid;
+      padding:5px;
+      margin: 5px;
+      background-color:cornsilk;
+      .heading {
+        font-family: var(--aov-secondary-font);
+      }
+    }
+
+    ul.jnl {
+      margin: 0.5em 0 0 0;
+    }
+
+    .rules ul.jnl li::marker {
+      content: 'Þ ';
+      font-size:15px;
+      color:var(--aov-jnl-pri-col);
+    }
+
+    .play ul.jnl li::marker {
+      content: 'Þ ';
+      font-size:15px;
+      color:var(--aov-jnl-sec-col);
+    }
+
+    ul.jnl li::marker {
+      content: 'Þ ';
+      font-size:15px;
+      color:var(--aov-jnl-pri-col);
+    }
+
+    ol li::marker {
+      color:var(--aov-jnl-pri-col);
+    }
+
+    table {
+      margin-left:10px;
+      width: calc(100% - 20px);
+      color: var(--aov-jnl-main-col);
+      background-color: rgba(0,0,0,0);
+    }
+
+    table td {
+      padding: 0px 0px 0px 5px;
+      border-left: 1px solid white;
+      border-right: 1px solid white;
+      &.merged {
+        vertical-align: middle;
+        border-bottom: 1px solid black;
+      }
+    }
+
+    table.mob tbody tr:first-child {
+      background-color: var(--aov-title-font-colour);
+      color: white;
+    }
+
+    table tbody tr:nth-child(odd) {
+      background-color: var(--aov-table-row-colour-even);
+    }
+
+    table tbody tr:nth-child(even) {
+      background-color: var(--aov-table-row-colour-odd);
+    }
+
+    .glossary p{
+      text-indent: -20px;
+      padding-left: 20px;
+      &.indent {
+        text-indent: 0px;
+      }
+    }
+
+    .timeline p{
+      text-indent: -30px;
+      padding-left: 30px;
+    }
+
+    .example {
+      padding-left: 20px;
+      color: var(--aov-jnl-sec-col);
+    }
+
+    a.content-link {
+      background: none;
+      border: none;
+      border-radius: 0;
+      white-space: pre-wrap;
+      word-break: normal;
+      color: rgb(156, 7, 156);
+      font-weight: bold;
+      margin: 0px;
+      padding: 0px;
+      text-indent: 0px;
+      i {
+        display:none;
+      }
+  }
+}

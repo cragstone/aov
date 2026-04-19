@@ -1,0 +1,26 @@
+<section class='item tab details draggable {{tab.cssClass}}' data-group='primary' data-tab='details'>
+
+  <div class="gear-detail-grid">
+    <div class="bold">{{localize 'AOV.born'}}</div>
+    <input class="gear-input" name='system.born' type='number' value='{{item.system.born}}'/>
+    <div class="new-row"></div>
+    <br>
+    <div class="new-row bold">{{localize 'AOV.died'}}</div>
+    <input class="gear-input died-input" name='system.died' type='number' value='{{item.system.died}}'/>
+    <div class="new-row"></div>
+    <br>
+    <div class="new-row bold">{{localize 'AOV.gender'}}</div>
+    {{#if isSelectGender}}
+      <div class="centre">
+        <select class="gear-input" data-handle-change name="system.gender">
+          {{selectOptions genderOptions selected=item.system.gender}}
+        </select>
+      </div>
+    {{else}}
+      <input class="gear-input" name='system.gender' type='text' value='{{item.system.gender}}'/>
+    {{/if}}
+    <div class="new-row"></div>
+    <br>
+
+  </div>
+</section>

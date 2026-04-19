@@ -1,0 +1,1117 @@
+@font-face {
+font-family: "Farnham";
+font-weight: 400;
+font-style: normal;
+src: url('../art-assets/FarnhamText-Regular.otf') format('woff2');
+}
+
+@font-face {
+  font-family: 'Charcuterie';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../art-assets/Charcuterie-Contrast.ttf') format('woff2');
+}
+
+@font-face {
+  font-family: "IMFellDWPica";
+  font-weight: 400;
+  font-style: italic;
+  src: url('../art-assets/IMFellDWPica-Regular.ttf') format('woff2');
+}
+
+/* Default Colours etc */
+
+:root {
+  --aov-primary-font: "Farnham";
+  --aov-secondary-font: "Charcuterie";
+  --aov-title-font: "IMFellDWPica";
+  --aov-primary-font-size: 14px;
+  --aov-title-font-size: 16px;
+  --aov-heading-font-size: 20px;
+  --aov-jnl-main-col: black;
+  --aov-jnl-pri-col: rgb(56, 97, 81);
+  --aov-jnl-sec-col: rgb(163, 16, 8);
+  --aov-jnl-ter-col: rgb(21, 114, 164);
+  --aov-chat-success: rgb(8, 111, 94);
+  --aov-chat-fail: rgb(163, 16, 8);
+  --aov-chat-other: rgb(237, 181, 37);
+  --aov-title-font-colour: rgb(68, 111, 94);
+  --aov-table-row-colour-even: rgba(0,0,0,0.1);
+  --aov-table-row-colour-odd: transparent;
+  --aov-background: url('../art-assets/lightstone.jpg');
+  --aov-dice-back-colour:rgba(0,0,0,.15);
+}
+
+body.theme-light .application.aov,
+body.theme-light.application .aov,
+.theme-light.combat-sidebar,
+.theme-light .combat-sidebar,
+.theme-light.chat-sidebar,
+.theme-light .chat-sidebar{
+  --aov-primary-font-colour: black;
+  --aov-secondary-font-colour: rgb(163, 16, 8);
+  --aov-title-font-colour: rgb(68, 111, 94);
+  --primary-back-colour: rgba(68, 111, 94, 0.5);
+  --secondary-back-colour: rgba(21, 115, 164, 0.5);
+  --tertiary-back-colour: rgba(131, 57, 36, 0.5);
+  --actor-rollable-colour: black;
+  --actor-rollable-shadow: red;
+  --primary-icon-colour: black;
+  --secondary-icon-colour: rgb(171, 36, 12);
+  --tertiary-icon-colour: rgb(68, 111, 94);
+  --character-sheet-tab-blue: rgb(21, 115, 164);
+  --character-sheet-tab-green: rgb(68, 111, 94);
+  --character-sheet-tab-red: rgb(131, 57, 36);
+  --character-sheet-tab-yellow: rgb(237, 181, 37);
+  --cid-duplicate: red;
+  --character-sheet-tab-blue: url('../art-assets/ribbon-blue.svg');
+  --character-sheet-tab-green: url('../art-assets/ribbon-green.svg');
+  --character-sheet-tab-red: url('../art-assets/ribbon-red.svg');
+  --character-sheet-tab-yellow: url('../art-assets/ribbon-yellow.svg');
+  --aov-table-row-colour-even: rgba(0,0,0,0.1);
+  --aov-table-row-colour-odd: transparent;
+  --aov-background: url('../art-assets/lightstone.jpg');
+  --aov-logo: url('../art-assets/npc_logo.png');
+  --aov-warrior: url('../art-assets/paper_doll_black.webp');
+  --aov-line: url('../art-assets/line.png');
+  --aov-dice-back-colour:rgba(0,0,0,.15);
+  --aov-chat-success: rgb(8, 111, 94);
+  --aov-chat-fail: rgb(163, 16, 8);
+  --aov-chat-other: rgb(237, 181, 37);
+}
+
+
+body.theme-dark .application.aov,
+body.theme-dark.application .aov,
+.theme-dark.combat-sidebar,
+.theme-dark .combat-sidebar,
+.theme-dark.chat-sidebar,
+.theme-dark .chat-sidebar {
+  --aov-primary-font-colour: cornsilk;
+  --aov-secondary-font-colour: rgb(255, 51, 40);
+  --aov-title-font-colour: rgb(102, 181, 150);
+  --primary-back-colour: rgba(68, 111, 94, 0.5);
+  --secondary-back-colour: rgba(21, 115, 164, 0.5);
+  --tertiary-back-colour: rgba(131, 57, 36, 0.5);
+  --actor-rollable-colour: rgb(185, 184, 85);
+  --actor-rollable-shadow: red;
+  --primary-icon-colour: black;
+  --secondary-icon-colour: rgb(255, 51, 40);
+  --tertiary-icon-colour: rgb(102, 181, 150);
+  --character-sheet-tab-blue: rgb(21, 115, 164);
+  --character-sheet-tab-green: rgb(68, 111, 94);
+  --character-sheet-tab-red: rgb(131, 57, 36);
+  --character-sheet-tab-yellow: rgb(237, 181, 37);
+  --cid-duplicate: red;
+  --character-sheet-tab-blue: url('../art-assets/ribbon-blue.svg');
+  --character-sheet-tab-green: url('../art-assets/ribbon-green.svg');
+  --character-sheet-tab-red: url('../art-assets/ribbon-red.svg');
+  --character-sheet-tab-yellow: url('../art-assets/ribbon-yellow.svg');
+  --aov-table-row-colour-even: rgba(0,0,0,0.1);
+  --aov-table-row-colour-odd: transparent;
+  --aov-background: url('../art-assets/darkstone.jpg');
+  --aov-logo: url('../art-assets/npc_logo_dark.png');
+  --aov-warrior: url('../art-assets/paper_doll_white.webp');
+  --aov-line: url('../art-assets/line_dark.png');
+  --aov-dice-back-colour:rgba(255,255,255,.25);
+  --aov-chat-success: rgb(26, 173, 149);
+  --aov-chat-fail: rgb(255, 51, 40);
+  --aov-chat-other: rgb(237, 181, 37);
+}
+
+
+body.theme-dark .application.aov.sheet,
+.themed.theme-dark.application.aov.sheet {
+  section.window-content {
+    backdrop-filter: none;
+  }
+}
+
+
+
+/*Half the padding on windows*/
+.application.aov .window-content {
+  flex: 1;
+  display: flex;
+  flex-flow: column nowrap;
+  border: 1px darkslategrey solid;
+  border-radius: 3px;
+}
+
+.rollable:hover,
+.rollable:focus,
+.contextmenu:hover,
+.contextmenu:focus,
+.item-toggle:hover,
+.item-toggle:focus,
+.item-view:hover,
+.item-view:focus {
+  color: var(--actor-rollable-colour);
+  text-shadow: 0px 0px 5px var(--actor-rollable-shadow);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.aov.item {
+  font-family: var(--aov-primary-font);
+  color: var(--aov-primary-font-colour);
+  font-size: var(--aov-primary-font-size);
+  background-image: var(--aov-background);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.aov .item.details {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.aovTab {
+  font-family: var(--aov-primary-font);
+  color: var(--aov-primary-font-colour);
+  font-size: var(--aov-primary-font-size);
+}
+
+.aov .sheet-header {
+  border-bottom: 1px darkslategrey solid;
+  padding: 5px;
+}
+
+.aov .aovlogo {
+  content: var(--aov-logo);
+  width: 150px;
+  height: 55px;
+  background-size: cover;
+  padding: 0;
+  border: none;
+}
+
+.aov .aovline {
+  content: var(--aov-line);
+  width: 600px;
+  height: 20px;
+  background-size: cover;
+  padding: 0;
+  border: none;
+}
+
+
+.aov .sheet-header .item-img {
+  flex: 0 0 60px;
+  height: 60px;
+}
+
+.aov .standard-form .form-fields {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  max-height: 20px;
+}
+
+.aov .standard-form .form-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  gap: 0;
+  padding-bottom: 10px;
+}
+
+.aov .standard-form .form-group>label,
+.standard-form .form-group>span.label {
+  flex: 1;
+  color: var(--aov-primary-font-colour);
+  font-weight: bold;
+  line-height: 20px;
+}
+
+
+
+
+.aov .character.tab {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.aov .char-notes {
+  padding: 5px;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+.aov .document-name {
+  color: var(--aov-primary-font-colour);
+  font-size: var(--aov-title-font-size);
+  font-weight: bold;
+}
+
+.aov .document-name input {
+  color: var(--aov-secondary-font-colour);
+  max-height: calc(var(--aov-title-font-size) + 3.5px);
+  outline: none;
+  background: none;
+}
+
+.aov .left {
+  text-align: left;
+}
+
+.aov .right {
+  text-align: right;
+}
+
+.aov .centre {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.aov .bold {
+  font-weight: bold;
+}
+
+.aov .underline {
+  text-decoration-line: underline;
+}
+
+.aov .upper {
+  text-transform: uppercase;
+}
+
+.aov .indent {
+  padding-left: 5px;
+}
+
+.aov .new-row {
+  grid-column-start: 1;
+}
+
+.aov .truncate {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+}
+
+.aov .darkred {
+  color: var(--cid-duplicate);
+}
+
+.bottom-line {
+  border-bottom: var(--aov-primary-font-colour) 1px solid;
+}
+
+.right-line {
+  border-right: var(--aov-primary-font-colour) 1px solid;
+}
+
+.aov .character .statBonus {
+  display: grid;
+  grid-template-columns: 125px 50px;
+  grid-column-gap: 5px;
+  grid-row-gap: 2px;
+}
+
+.aov .gear-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.aov .charHitLoc {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+.aov .gear-header {
+  height: 28px;
+  margin: 2px 0;
+  padding: 0;
+  align-items: center;
+  font-weight: bold;
+}
+
+.aov .primBackCol {
+  background: var(--primary-back-colour);
+}
+
+.aov .secBackCol {
+  background: var(--secondary-back-colour);
+}
+
+.aov .terBackCol {
+  background: var(--tertiary-back-colour);
+}
+
+.aov .gear-grid {
+  display: grid;
+  grid-template-columns: 430px 50px 50px 35px 30px;
+  grid-column-gap: 5px;
+  padding-left: 5px;
+}
+
+.aov .skill-grid-header {
+  display: grid;
+  grid-template-columns: 313px auto;
+  grid-column-gap: 10px;
+
+}
+
+.aov .history-grid {
+  display: grid;
+  grid-template-columns: 50px 150px 360px 30px;
+  grid-column-gap: 5px;
+  padding: 2px 0px 2px 5px;
+  margin-bottom: 0px;
+}
+
+.aov .history-item {
+  display: grid;
+  grid-template-columns: 400px 30px;
+}
+
+.aov .skill-grid {
+  display: grid;
+  grid-template-columns: 175px 35px 50px 30px;
+  grid-column-gap: 5px;
+  padding-left: 5px;
+}
+
+.aov .skillDev-grid {
+  display: grid;
+  width:636px;
+  grid-template-columns: auto 90px 45px 45px 45px 45px 45px 45px 45px 45px 50px;
+  padding-left: 5px;
+  margin:0px;
+  border-right:var(--aov-primary-font-colour) 1px solid;
+  border-top:var(--aov-primary-font-colour) 1px solid;
+}
+
+.aov .passion-grid {
+  display: grid;
+  grid-template-columns: 510px 35px 50px 30px;
+  grid-column-gap: 5px;
+  padding-left: 5px;
+}
+
+.aov .wounds-grid {
+  display: grid;
+  grid-template-columns: 150px 70px 40px 30px;
+  grid-column-gap: 5px;
+  padding-left: 5px;
+}
+
+.aov .devotion-grid{
+  display: grid;
+  grid-template-columns: 150px 395px 50px 30px;
+  grid-column-gap: 5px;
+  padding-left: 5px;
+}
+
+.aov .family-grid{
+  display: grid;
+  grid-template-columns: 175px 100px 135px 35px 65px 65px 30px;
+  grid-column-gap: 5px;
+  padding-left: 5px;
+}
+
+.aov .armour-grid{
+  display: grid;
+  grid-template-columns: 210px 100px 70px 50px 90px 50px 30px;
+  grid-column-gap: 5px;
+  padding-left: 5px;
+}
+
+.aov .runes-grid {
+  display: grid;
+  grid-template-columns: 40px 100px 425px 30px;
+  grid-column-gap: 5px;
+  padding-left: 5px;
+}
+
+.aov .runescript-grid {
+  display: grid;
+  grid-template-columns: 150px 30px 385px 30px;
+  grid-column-gap: 5px;
+  padding-left: 5px;
+}
+
+.aov .gear-list .gear-controls {
+  padding-top: 5px;
+}
+
+.aov .gear-list .gear-name {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-top: 5px;
+}
+
+.aov input.stat-val {
+  color: var(--aov-secondary-font-colour);
+  font-size: var(--aov-secondary-font-size);
+  max-height: calc(var(--aov-primary-font-size));
+  text-align: center;
+  padding: 0px;
+  border-radius: 0px;
+  border-top: transparent;
+  border-left: transparent;
+  border-right: transparent;
+  border-bottom: 1px var(--aov-secondary-font-colour) solid;
+  background: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.aov .item-header {
+  display: grid;
+  grid-template-columns: 500px 60px;
+  grid-column-gap: 5px;
+  padding-bottom: 5px;
+}
+
+.aov .skill-header {
+  display: grid;
+  grid-template-columns: 300px  20px 180px;
+}
+
+.aov .gear-detail-grid {
+  display: grid;
+  grid-template-columns: 175px 150px 150px;
+  grid-column-gap: 10px;
+  padding-top: 10px;
+}
+
+.aov .weapon-detail-grid {
+  display: grid;
+  grid-template-columns: 175px 175px 175px;
+  grid-column-gap: 10px;
+  padding-top: 10px;
+}
+
+.aov .weapons-list-grid {
+  display: grid;
+  grid-template-columns: 160px 50px 110px 35px 35px 30px 10px 30px 40px 60px 30px;
+  grid-column-gap: 5px;
+}
+
+.aov .minstrdex {
+  display: grid;
+  grid-template-columns: 75px 25px 75px;
+  grid-column-gap: 0px;
+}
+
+.aov input.gear-input {
+  color: var(--aov-secondary-font-colour) !important;
+  font-size: var(--aov-primary-font-size);
+  max-height: calc(var(--aov-primary-font-size) + 5.5px);
+  text-align: center;
+  padding: 0px;
+  border-radius: 0px;
+  border-top: transparent;
+  border-left: transparent;
+  border-right: transparent;
+  border-bottom: 1px var(--aov-secondary-font-colour) solid;
+  background: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.aov select.gear-input {
+  color: var(--aov-secondary-font-colour) !important;
+  font-size: var(--aov-primary-font-size);
+  max-height: calc(var(--aov-primary-font-size) + 5.5px);
+  text-align: center;
+  background: none;
+}
+
+.aov input.stat-input {
+  color: var(--aov-secondary-font-colour) !important;
+  font-size: var(--aov-primary-font-size);
+  max-height: calc(var(--aov-primary-font-size) + 2px);
+  text-align: center;
+  outline: none;
+  box-shadow: none;
+}
+
+.aov input.stat-input {
+  color: var(--aov-secondary-font-colour) !important;
+  font-size: var(--aov-secondary-font-size);
+  max-height: calc(var(--aov-primary-font-size) + 4px);
+  text-align: center;
+  padding: 0px;
+  border-radius: 0px;
+  border-top: transparent;
+  border-left: transparent;
+  border-right: transparent;
+  border-bottom: 1px var(--aov-secondary-font-colour) solid;
+  background: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.aov select.stat-input {
+  color: var(--aov-secondary-font-colour) !important;
+  font-size: var(--aov-primary-font-size);
+  max-height: calc(var(--aov-primary-font-size) + 4px);
+  border-top: transparent;
+  border-left: transparent;
+  border-right: transparent;
+  border-bottom: 1px var(--aov-secondary-font-colour) solid;
+  border-radius: 0px;
+  text-align: center;
+  background: none;
+  outline: none;
+}
+
+
+
+
+.aov .ship-header {
+  display: grid;
+  grid-template-columns: 450px 200px;
+  grid-column-gap: 4px;
+}
+
+.aov .ship-details {
+  display: grid;
+  grid-template-columns: 140px 150px 300px;
+  grid-column-gap: 20px;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-right: 7px;
+}
+
+.aov .shipStats {
+  display: grid;
+  grid-template-columns: 60px 40px 10px 40px;
+}
+
+.aov .shipCrew {
+  display: grid;
+  grid-template-columns: 125px 80px 10px 80px;
+}
+
+.aov .captain {
+  padding-left: 13px;
+  padding-bottom: 2px;
+  display: grid;
+  grid-template-columns: 100px 300px 150px 50px;
+  grid-column-gap: 10px;
+}
+
+.aov .ship-extra {
+  padding-left: 13px;
+  display: grid;
+  grid-template-columns: 305px 300px;
+  grid-column-gap: 15px;
+}
+
+.aov .ship-speeds {
+  display: grid;
+  grid-template-columns: 80px 50px 80px 50px;
+  grid-column-gap: 15px;
+}
+
+.aov .ship-siege {
+  display: grid;
+  grid-template-columns: 300px;
+}
+
+.aov .stats-header {
+  display: grid;
+  grid-template-columns: 80px 100px auto 100px;
+  grid-column-gap: 20px;
+  padding-top: 5px;
+  padding-right: 7px;
+}
+
+
+
+.aov .statsTitle {
+  font-size: var(--aov-title-font-size);
+  color: var(--aov-primary-font-colour);
+  font-weight: bold;
+}
+
+.aov .stat-grid {
+  font-size: var(--aov-title-font-size);
+  display: grid;
+  grid-template-columns: 25px 10px 25px;
+}
+
+.aov .icon16 {
+  font-size: 16px;
+  align-items: center;
+}
+
+.aov .icon17 {
+  font-size: 17px;
+  align-items: center;
+}
+
+.aov .icon20 {
+  font-size: 20px;
+  align-items: center;
+}
+
+.aov .primIcon {
+  color: var(--primary-icon-colour);
+}
+
+.aov .secIcon {
+  color: var(--secondary-icon-colour);
+}
+
+.aov .terIcon {
+  color: var(--tertiary-icon-colour);
+}
+
+.aov .ability-grid {
+  display: grid;
+  grid-template-columns: 70px 100px 210px;
+  grid-column-gap: 20px;
+}
+
+.aov .characteristics {
+  display: grid;
+  grid-template-columns: 40px 30px;
+
+}
+
+.aov .personalSec {
+  display: grid;
+  grid-template-columns: max-content auto;
+  grid-column-gap: 5px;
+}
+
+.aov .personalSecCreate {
+  display: grid;
+  grid-template-columns: max-content auto 20px;
+  grid-column-gap: 5px;
+}
+
+.aov .personalSecDbl {
+  display: grid;
+  grid-template-columns: 150px 150px;
+  grid-column-gap: 5px;
+}
+
+.aov .personalSecGrid {
+  display: grid;
+  grid-template-columns: auto;
+}
+
+
+.aov .ability-cell {
+  height: 18px;
+  font-size: var(--aov-primary-font-size);
+}
+
+.aov input.ability-cell {
+  color: var(--aov-secondary-font-colour) !important;
+  font-size: var(--aov-primary-font-size);
+  max-height: calc(var(--aov-primary-font-size) + 5.5px);
+  text-align: center;
+  padding: 0px;
+  border-radius: 0px;
+  border-top: transparent;
+  border-left: transparent;
+  border-right: transparent;
+  border-bottom: 1px var(--aov-secondary-font-colour) solid;
+  background: none;
+  outline: none;
+  box-shadow:none;
+}
+
+.aov .character.tab{
+    max-height: 100%;
+    overflow-x: scroll;
+}
+
+.aov .img-centre {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+/* SETTINGS  */
+.aov .settingNote {
+  flex: 0 0 100%;
+  font-size: var(--font-size-12);
+  line-height: var(--line-height-16);
+  color: var(--aov-secondary-font-colour);
+  margin: 3px 0;
+}
+
+/*General Tabs*/
+nav.aov.sheet-tabs.tabs {
+  background: none;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.aov div.active-effect-change-edit {
+  align-items: center;
+  gap: 1rem;
+}
+
+.aov div.active-effect-change-edit select {
+  flex: 0 0 auto;
+}
+
+.aov div.active-effect-change-edit input {
+  flex: 0 0 3rem;
+}
+
+.aov div.active-effect-change-edit a.control-button {
+  flex: 0 0 30px;
+  text-align: center;
+}
+
+.aov .effects-grid {
+  display: grid;
+  grid-template-columns: 240px auto 70px 50px;
+  padding-left: 5px;
+}
+
+.aov .base-grid {
+  display: grid;
+  margin: 0px;
+  padding: 0px 0px 0px 0px;
+  row-gap: 5px;
+  column-gap: 5px;
+  font-size: 14px;
+  grid-template-columns: 165px 165px 165px;
+}
+
+.aov .clickable-button {
+  border: 1px solid black;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  border-color: var(--aov-primary-font-colour);
+}
+
+.aov .clickable-button {
+  cursor: pointer;
+}
+
+.aov .weapon-input input {
+  text-align: center;
+  font-weight: bold;
+  border-color: rgba(68, 7, 4, 1);
+  height: calc(100% - 2px);
+}
+
+.aov .active-effect-list {
+  display: grid;
+  grid-template-columns: 250px 100px 50px 50px;
+}
+
+.aov .fade {
+  opacity: 0.5;
+}
+
+.aov .aura-img {
+  margin: auto;
+}
+
+.aov .dialog-buttons.flexrow-aov{
+  display: flex ;
+  align-items: center;
+  gap: 10rem;
+  margin-top: 19rem;
+}
+
+#controls {
+  .aovmenu {
+    background: rgba(30, 80, 80, 0.5) !important;
+    &.active,
+    &:hover {
+      border: 1px solid green !important;
+      border-bottom: 1px solid #008060 !important;
+      box-shadow: 0 0 10px #008060 !important;
+    }
+  }
+  li.control-tool.active {
+    i.fa-certificate {
+      color: goldenrod;
+    }
+  }
+}
+#scene-controls {
+  .aovmenu {
+    button {
+      background: rgba(30, 80, 80, 0.5) !important;
+      &.active,
+      &:hover {
+        border: 1px solid green !important;
+        border-bottom: 1px solid #008060 !important;
+        box-shadow: 0 0 10px #008060 !important;
+      }
+    }
+  }
+  button.control.ui-control.fas.fa-certificate[aria-pressed="true"] {
+    color: goldenrod;
+  }
+}
+
+.aov .rune-input textarea{
+  font-family:var(--aov-primary-font);
+  background: transparent;
+  width: 560px;
+  max-height: 45px;
+  min-height: 45px;
+  box-shadow: none;
+}
+
+.aov .rune-input-large textarea{
+  font-family:var(--aov-primary-font);
+  background: transparent;
+  width: 560px;
+  max-height: 65px;
+  min-height: 65px;
+  box-shadow: none;
+}
+
+.aov .rune-input-small textarea{
+  font-family:var(--aov-primary-font);
+  background: transparent;
+  width: 560px;
+  max-height: 27px;
+  min-height: 27px;
+  box-shadow: none;
+}
+
+.aov .rune-detail-grid {
+  display: grid;
+  grid-template-columns: 480px 75px;
+  column-gap: 5px;
+  row-gap:5px;
+}
+
+.aov .line-space {
+  margin-bottom: 5px;
+}
+
+.aov .area-of-power {
+  padding-top: 5px;
+  max-height: 35px;
+}
+
+.aov .runescript-runes {
+  display: grid;
+  grid-template-columns: 150px 400px;
+  column-gap: 5px;
+  row-gap:5px;
+}
+
+.aov textarea.npcpower {
+  font-family:var(--aov-primary-font);
+  background: transparent;
+  width: 560px;
+  max-height: 215px;
+  min-height: 215px;
+  box-shadow: none;
+}
+
+.aov .op-list{
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+  background: none;
+  box-shadow: none;
+  border: none;
+}
+
+.chat-message {
+  background-image: var(--aov-background);
+  color: var(--aov-primary-font-colour);
+  background-size: auto;
+  font-family: var( --aov-primary-font);
+}
+
+.chat-message .message-header {
+  color: var(--aov-primary-font-colour);
+  font-weight: bold;
+    font-family: var( --aov-primary-font);
+}
+
+button.resolve.cardbutton {
+  color: var(--aov-primary-font-colour);
+  border: 1px solid var(--aov-primary-font-colour);
+}
+
+.aov .dice-roll .dice-tooltip {
+  display: none;
+}
+.aov .dice-roll.expanded .dice-tooltip {
+  display: flex;
+}
+
+.aov .actor-roll {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 2px;
+}
+
+.aov .actor-roll .roll-details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.aov .actor-roll .roll-details .header {
+  height: 16px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.aov .actor-roll .roll-details .header .name{
+  flex: 1;
+  font-size: 14px;
+  font-weight: bold;
+  padding-left: 2px;
+}
+
+.aov .actor-roll .roll-details .header .a{
+  height: 16px;
+  line-height: 16px;
+}
+
+.aov .actor-roll span.pending {
+  width: 100%;
+  background: var(--aov-dice-back-colour);
+  font-size: 14px;
+  height: 20px;
+  line-height: 20px;
+  margin: 2px 0;
+  display: inline-block;
+  text-align: center;
+  &.winner {
+    background: var(--aov-chat-other);
+  }
+}
+
+.aov .re-list {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 2px;
+}
+
+.aov .bottom-line {
+  border-bottom: 1px solid black;
+}
+
+.aov .rollHidden {
+  margin-left: 50px;
+  font-size: 12px;
+  width:100%;
+}
+
+.aov .open-actor {
+  aspect-ratio: 1/1;
+}
+
+.aov .owner-only {
+  width: 100%;
+}
+
+.aov .result-success {
+  color:var(--aov-chat-success);
+  width: 18px;
+}
+
+.aov .result-fail {
+  color:var(--aov-chat-fail);
+  width: 18px;
+}
+
+.aov .result-yellow {
+  color:var(--aov-chat-other);
+  width: 18px;
+}
+
+.aov .resolve {
+  width: 100%;
+}
+
+.aov .combat-result{
+  margin: 3px 0 3px 0;
+  font-weight: bold;
+  text-align: center;
+  border: 1px darkslategrey solid;
+  border-radius: 3px;
+  background-color: rgba(74, 133, 133, 0.75);
+}
+
+.aov .species-abilities-grid {
+  display: grid;
+  grid-template-columns: 50px 100px 50px 50px;
+  column-gap: 10px;
+}
+
+.aov .horizontalboxed {
+  border-top: 1px darkslategray solid;
+  border-bottom: 1px darkslategray solid;
+}
+
+.aov .selectList {
+  display: grid;
+  margin-left: 5px;
+  grid-template-columns: 30px 250px;
+}
+
+.aov .dialog-content.standard-form {
+  gap: 5px;
+}
+
+.aov .assign-dice {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.15);
+  font-size: 20px;
+  margin: 2px 0;
+}
+
+.aov .assignList {
+  display: grid;
+  grid-template-columns: repeat(9, 35px);
+  column-gap: 5px;
+  padding-left: 5px
+}
+
+#chat-notifications {
+  color:black;
+}
+
+.aov .perSkillList {
+  display:grid;
+  grid-template-columns: 200px 50px 50px 50px;
+}
+
+.aov.skill-selector {
+  max-height: 750px;
+  .window-content {
+    overflow-y: scroll;
+  }
+}

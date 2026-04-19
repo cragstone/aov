@@ -1,0 +1,84 @@
+<section class='item tab details draggable {{tab.cssClass}}' data-group='primary' data-tab='details'>
+
+
+  <div class="runescript-runes">
+    <div class="bold">{{localize 'AOV.runes'}}</div>
+    <div></div>
+    <div class="new-row">
+      <select class="gear-input" data-handle-change name='system.runes.rune1'>
+        {{selectOptions runeList selected=item.system.runes.rune1}}
+      </select>
+    </div>
+    <div class="new-row">
+      <select class="gear-input" data-handle-change name='system.runes.rune2'>
+        {{selectOptions runeList selected=item.system.runes.rune2}}
+      </select>
+    </div>
+    <div class="new-row">
+      <select class="gear-input" data-handle-change name='system.runes.rune3'>
+        {{selectOptions runeList selected=item.system.runes.rune3}}
+      </select>
+    </div>
+    <div class="new-row">
+      <select class="gear-input" data-handle-change name='system.runes.rune4'>
+        {{selectOptions runeList selected=item.system.runes.rune4}}
+      </select>
+    </div>
+    <div class="new-row">
+      <select class="gear-input" data-handle-change name='system.runes.rune5'>
+        {{selectOptions runeList selected=item.system.runes.rune5}}
+      </select>
+    </div>
+    <div class="new-row">
+      <select class="gear-input" data-handle-change name='system.runes.rune6'>
+        {{selectOptions runeList selected=item.system.runes.rune6}}
+      </select>
+    </div>
+    <div class="new-row">
+      <select class="gear-input" data-handle-change name='system.runes.rune7'>
+        {{selectOptions runeList selected=item.system.runes.rune7}}
+      </select>
+    </div>
+    <div class="new-row">
+      <select class="gear-input" data-handle-change name='system.runes.rune8'>
+        {{selectOptions runeList selected=item.system.runes.rune8}}
+      </select>
+    </div>
+    <div class="new-row">
+      <select class="gear-input" data-handle-change name='system.runes.rune9'>
+        {{selectOptions runeList selected=item.system.runes.rune9}}
+      </select>
+    </div>
+    <div></div>
+    <br>
+
+    <div class="new-row bold">{{localize 'AOV.prepared'}}</div>
+    <div class="" data-action="itemToggle" data-property="prepared"><a class="icon16">
+      {{#if system.prepared}}
+        <i class="fa-regular fa-square-check"></i>
+      {{else}}
+        <i class="fa-regular fa-square"></i>
+      {{/if}}
+    </a></div>
+
+    <div class="new-row bold">{{localize 'AOV.mp'}}</div>
+    <div class="terIcon">{{system.mpCost}}</div>
+    <div class="new-row bold">{{localize 'AOV.maxEffects'}}</div>
+    <div class="terIcon">{{system.maxEff}}</div>
+    <div class="new-row bold">{{localize 'AOV.oddRunes'}}</div>
+    {{#if system.effective}}
+      <div class="terIcon">{{localize 'AOV.yes'}}</div>
+    {{else}}
+      <div class="terIcon">{{localize 'AOV.no'}}</div>
+    {{/if}}
+  </div>
+  <br>
+
+  <div class="bold">{{localize 'AOV.impact'}}</div>
+  <div class="rune-input-large">
+    <textarea class="secIcon" name='system.shortDesc'>{{item.system.shortDesc}}</textarea>
+  </div>
+
+
+
+</section>

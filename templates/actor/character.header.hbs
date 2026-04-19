@@ -1,0 +1,224 @@
+{{! Sheet Header }}
+<header class='character sheet-header draggable'>
+  <div>
+    <img class="img-centre aovline">
+  </div>
+  <div class="character-header">
+
+    {{!Character Name}}
+    <div class="charNameHeader">
+      <div class='header-fields actorName-grid {{#if isCreate}}creation{{/if}}'>
+        <div class="bold">{{localize 'AOV.name'}}</div>
+        <div class='document-name'><input class="stat-input" name='name' type='text' value='{{actor.name}}' /></div>
+        {{#if isCreate}}
+          <div><a class="secIcon" title='{{localize "AOV.rollName"}}'><i class="fas fa-dice-d20" data-action="rollName" data-type="name"></i></a></div>
+        {{/if}}
+        <div class="bold new-row">{{localize 'AOV.nickname'}}</div>
+        <div class='document-name'><input class="stat-input" name='system.nickname' type='text'
+            value='{{actor.system.nickname}}' />
+        </div>
+        {{#if isCreate}}
+          <div><a class="secIcon" title='{{localize "AOV.rollNickname"}}'><i class="fas fa-dice-d20" data-action="rollName" data-type="nickname"></i></a></div>
+        {{/if}}
+      </div>
+    </div>
+
+    {{!Logo}}
+    <div>
+      {{#if showLogo}}
+        <img class="img-centre aovlogo">
+      {{/if}}
+    </div>
+
+    {{!Icons}}
+    <div class="right">
+      {{#if isLocked}}
+        <div><a class="icon20 terIcon" data-action="toggleActor" data-property="locked" title='{{localize "AOV.unlock"}}'>
+          <i class="fas fa-lock"></i>
+        </a></div>
+      {{else}}
+        <div><a class="icon20 terIcon" data-action="toggleActor" data-property="locked" title='{{localize "AOV.lock"}}'>
+          <i class="fas fa-lock-open"></i>
+        </a></div>
+      {{/if}}
+      {{#if isLinked}}
+        <div><a class="icon20 terIcon" title='{{localize "AOV.linked"}}'><i class="fas fa-link"></i></a></div>
+      {{else}}
+        <div><a class="icon20 terIcon" title='{{localize "AOV.unlinked"}}'><i class="fas fa-link-slash"></i></a></div>
+      {{/if}}
+      {{#if isSynth}}
+        <div><a class="icon20 terIcon" title='{{localize "AOV.synth"}}'><i class="fas fa-people-group"></i></a></div>
+      {{/if}}
+    </div>
+  </div>
+
+
+  <div>
+    <img class="img-centre aovline">
+  </div>
+
+  <div class="stats-header">
+    {{!Characteristics}}
+    <div class="ability-grid new-row" style="min-height:130px;">
+      <div class="characteristics">
+        {{#each system.abilities as |ability key|}}
+        <div class="ability-cell centre bold">{{ability.label}}</div>
+        <div class="ability-cell centre bold rollable terIcon" data-action="diceroll" data-property="ability" data-characteristic="{{key}}" data-tooltip="AOV.rolls.abilityRoll">{{ability.total}}</div>
+        {{/each}}
+      </div>
+    </div>
+
+    {{!Attributes}}
+    <div class="derivedStats">
+      <div class="ability-cell left bold" title="{{localize 'AOV.hp'}}">{{localize 'AOV.hpAbbr'}}</div>
+      <div class='stat-grid'>
+        <span class="ability-cell centre terIcon bold">{{system.hp.value}}</span>
+        <span class="ability-cell centre"> / </span>
+        <span class="ability-cell centre terIcon bold">{{system.hp.max}}</span>
+      </div>
+      <div class="ability-cell left bold" title="{{localize 'AOV.mp'}}">{{localize 'AOV.mpAbbr'}}</div>
+      <div class='stat-grid'>
+        <input class="ability-cell bold" type='text' name='system.mp.value' value='{{system.mp.value}}'
+          data-dtype='Number' />
+        <span class="centre"> / </span>
+        <div class="ability-cell centre terIcon bold" title="{{localize 'AOV.maxMP' value=system.mp.max}}">{{system.mp.availMax}}</div>
+      </div>
+      <div class="ability-cell left bold" title="{{localize 'AOV.healRate'}}">{{localize 'AOV.healRateAbbr'}}</div>
+      <div class="ability-cell centre terIcon bold">{{system.healRate}}</div>
+      <div class="ability-cell left bold" title="{{localize 'AOV.dmgBonus'}}">{{localize 'AOV.dmgBonusAbbr'}}</div>
+      <div class="ability-cell centre terIcon bold">{{system.dmgBonus}}</div>
+      <div class="ability-cell left bold" title="{{localize 'AOV.mr'}}">{{localize 'AOV.mrAbbr'}}</div>
+      <div class="ability-cell centre terIcon bold" title="{{localize 'AOV.encPenalty'}} {{system.encPenaltyLabel}}">{{system.moveRate}}</div>
+      <div class="ability-cell left bold upper" title="{{localize 'AOV.reput'}}">{{localize 'AOV.reputAbbr'}}</div>
+      <div class="ability-cell centre terIcon bold rollable" data-action="diceroll" data-property="reputation" data-tooltip="AOV.rolls.reputationRoll">{{system.reputation.total}}%</div>
+      <div class="ability-cell left bold rollable" title="{{localize 'AOV.status'}}">{{localize 'AOV.statusAbbr'}}</div>
+      <div class="ability-cell centre terIcon bold rollable" data-action="diceroll" data-property="status" data-tooltip="AOV.rolls.statusRoll">{{system.status.total}}%</div>
+    </div>
+
+    {{!Personal}}
+    <div class="personalSecGrid">
+      {{#unless allowEdit}}
+        <div class="personalSec">
+          <div class="ability-cell left bold" title="{{localize 'AOV.nameMean'}}">{{localize 'AOV.nameMeanAbbr'}}</div>
+          <div class='ability-cell bottom-line centre'>{{system.nameMean}}</div>
+        </div>
+        <div class="personalSec">
+          <div class="ability-cell left bold" title="{{localize 'AOV.persType'}}">{{localize 'AOV.persTypeAbbr'}}</div>
+          <div class="ability-cell bottom-line centre">{{persName}}</div>
+        </div>
+        <div class="personalSec">
+          <div class="ability-cell left bold" title="{{localize 'AOV.spiritAn'}}">{{localize 'AOV.spiritAnAbbr'}}</div>
+          <div class='ability-cell bottom-line centre'>{{actor.system.spiritAn}}</div>
+        </div>
+        <div class="personalSec">
+          <div class="ability-cell left bold" title="{{localize 'AOV.gender'}}">{{localize 'AOV.genderAbbr'}}</div>
+          {{#if isSelectGender}}
+            <div class='ability-cell bottom-line centre'>{{genderName}}</div>
+          {{else}}
+            <div class='ability-cell bottom-line centre'>{{actor.system.gender}}</div>
+          {{/if}}
+        </div>
+        <div class="personalSecDbl">
+          <div class="personalSec">
+            <div class="ability-cell left bold" title="{{localize 'AOV.birthYear'}}">{{localize 'AOV.birthYearAbbr'}}</div>
+            <div class='ability-cell bottom-line centre'>{{actor.system.birthYear}}</div>
+          </div>
+          <div class="personalSec">
+            <div class="ability-cell left bold" title="{{localize 'AOV.age'}}">{{localize 'AOV.ageAbbr'}}</div>
+            <div class="ability-cell centre terIcon bottom-line">{{system.age}}</div>
+          </div>
+        </div>
+        <div class="personalSec distinct">
+          <div class="ability-cell left bold" title="{{localize 'AOV.distFeatures'}}">{{localize 'AOV.distFeaturesAbbr'}}
+          </div>
+          <div class='ability-cell centre distinct-features' title="{{actor.system.distFeatures}}">{{actor.system.distFeatures}}</div>
+        </div>
+      {{else}}
+        <div class="personalSec">
+          <div class="ability-cell left bold" title="{{localize 'AOV.nameMean'}}">{{localize 'AOV.nameMeanAbbr'}}</div>
+          <div class='ability-cell'><input class="stat-input centre" name='system.nameMean' type='text'
+              value='{{actor.system.nameMean}}' /></div>
+        </div>
+        {{#if isCreate}}
+          <div class="personalSecCreate">
+            <div class="ability-cell left bold" title="{{localize 'AOV.persType'}}">{{localize 'AOV.persTypeAbbr'}}</div>
+            <div class="{{#if isCreate}}creation{{/if}} centre">
+              <select class="stat-input" data-handle-change name="system.persType">
+                {{selectOptions persTypeOptions selected=actor.system.persType}}
+              </select>
+            </div>
+            <div class="centre creation"><a class="secIcon" title='{{localize "AOV.rollPersonality"}}'><i class="fas fa-dice-d20" data-action="rollPersonality"></i></a></div>
+          </div>
+        {{else}}
+          <div class="personalSec">
+            <div class="ability-cell left bold" title="{{localize 'AOV.persType'}}">{{localize 'AOV.persTypeAbbr'}}</div>
+            <div class="ability-cell bottom-line centre">{{persName}}</div>
+          </div>
+        {{/if}}
+        <div class="personalSec">
+          <div class="ability-cell left bold" title="{{localize 'AOV.spiritAn'}}">{{localize 'AOV.spiritAnAbbr'}}</div>
+          <div class='ability-cell'><input class="stat-input centre" name='system.spiritAn' type='text'
+              value='{{actor.system.spiritAn}}' /></div>
+        </div>
+        <div class="personalSec">
+          <div class="ability-cell left bold" title="{{localize 'AOV.gender'}}">{{localize 'AOV.genderAbbr'}}</div>
+          {{#if isSelectGender}}
+          <div class="{{#if isCreate}}creation{{/if}} centre">
+            <select class="stat-input" data-handle-change name="system.gender">
+              {{selectOptions genderOptions selected=actor.system.gender}}
+            </select>
+          </div>
+          {{else}}
+            <div class='ability-cell'><input class="stat-input centre" name='system.gender' type='text'
+              value='{{actor.system.gender}}' /></div>
+          {{/if}}
+        </div>
+        <div class="personalSecDbl">
+          <div class="personalSec">
+            <div class="ability-cell left bold" title="{{localize 'AOV.birthYear'}}">{{localize 'AOV.birthYearAbbr'}}</div>
+            <div class='ability-cell'><input class="stat-input centre" name='system.birthYear' type='number'
+                value='{{actor.system.birthYear}}'/></div>
+          </div>
+          <div class="personalSec">
+            <div class="ability-cell left bold" title="{{localize 'AOV.age'}}">{{localize 'AOV.ageAbbr'}}</div>
+            <div class="ability-cell centre terIcon bottom-line">{{system.age}}</div>
+          </div>
+        </div>
+        <div class="personalSec distinct">
+          <div class="ability-cell left bold" title="{{localize 'AOV.distFeatures'}}">{{localize 'AOV.distFeaturesAbbr'}}</div>
+          <textarea class='distinctFeat secIcon centre' name='system.distFeatures'>{{actor.system.distFeatures}}</textarea>
+        </div>
+      {{/unless}}
+    </div>
+
+
+
+    {{!Image Section}}
+    <div>
+      <img class='profile-img' src='{{actor.img}}' data-edit='img' data-action='onEditImage' height='100' width='100' />
+      <br>
+      <div class="centre" style="padding-top:4px;">
+      <div class="ability-cell left bold" title="{{localize 'AOV.encHint'}} {{actor.system.encPenaltyLabel}}">{{localize 'AOV.encumbranceAbbr'}}:&nbsp
+        <span class="ability-cell centre terIcon bold">{{system.actualEnc}}</span>
+        <span class="ability-cell centre"> / </span>
+        <span class="ability-cell centre terIcon bold">{{system.maxEnc}}</span>
+      </div>
+
+
+
+
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+
+  <div>
+    <img class="img-centre aovline">
+  </div>
+
+
+</header>

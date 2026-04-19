@@ -1,0 +1,43 @@
+/*Prose Mirror CSS Layouts*/
+.character-notes .prosemirror,
+.character-notes prose-mirror {
+  height: 450px;
+}
+
+.npc-notes .prosemirror,
+.npc-notes prose-mirror {
+  min-height: 550px;
+  height: 100%;
+  width: 335px;
+  color: var(--aov-primary-font-colour);
+}
+
+.ship-notes .prosemirror,
+.ship-notes prose-mirror {
+  height: 400px;
+}
+
+.prosemirror .editor-content,
+prose-mirror .editor-content {
+  color: var(--aov-primary-font-colour);
+  position: absolute;
+  overflow: hidden auto;
+  inset: 0;
+  outline: 0 solid transparent;
+  border: 1px solid;
+  padding-left: 2px;
+  padding-right: 20px;
+}
+
+.prosemirror button.toggle,
+prose-mirror button.toggle {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  z-index: 1;
+  opacity: 0.5;
+}
+.prosemirror .journal-page-content,
+prose-mirror .journal-page-content {
+  color: var(--aov-primary-font-colour);
+}

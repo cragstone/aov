@@ -1,0 +1,47 @@
+<section class='item tab details draggable {{tab.cssClass}}' data-group='primary' data-tab='details'>
+
+  <div class="gear-detail-grid">
+    {{#if canEdit}}
+      <div class="bold">{{localize 'AOV.ideals'}}</div>
+      <input class="gear-input" style="grid-column: 2 / span 2;" name='system.ideals' type='text' value='{{item.system.ideals}}'/>
+    {{else}}
+      <div class="bold">{{localize 'AOV.ideals'}}</div>
+      <div class="centre bottom-line" style="grid-column: 2 / span 2;">{{item.system.ideals}}</div>
+    {{/if}}
+
+    <div class="new-row">&nbsp</div>
+    <div class="new-row">&nbsp</div>
+
+    {{!-- Selected Skills --}}
+    <div class="bold new-row" style="padding-top: 16px;">{{ localize "AOV.worshipSkill"}}</div>
+    <div class="horizontalboxed {{#if isGM}} droppable {{/if}}" style="grid-column: 2/4;" data-drag="true">
+      <ol class="item-list">
+        {{#unless hasSkills}}
+          <div style="grid-column 2/4;">{{localize 'AOV.dropHere' itemType=(localize "TYPES.Item.skill")}}</div>
+        {{/unless}}
+        {{#each skills as |item|}}
+          <li class="item flexrow" data-item-id="{{item.uuid}}" data-cid="{{item.cid}}">
+            <div class="item-name flexrow">
+              <div class="item-view font14" title="{{item.cid}}">{{item.name}}</div>
+            </div>
+            <div class="item-controls">
+              {{#if ../isGM}}
+                <a class="item-control item-delete" title="{{localize 'AOV.deleteDoc' type=(localize "TYPES.Item.skill")}}"><i class="fas fa-trash"></i></a>
+              {{/if}}
+            </div>
+          </li>
+        {{/each}}
+      </ol>
+    </div>
+    <br>
+
+
+    {{#if hasOwner}}
+      <div class="new-row"></div>
+      <br>
+      <div class="new-row bold">{{localize 'AOV.devPoints'}}</div>
+      <div class="gear-input bottom-line centre">{{item.system.dp}}</div>
+    {{/if}}
+
+  </div>
+</section>

@@ -1,0 +1,37 @@
+<section id="npc-token-create-form">
+
+
+
+  {{#if askStats}}
+    <div class="flexrow">
+      <label>{{localize "AOV.TokenCreationRoll.Prompt"}}</label>
+      <select data-handle-change name="statCreate">
+        {{selectOptions statCreateOptions selected="random"}}
+      </select>
+    </div>
+    <br>
+  {{/if}}
+
+
+
+  {{#if askStatVariant}}
+    <div class="flexrow">
+      <label>{{localize "AOV.TokenCreationRoll.StatVariantPrompt"}}</label>
+      <select data-handle-change name="statVariant">
+        {{selectOptions statVariantOptions selected="roll"}}
+      </select>
+    </div>
+    <br>
+  {{/if}}
+
+  {{#if askSkillVariant}}
+    <div class="flexrow">
+      <label>{{localize "AOV.TokenCreationRoll.SkillVariantPrompt"}}</label>
+      <select data-handle-change name="skillVariant">
+        {{selectOptions statVariantOptions selected="roll"}}
+      </select>
+    </div>
+    <br>
+  {{/if}}
+
+  </section>

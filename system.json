@@ -1,0 +1,189 @@
+{
+    "id": "aov",
+    "title": "Age of Vikings",
+    "description": "Age of Vikings by Chaosium Inc for Foundry VTT",
+
+    "version": "13.24",
+    "compatibility": {
+      "minimum": 13,
+      "verified": "13.351"
+    },
+
+    "authors": [
+      {
+        "name": "Dangermouse",
+        "discord": "dangermouse67"
+      },
+      {
+        "name": "JamesB"
+      }
+    ],
+
+    "esmodules": ["aov.mjs",
+                  "system/setup/load.mjs"],
+    "styles": [
+      "css/aov.css",
+      "css/aov-actor.css",
+      "css/aov-cid.css",
+      "css/aov-prosemirror.css",
+      "css/aov-journal.css",
+      "css/aov-ui.css"
+    ],
+    "languages": [
+      {
+        "lang": "en",
+        "name": "English",
+        "path": "lang/en.json"
+      }
+    ],
+  "packFolders": [
+    {
+      "name": "AoV System",
+      "sorting": "m",
+      "color": "#291e47",
+      "packs": [
+        "hit-locations",
+        "passions",
+        "skills",
+        "weapon-categories",
+        "weapon-skills",
+        "instructions"
+      ],
+      "folders": []
+    }
+  ],
+    "packs": [
+      {
+        "name": "hit-locations",
+        "label": "Hit Locations",
+        "path": "./packs/hit-locations",
+        "type": "Item",
+        "system": "aov",
+        "ownership": {
+          "PLAYER": "OBSERVER",
+          "ASSISTANT": "OWNER"
+        }
+      },
+      {
+        "name": "passions",
+        "label": "Passions",
+        "path": "./packs/passions",
+        "type": "Item",
+        "system": "aov",
+        "ownership": {
+          "PLAYER": "OBSERVER",
+          "ASSISTANT": "OWNER"
+        }
+      },
+      {
+        "name": "skills",
+        "label": "Skills",
+        "path": "./packs/skills",
+        "type": "Item",
+        "system": "aov",
+        "ownership": {
+          "PLAYER": "OBSERVER",
+          "ASSISTANT": "OWNER"
+        }
+      },
+      {
+        "name": "weapon-categories",
+        "label": "Weapon Categories",
+        "path": "./packs/weapon-categories",
+        "type": "Item",
+        "system": "aov",
+        "ownership": {
+          "PLAYER": "OBSERVER",
+          "ASSISTANT": "OWNER"
+        }
+      },
+      {
+        "name": "weapon-skills",
+        "label": "Weapon Skills",
+        "path": "./packs/weapon-skills",
+        "type": "Item",
+        "system": "aov",
+        "ownership": {
+          "PLAYER": "OBSERVER",
+          "ASSISTANT": "OWNER"
+        }
+      },
+      {
+        "name": "instructions",
+        "label": "Instructions",
+        "path": "./packs/instructions",
+        "type": "JournalEntry",
+        "system": "aov",
+        "ownership": {
+          "PLAYER": "OBSERVER",
+          "ASSISTANT": "OWNER"
+        }
+      }
+
+    ],
+
+    "documentTypes": {
+      "Actor": {
+        "character": {"htmlFields": ["description","gmNotes"]},
+        "npc": {"htmlFields": ["description","gmNotes"]},
+        "farm": {"htmlFields": ["description","gmNotes"]},
+        "ship": {"htmlFields": ["description","gmNotes"]},
+        "party": {}
+      },
+      "Item": {
+        "armour": {"htmlFields": ["description","gmNotes"]},
+        "devotion": {"htmlFields": ["description","gmNotes"]},
+        "family": {"htmlFields": ["description","gmNotes"]},
+        "gear": {"htmlFields": ["description","gmNotes"]},
+        "history": {"htmlFields": ["description","gmNotes"]},
+        "hitloc": {"htmlFields": ["description","gmNotes"]},
+        "homeland": {"htmlFields": ["description","gmNotes"]},
+        "npcpower": {"htmlFields": ["description","gmNotes"]},
+        "passion": {"htmlFields": ["description","gmNotes"]},
+        "rune": {"htmlFields": ["description","gmNotes"]},
+        "runescript": {"htmlFields": ["description","gmNotes"]},
+        "seidur": {"htmlFields": ["description","gmNotes"]},
+        "skill": {"htmlFields": ["description","gmNotes"]},
+        "species": {"htmlFields": ["description","gmNotes"]},
+        "thrall": {"htmlFields": ["description","gmNotes"]},
+        "weapon": {"htmlFields": ["description","gmNotes"]},
+        "weaponcat": {},
+        "wound": {}
+      },
+      "RegionBehavior": {
+        "ChaosiumCanvasInterfaceAmbientLightToggle": {},
+        "ChaosiumCanvasInterfaceDrawingToggle": {},
+        "ChaosiumCanvasInterfaceMapPinToggle": {},
+        "ChaosiumCanvasInterfaceOpenDocument": {},
+        "ChaosiumCanvasInterfacePlaySound": {},
+        "ChaosiumCanvasInterfaceToScene": {},
+        "ChaosiumCanvasInterfaceTileToggle": {}
+      }
+    },
+
+    "grid":{
+      "distance": 5,
+      "units": "ft"
+    },
+
+    "primaryTokenAttribute": "hp",
+
+    "socket": true,
+
+    "media": [
+      {
+        "type": "setup",
+        "url": "systems/aov/art-assets/aov_logo.jpg",
+        "thumbnail": "systems/aov/art-assets/aov_logo.jpg"
+      }
+    ],
+    "background": "systems/aov/art-assets/vikings-launch_small.jpg",
+
+    "manifest": "https://github.com/cragstone/aov/releases/latest/download/system.json",
+    "download": "https://github.com/cragstone/aov/releases/download/v13.23/aov.zip",
+    "url": "https://github.com/cragstone/aov",
+    "license": "LICENSE.txt",
+    "readme": "README.md",
+    "changelog": "CHANGELOG.md",
+    "bugs": "https://github.com/cragstone/aov/issues"
+  }

@@ -1,0 +1,27 @@
+<form class="aov">
+  <div class="">
+    <ol class="op-list">
+      <div class="dice-roll">
+        <li class='actor-roll'>
+          <img class="open-actor" src="{{particImg}}" height="53" width="53" title="{{particName}}" />
+          <div class="roll-details">
+            <div class="header">
+              <div class='name'>
+                <span class="tag">{{particName}}</span>
+              </div>
+            </div>
+          </div>
+        </li>
+        </div>
+        <div class="actor-roll">
+          <span class="pending">{{localize 'AOV.roll'}}: {{results.ageResult}} [{{results.points}} {{localize 'AOV.loss'}}] </span>
+        </div>
+
+        {{#each results.lossRolls as |loss key|}}
+          <div>
+            <span class="bold truncate">{{loss.label}}: ({{loss.diceRoll}})</span>
+          </div>
+        {{/each}}
+    </ol>
+  </div>
+</form>

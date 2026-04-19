@@ -1,0 +1,104 @@
+{{!--Family Tab--}}
+<section class='character tab family {{tab.cssClass}}' data-group='primary' data-tab='family'>
+  <div class="armour-grid">
+    <div class="ability-cell">{{localize 'AOV.dependents'}}</div>
+    <div class="ability-cell terIcon" >{{system.dependents}} / {{thrallCount}}</div>
+  </div>
+
+
+
+  <ol class='gear-list'>
+    {{!--Family List--}}
+    <li class='item gear-header primBackCol family-grid'>
+      <div class='left new-row'>{{localize 'TYPES.Item.family'}}</div>
+      <div class='centre'>{{localize 'AOV.gender'}}</div>
+      <div class='centre'>{{localize 'AOV.relationship'}}</div>
+      <div class='centre' title="{{ localize 'AOV.dependent'}}">{{localize 'AOV.dependentAbbr'}}</div>
+      <div class='centre'>{{localize 'AOV.born'}}</div>
+      <div class='centre'>{{localize 'AOV.died'}}</div>
+      <div class='centre'>
+        {{#if @root.editable}}
+          <a class='item-control item-create' title='{{localize "AOV.createDoc" type=(localize "TYPES.Item.family")}}'
+            data-action='createDoc' data-document-class='Item' data-type='family'>
+            <i class='fas fa-plus'></i>
+          </a>
+        {{/if}}
+      </div>
+    </li>
+    {{#each families as |item id|}}
+    <li class='item family-grid' data-item-id='{{item._id}}' data-drag='true' data-document-class='Item'>
+      <div class="new-row gear-name left rollable" title='{{localize "AOV.viewDoc" type=(localize "TYPES.Item.family")}}'
+        data-action='viewDoc'>{{item.name}}</div>
+      <div class='gear-name centre'>{{item.system.genderLabel}}</div>
+      <div class='gear-name centre'>{{relationLabel}}</div>
+      <div class="centre" data-action="itemToggle" data-property="depend"><a class="icon16">
+            {{#if system.depend}}
+              <i class="fa-regular fa-square-check"></i>
+            {{else}}
+              <i class="fa-regular fa-square"></i>
+            {{/if}}
+          </a></div>
+      <div class='gear-name centre'>{{item.system.born}}</div>
+      <div class='gear-name centre'>{{item.system.died}}</div>
+      {{#unless ../isLocked}}
+      <div class='gear-controls centre'>
+        <a class='item-delete centre' title='{{localize "AOV.deleteDoc" type=(localize "TYPES.Item.family")}}'
+          data-action="deleteDoc">
+          <i class='fas fa-trash'></i>
+        </a>
+      </div>
+      {{/unless}}
+    </li>
+    {{/each}}
+
+    <br>
+    {{!--Thrall List--}}
+    <li class='item gear-header {{#if singleColour}}primBackCol{{else}}secBackCol{{/if}} family-grid'>
+      <div class='left new-row'>{{localize 'TYPES.Item.thrall'}}</div>
+      <div class='centre'>{{localize 'AOV.gender'}}</div>
+      <div class='centre'>{{localize 'TYPES.Actor.farm'}}</div>
+      <div class='centre'>{{localize 'AOV.born'}}</div>
+      <div class='centre'>{{localize 'AOV.died'}}</div>
+      <div></div>
+    </li>
+    {{#each thralls as |item id|}}
+    <li class='item family-grid' data-item-id='{{item.uuid}}' data-drag='true' data-document-class='Item'>
+      <div class="new-row gear-name left rollable viewFromUuid" title='{{localize "AOV.viewDoc"
+        type=(localize "TYPES.Item.thrall")}}'>{{item.name}}</div>
+      <div class='gear-name centre'>{{item.genderLabel}}</div>
+      <div class='gear-name centre'>{{item.farmName}}</div>
+      <div class='gear-name centre'>{{item.born}}</div>
+      <div class='gear-name centre'>{{item.died}}</div>
+    </li>
+    {{/each}}
+    <br>
+
+    {{!--Farm List--}}
+    <li class='item gear-header {{#if singleColour}}primBackCol{{else}}terBackCol{{/if}} family-grid'>
+      <div class='left new-row'>{{localize 'TYPES.Actor.farm'}}</div>
+      <div class='centre'>{{localize 'AOV.size'}}</div>
+      <div class='centre'>{{localize 'AOV.type'}}</div>
+      <div class='centre'>{{localize 'AOV.value'}}</div>
+      <div class='centre'>&nbsp</div>
+      <div>&nbsp</div>
+    </li>
+    {{#each farms as |item id|}}
+    <li class='item family-grid' data-item-id='{{item.uuid}}' data-drag='true' data-document-class='Item'>
+      <div class="new-row gear-name left rollable viewFromUuid" title='{{localize "AOV.viewDoc"
+        type=(localize "TYPES.Actor.farm")}}'>{{item.name}}</div>
+      <div class='gear-name centre'>{{item.size}}</div>
+      <div class='gear-name centre'>{{item.farmType}}</div>
+      <div class='gear-name centre'>{{item.value}}</div>
+      <div class='gear-name centre'></div>
+      {{#unless ../isLocked}}
+        <div class='gear-controls centre'>
+          <a class='item-delete centre deleteFarm' title='{{localize "AOV.deleteDoc" type=(localize "TYPES.Actor.farm")}}'>
+            <i class='fas fa-trash'></i>
+          </a>
+        </div>
+      {{/unless}}
+    </li>
+    {{/each}}
+
+  </ol>
+</section>
