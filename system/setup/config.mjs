@@ -27,7 +27,8 @@ AOV.keysActiveEffects = {
   'system.abilities.pow.effects': 'AOV.Ability.pow',
   'system.abilities.cha.effects': 'AOV.Ability.cha',
   'system.hp.effects': 'AOV.hp',
-  'system.mp.effects': 'AOV.mp'
+  'system.mp.effects': 'AOV.mp',
+  'system.apBonus': 'AOV.armourPoints'
 };
 
 AOV.keysSpecialActiveEffects = {

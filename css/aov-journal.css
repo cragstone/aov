@@ -1,13 +1,202 @@
+
+
 .journal-entry-content, .journal-entry-page, .journal-entry-pages {
   background-image: url('../art-assets/parchment-white.jpg');
-    color: var(--aov-jnl-main-col);
+  color: var(--aov-jnl-main-col);
 }
 
 .journal-page-header h1 {
   color: var(--aov-jnl-main-col);
 }
 
-.aov.journal-sheet,
+
+form.css-adventure-entry.sheet,
+div.css-adventure-entry.sheet {
+  font-family: var(--aov-primary-font);
+  color: var(--aov-jnl-main-col);
+  font-size: 18px;
+
+  p {
+    margin: 0px;
+    text-align:justify;
+  }
+
+  .indent {
+    text-indent: 20px;
+  }
+
+  .upper {
+    text-transform: uppercase;
+  }
+
+  .centre {
+    text-align: center;
+  }
+
+  .title, .title1 {
+    font-size: 26px;
+    color: var(--aov-jnl-pri-col);
+    font-family: var(--aov-secondary-font);
+    font-weight: bold;
+  }
+
+  .title2 {
+    font-size: 24px;
+    color: var(--aov-jnl-pri-col);
+    font-family: var(--aov-secondary-font);
+    font-weight: bold;
+    border-bottom: none;
+    margin: 0px;
+  }
+
+  .title3 {
+    font-size: 24px;
+    color: var(--aov-jnl-pri-col);
+    font-family: var(--aov-secondary-font);
+    border-bottom: none;
+    margin: 0px;
+  }
+
+  .subtitle {
+    font-size: 22px;
+    font-family: var(--aov-secondary-font);
+    font-weight: bold;
+  }
+
+  .credits {
+    font-size: 18px;
+    color: var(--aov-jnl-pri-col);
+    font-family: var(--aov-secondary-font);
+    font-weight: bold;
+  }
+
+  ul.jnl {
+    margin: 0.5em 0 0 0;
+  }
+
+  ul.jnl li::marker {
+    content: 'Þ ';
+    font-size:18px;
+    color:var(--aov-jnl-pri-col);
+    font-weight: bold;
+  }
+
+  .rules ul.jnl li::marker {
+    content: 'Þ ';
+    font-size:18px;
+    color:var(--aov-jnl-ter-col);
+    font-weight: bold;
+  }
+
+  a.content-link{
+    background: none;
+    border: none;
+    border-radius: 0;
+    white-space: pre-wrap;
+    word-break: normal;
+    color: rgb(156, 7, 156);
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+    text-indent: 0px;
+    i {
+      display:none;
+    }
+
+    &.broken {
+        text-decoration: line-through;
+    }
+  }
+
+  .object a.content-link {
+      background: var(--content-link-background);
+      padding: 1px 4px 0;
+      border: 1px solid var(--content-link-border-color);
+      ;
+      border-radius: 2px;
+      margin: -1px 0;
+      white-space: nowrap;
+      word-break: break-all;
+      color: purple;
+
+      i {
+          display: inline;
+          color: purple;
+      }
+
+      &.broken {
+          text-decoration: line-through;
+      }
+  }
+
+  .example {
+    color: var(--aov-jnl-sec-col);
+  }
+
+  .rules {
+    color: var(--aov-jnl-ter-col);
+    border: 1px black solid;
+    padding:5px;
+    margin: 5px;
+    background-color:cornsilk;
+    .heading {
+      font-family: var(--aov-secondary-font);
+      text-align: center;
+      font-size:18px;
+    }
+    .title3 {
+      color: var(--aov-jnl-ter-col);
+      text-align: center;
+      text-transform:uppercase;
+    }
+    .title4 {
+    color: var(--aov-jnl-ter-col);
+    font-family: var(--aov-secondary-font);
+    font-size: 18px;
+    }
+  }
+
+  table {
+    margin-left:10px;
+    width: calc(100% - 20px);
+    color: var(--aov-jnl-main-col);
+    background-color: rgba(0,0,0,0);
+  }
+
+  table td {
+    padding: 0px 0px 0px 5px;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    &.merged {
+      vertical-align: middle;
+      border-bottom: 1px solid black;
+    }
+  }
+
+  table.mob tbody tr:first-child {
+    background-color: var(--aov-title-font-colour);
+    color: white;
+  }
+
+  table tbody tr:nth-child(odd) {
+    background-color: var(--aov-table-row-colour-even);
+  }
+
+  table tbody tr:nth-child(even) {
+    background-color: var(--aov-table-row-colour-odd);
+  }
+
+  .bluebox {
+      border-top: 1px solid black;
+      border-left: 1px solid black;
+      border-right: 1px solid black;
+      padding: 10px 7px 10px 7px;
+      background-color: rgb(64, 101, 221);
+      color: cornsilk;
+  }
+
+}
+
 .aovJnl {
   font-family: var(--aov-primary-font);
   color: var(--aov-jnl-main-col);
@@ -214,3 +403,4 @@
       }
   }
 }
+

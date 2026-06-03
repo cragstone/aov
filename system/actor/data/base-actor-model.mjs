@@ -27,6 +27,7 @@ export default class AOVActorBaseModel extends AOVDataModel {
     schema.alphaSkills = new fields.BooleanField({ initial: false });  //Flag to list the skills in alphabetical order
     schema.showRunes = new fields.BooleanField({ initial: true });  //Flag to show the runes
     schema.parryBonus = new fields.NumberField({ ...requiredInteger, initial: 0  });  //Parry Bonus
+    schema.apBonus = new fields.NumberField({ ...requiredInteger, initial: 0  });  //AP Bonus to all hit locations
     schema.beserkerOpt = new fields.BooleanField({ initial: false });  //Can the actor go beserk
     schema.beserkerStat = new fields.BooleanField({ initial: false });  //Is the actor go beserk
 
@@ -40,7 +41,7 @@ export default class AOVActorBaseModel extends AOVDataModel {
         effects: new fields.NumberField({ ...requiredInteger, initial: 0 }),
         formula:new fields.StringField({ required: true, blank: true }),
         min: new fields.NumberField({ ...requiredInteger, initial: 0 }),
-        max: new fields.NumberField({ ...requiredInteger, initial: 0 }),                
+        max: new fields.NumberField({ ...requiredInteger, initial: 0 }),
         average: new fields.StringField({ required: true, blank: true }),
       });
       return obj;

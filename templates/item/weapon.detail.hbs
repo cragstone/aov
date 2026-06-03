@@ -53,6 +53,14 @@
       </div>
       <div class="new-row"></div>
       <br>
+      <div class="new-row bold" title="{{localize 'AOV.specDamageHint'}}">{{localize 'AOV.specDamage'}}</div>
+      <div class="centre" data-action="itemToggle" data-property="special">
+        <a class="icon16">
+          <i class="fa-regular {{#if system.special}}fa-square-check{{else}}fa-square{{/if}}"></i>
+        </a>
+      </div>
+      <div class="new-row"></div>
+      <br>
       <div class="new-row bold">{{localize 'AOV.encumbrance'}}</div>
       <div class=""><input class="gear-input centre" name='system.enc' type='number' value='{{item.system.enc}}'/></div>
       <div class="new-row"></div>
@@ -110,6 +118,13 @@
       <div class="new-row bold">{{localize 'AOV.damageType'}}</div>
       <div class="gear-input centre">{{damTypeName}}</div>
       <div class="new-row"></div>
+      <br>
+      <div class="new-row bold" title="{{localize 'AOV.specDamageHint'}}">{{localize 'AOV.specDamage'}}</div>
+      <div class="centre">
+        <a class="icon16">
+          <i class="fa-regular {{#if system.special}}fa-square-check{{else}}fa-square{{/if}}"></i>
+        </a>
+      </div>
       <div class="new-row bold">{{localize 'AOV.encumbrance'}}</div>
       <div class="gear-input centre">{{item.system.enc}}</div>
       <div class="new-row"></div>

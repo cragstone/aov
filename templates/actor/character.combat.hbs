@@ -151,7 +151,7 @@
     <div class="gear-header {{#if singleColour}}primBackCol{{else}}terBackCol{{/if}} weapons-list-grid">
       <div class='new-row left'>{{localize 'TYPES.Item.weapon'}}</div>
       <div class='centre'>%</div>
-      <div class='centre'>{{localize 'AOV.damage'}}</div>
+      <div class='centre' title="{{localize 'AOV.specDamageShow'}}">{{localize 'AOV.damage'}}</div>
       <div class='centre'>{{localize 'AOV.dmgBonusAbbr'}}</div>
       <div class='centre'>{{localize 'AOV.encumbranceAbbr'}}</div>
       <div class='centre' style="grid-column: 6 / 9;">{{localize 'AOV.hpAbbr'}}</div>
@@ -170,7 +170,7 @@
         <div class="new-row gear-name left rollable truncate" title='{{localize "AOV.viewDoc" type=(localize "TYPES.Item.weapon")}}'
               data-action='viewDoc'>{{item.name}}</div>
         <div class='gear-name centre terIcon rollable' data-action="diceroll" data-property="combat" data-skill-id="{{item._id}}" data-tooltip="AOV.rolls.combatRoll">{{item.system.total}}</div>
-        <div class='gear-name centre rollable' data-action="diceroll" data-property="damage" data-skill-id="{{item._id}}" data-tooltip="AOV.rolls.damageRoll">{{item.system.damage}}</div>
+        <div class='gear-name centre rollable' data-action="diceroll" data-property="damage" data-skill-id="{{item._id}}" data-tooltip="AOV.rolls.damageRoll">{{item.system.damage}}{{#if item.system.special}}*{{/if}}</div>
         <div class='gear-name centre terIcon' title="{{item.system.damTypeLabel}}">{{item.system.dbLabel}}</div>
         <div class='gear-name centre terIcon'>{{item.system.actlEnc}}</div>
         <div class="centre skill-inline"><input class="ability-cell centre" name='system.currHP'

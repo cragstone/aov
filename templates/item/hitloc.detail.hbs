@@ -57,7 +57,11 @@
         <div class="centre"><input class="gear-input centre" name='system.npcDmg' type='number' value='{{item.system.npcDmg}}'/></div>
         <div class="new-row"></div>
         <br>
+      {{else}}
+        <div class="new-row bold">{{localize 'AOV.hitLocAPMod'}}</div>
+        <div class="centre"><input class="gear-input centre" name='system.apMod' type='number' value='{{item.system.apMod}}'/></div>
       {{/unless}}
+
     {{/if}}
 
   </div>

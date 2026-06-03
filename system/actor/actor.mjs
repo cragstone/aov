@@ -151,7 +151,7 @@ export class AOVActor extends Actor {
       //Go through Hit Locations and calc AP, Max HP, and current HP
       if (itm.type === 'hitloc') {
         //Calc C(urrent) and M(ax) AP
-        itm.system.map = 0
+        itm.system.map = 0 + actorData.system.apBonus + itm.system.apMod
         if (armourList.length>0){
           for (let aItm of armourList){
             if (itm.system.lowRoll>=aItm.system.lowLoc && itm.system.highRoll<=aItm.system.highLoc) {

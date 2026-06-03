@@ -1,3 +1,9 @@
+## 13.25
+- Added some journal styling
+- Weapons now have a "Special Damage" checkbox - if ticked an "asterisk" will appear after weapon damage on the Character/NPC sheet.
+- Characters can have a global Armour Point modifier added on the GMTab - increasing AP to all hit locations
+- Hit Locations, when on a Character, now show an AP Modifier field - use this to adjust the AP for the specific hit location
+
 ## 13.24
 - Migration of Github repository
 

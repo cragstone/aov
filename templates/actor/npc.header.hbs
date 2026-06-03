@@ -245,7 +245,7 @@
           {{/if}}
         </div>
         <div class="centre bold">%</div>
-        <div class="centre bold">{{localize 'AOV.damage'}}</div>
+        <div class="centre bold" title="{{localize 'AOV.specDamageShow'}}">{{localize 'AOV.damage'}}</div>
         <div class="centre bold">{{localize 'AOV.dmgBonusAbbr'}}</div>
         <div class="centre bold">{{localize 'AOV.hpAbbr'}}</div>
         <div class="centre bold">
@@ -263,7 +263,7 @@
               {{#if ../isLocked}}
                 <div class="rollable" data-action='viewDoc'>{{item.name}}</div>
                 <div class="centre terIcon rollable" data-action="diceroll" data-property="combat" data-skill-id="{{item._id}}" data-tooltip="AOV.rolls.combatRoll">{{item.system.total}}</div>
-                <div class="centre rollable" data-action="diceroll" data-property="damage" data-skill-id="{{item._id}}" data-tooltip="AOV.rolls.damageRoll">{{item.system.damage}}</div>
+                <div class="centre rollable" data-action="diceroll" data-property="damage" data-skill-id="{{item._id}}" data-tooltip="AOV.rolls.damageRoll">{{item.system.damage}}{{#if item.system.special}}*{{/if}}</div>
                 <div class="centre" title="{{item.system.damTypeLabel}}">{{item.system.dbLabel}}</div>
                 <div class="centre npc-weapon-hp">
                   <div class="centre skill-inline"><input class="skillDev-input centre" name='system.currHP'

@@ -23,6 +23,7 @@ export default class AOVWeaponModel extends AOVItemBaseModel {
     schema.range = new fields.NumberField({ ...requiredInteger, initial: 0 });   //Range
     schema.common = new fields.BooleanField({ initial: true }); //Is this a common weapon (can be selected as a starter weapon)
     schema.npcBase = new fields.NumberField({ ...requiredInteger, initial: 0 });   //NPC Attack% - rather than linking to skill
+    schema.special = new fields.BooleanField({ initial: false }); //Special damage indicator
     return schema
   }
 
