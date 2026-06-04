@@ -8,136 +8,71 @@
 export async function updateWorld({ bypassVersionCheck = false } = {}) {
   const currentVersion = game.settings.get("aov", "systemVersion");
   const targetVersion = game.system.version;
+  let migrate136 = false
+  let migrate1310 = false
+  let migrate1312 = false
 
-  if (currentVersion === "") {
-    await updateDialog('systems/aov/templates/updates/welcome.hbs')
-  } else {
-    //Message if current system is less that Version 13.1
-    if (foundry.utils.isNewerVersion('13.1', currentVersion ?? '0')) {
-      await updateDialog('systems/aov/templates/updates/update13.1.hbs')
-    }
-
-    //Message if current system is less that Version 13.4
-    if (foundry.utils.isNewerVersion('13.4', currentVersion ?? '0')) {
-      await updateDialog('systems/aov/templates/updates/update13.4.hbs')
-    }
-
-    //Message if current system is less that Version 13.5
-    if (foundry.utils.isNewerVersion('13.5', currentVersion ?? '0')) {
-      await updateDialog('systems/aov/templates/updates/update13.5.hbs')
-    }
-
+  //If not a new install then check for migrations
+  if (currentVersion !="") {
     //Message if current system is less that Version 13.6
     if (foundry.utils.isNewerVersion('13.6', currentVersion ?? '0')) {
-      let response = await updateDialog('systems/aov/templates/updates/update13.6.hbs')
-      if (!response) {
-        ui.notifications.warn("Item Migration to Version 13.6 cancelled");
-        return
-      }
-      await damTypeUpdate()
+      migrate136 = true
     }
-
-    //Message if current system is less that Version 13.7
-    if (foundry.utils.isNewerVersion('13.7', currentVersion ?? '0')) {
-      await updateDialog('systems/aov/templates/updates/update13.7.hbs')
-    }
-
-    //Message if current system is less that Version 13.8
-    if (foundry.utils.isNewerVersion('13.8', currentVersion ?? '0')) {
-      await updateDialog('systems/aov/templates/updates/update13.8.hbs')
-    }
-
-    //Message if current system is less that Version 13.9
-    if (foundry.utils.isNewerVersion('13.9', currentVersion ?? '0')) {
-      await updateDialog('systems/aov/templates/updates/update13.9.hbs')
-    }
-
     //Message if current system is less that Version 13.10
     if (foundry.utils.isNewerVersion('13.10', currentVersion ?? '0')) {
-      let response = await updateDialog('systems/aov/templates/updates/update13.10.hbs')
-      if (!response) {
-        ui.notifications.warn("Item Migration to Version 13.10 cancelled");
-        return
-      }
-      await charStartStats()
+      migrate1310 = true
     }
-
     //Message if current system is less that Version 13.12
     if (foundry.utils.isNewerVersion('13.12', currentVersion ?? '0')) {
-      let response = await updateDialog('systems/aov/templates/updates/update13.12.hbs')
-      if (!response) {
-        ui.notifications.warn("Item Migration to Version 13.12 cancelled");
-        return
-      }
-      await skillNameUpdate()
+      migrate1312 = true
     }
+  }
 
-    //Message if current system is less that Version 13.13
-    if (foundry.utils.isNewerVersion('13.13', currentVersion ?? '0')) {
-      await updateDialog('systems/aov/templates/updates/update13.13.hbs')
+  let msgdata = {
+    currentVersion,
+    targetVersion,
+    migrate136,
+    migrate1310,
+    migrate1312
+  }
+
+  let response = await updateDialog('systems/aov/templates/updates/welcome.hbs', msgdata)
+
+  //Message if current system is less that Version 13.6
+  if (migrate136) {
+    if (!response) {
+      ui.notifications.warn("Item Migration to Version 13.6 cancelled");
+      return
     }
+    await damTypeUpdate()
+  }
 
-    //Message if current system is less that Version 13.14
-    if (foundry.utils.isNewerVersion('13.14', currentVersion ?? '0')) {
-      await updateDialog('systems/aov/templates/updates/update13.14.hbs')
+  //Message if current system is less that Version 13.10
+  if (migrate1310) {
+    if (!response) {
+      ui.notifications.warn("Item Migration to Version 13.10 cancelled");
+      return
     }
+    await charStartStats()
+  }
 
-    //Message if current system is less that Version 13.15
-    if (foundry.utils.isNewerVersion('13.15', currentVersion ?? '0')) {
-      await updateDialog('systems/aov/templates/updates/update13.15.hbs')
+  //Message if current system is less that Version 13.12
+  if (migrate1312) {
+    if (!response) {
+      ui.notifications.warn("Item Migration to Version 13.12 cancelled");
+      return
     }
-
-    //Message if current system is less that Version 13.16
-    if (foundry.utils.isNewerVersion('13.16', currentVersion ?? '0')) {
-      await updateDialog('systems/aov/templates/updates/update13.16.hbs')
-    }
-
-    //Message if current system is less that Version 13.17
-    if (foundry.utils.isNewerVersion('13.17', currentVersion ?? '0')) {
-      await updateDialog('systems/aov/templates/updates/update13.17.hbs')
-    }
-
-    //Message if current system is less that Version 13.18
-    if (foundry.utils.isNewerVersion('13.18', currentVersion ?? '0')) {
-      await updateDialog('systems/aov/templates/updates/update13.18.hbs')
-    }
-
-    //Message if current system is less that Version 13.19
-    if (foundry.utils.isNewerVersion('13.19', currentVersion ?? '0')) {
-      await updateDialog('systems/aov/templates/updates/update13.19.hbs')
-    }
-
-    //Message if current system is less that Version 13.20
-    if (foundry.utils.isNewerVersion('13.20', currentVersion ?? '0')) {
-      await updateDialog('systems/aov/templates/updates/update13.20.hbs')
-    }
-
-    //Message if current system is less that Version 13.21
-    if (foundry.utils.isNewerVersion('13.21', currentVersion ?? '0')) {
-      await updateDialog('systems/aov/templates/updates/update13.21.hbs')
-    }
-
-    //Message if current system is less that Version 13.22
-    if (foundry.utils.isNewerVersion('13.22', currentVersion ?? '0')) {
-      await updateDialog('systems/aov/templates/updates/update13.22.hbs')
-    }
-
-    //Message if current system is less that Version 13.23
-    if (foundry.utils.isNewerVersion('13.23', currentVersion ?? '0')) {
-      await updateDialog('systems/aov/templates/updates/update13.23.hbs')
-    }
-
+    await skillNameUpdate()
   }
 
   await game.settings.set("aov", "systemVersion", targetVersion);
 }
 
-export async function updateDialog(msg) {
-  const content = await foundry.applications.handlebars.renderTemplate(msg)
+export async function updateDialog(msg,data) {
+  const content = await foundry.applications.handlebars.renderTemplate(msg,data)
   const response = await foundry.applications.api.DialogV2.prompt({
     position: {
       width: 500,
-      height: 450,
     },
     classes: ['aov', 'item'],
     window: {

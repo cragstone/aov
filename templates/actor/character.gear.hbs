@@ -5,12 +5,12 @@
   <ol class='gear-list'>
     <li class='item gear-header primBackCol gear-grid'>
       <div class='left'>{{localize 'TYPES.Item.gear'}}</div>
-      <div class='centre' title="{{localize 'AOV.encumbrance'}}">{{localize 'AOV.encumbranceAbbr'}}</div>
-      <div class='centre' title="{{localize 'AOV.quantity'}}">{{localize 'AOV.quantityAbbr'}}</div>
-      <div class='centre' title="{{localize 'AOV.equippedHint'}}">{{localize 'AOV.equippedAbbr'}}</div>
+      <div class='centre' data-tooltip="{{localize 'AOV.encumbrance'}}">{{localize 'AOV.encumbranceAbbr'}}</div>
+      <div class='centre' data-tooltip="{{localize 'AOV.quantity'}}">{{localize 'AOV.quantityAbbr'}}</div>
+      <div class='centre' data-tooltip="{{localize 'AOV.equippedHint'}}">{{localize 'AOV.equippedAbbr'}}</div>
       <div class='centre'>
         {{#if @root.editable}}
-        <a class='item-control item-create' title='{{localize "AOV.createDoc" type=(localize "TYPES.Item.gear")}}'
+        <a class='item-control item-create' data-tooltip='{{localize "AOV.createDoc" type=(localize "TYPES.Item.gear")}}'
           data-action='createDoc' data-document-class='Item' data-type='gear'>
           <i class='fas fa-plus'></i>
         </a>
@@ -19,7 +19,7 @@
     </li>
     {{#each gear as |item id|}}
     <li class='item gear-grid' data-item-id='{{item._id}}' data-drag='true' data-document-class='Item'>
-      <div class="gear-name left rollable" title='{{localize "AOV.viewDoc" type=(localize "TYPES.Item.gear")}}'
+      <div class="gear-name left rollable" data-tooltip='{{localize "AOV.viewDoc" type=(localize "TYPES.Item.gear")}}'
         data-action='viewDoc'>{{item.name}}</div>
       <div class='gear-name terIcon centre'>{{item.system.actlEnc}}</div>
       <div class='gear-name centre'>
@@ -27,19 +27,19 @@
       </div>
       <div class='gear-name centre' data-action="itemToggle" data-property="equipStatus"><a class="">
           {{#if (eq item.system.equipStatus 1)}}
-          <i class="fas fa-hand-holding" title='{{localize "AOV.carried"}}'></i>
+          <i class="fas fa-hand-holding" data-tooltip='{{localize "AOV.carried"}}'></i>
           {{else}}
           {{#if (eq item.system.equipStatus 2)}}
-          <i class="fas fa-horse" title='{{localize "AOV.packed"}}'></i>
+          <i class="fas fa-horse" data-tooltip='{{localize "AOV.packed"}}'></i>
           {{else}}
-          <i class="fas fa-house" title='{{localize "AOV.stored"}}'></i>
+          <i class="fas fa-house" data-tooltip='{{localize "AOV.stored"}}'></i>
           {{/if}}
           {{/if}}
 
         </a></div>
       {{#unless ../isLocked}}
       <div class='gear-controls centre'>
-        <a class='item-delete centre' title='{{localize "AOV.deleteDoc" type=(localize "TYPES.Item.gear")}}'
+        <a class='item-delete centre' data-tooltip='{{localize "AOV.deleteDoc" type=(localize "TYPES.Item.gear")}}'
           data-action="deleteDoc">
           <i class='fas fa-trash'></i>
         </a>
@@ -53,14 +53,14 @@
   <li class='item gear-header {{#if singleColour}}primBackCol{{else}}secBackCol{{/if}} armour-grid'>
       <div class='left'>{{localize 'TYPES.Item.armour'}}</div>
       <div class='centre'>{{localize 'AOV.hitLocations'}}</div>
-      <div class='centre' title="{{localize 'AOV.armourPoints'}}">{{localize 'AOV.armourPointsAbbr'}}</div>
-      <div class='centre' title="{{localize 'AOV.encumbrance'}}">{{localize 'AOV.encumbranceAbbr'}}</div>
-      <div class='centre' title="{{localize 'AOV.moveQuietly'}}">{{localize 'AOV.moveQuietlyAbbr'}}</div>
-      <div class='centre' title="{{localize 'AOV.equippedHint'}}">{{localize 'AOV.equippedAbbr'}}</div>
+      <div class='centre' data-tooltip="{{localize 'AOV.armourPoints'}}">{{localize 'AOV.armourPointsAbbr'}}</div>
+      <div class='centre' data-tooltip="{{localize 'AOV.encumbrance'}}">{{localize 'AOV.encumbranceAbbr'}}</div>
+      <div class='centre' data-tooltip="{{localize 'AOV.moveQuietly'}}">{{localize 'AOV.moveQuietlyAbbr'}}</div>
+      <div class='centre' data-tooltip="{{localize 'AOV.equippedHint'}}">{{localize 'AOV.equippedAbbr'}}</div>
   </li>
   {{#each armours as |item id|}}
     <li class='item armour-grid' data-item-id='{{item._id}}' data-drag='true' data-document-class='Item'>
-      <div class="gear-name left rollable" title='{{localize "AOV.viewDoc" type=(localize "TYPES.Item.weapon")}}'
+      <div class="gear-name left rollable" data-tooltip='{{localize "AOV.viewDoc" type=(localize "TYPES.Item.weapon")}}'
         data-action='viewDoc'>{{item.name}}</div>
       <div class='gear-name centre'>{{item.system.armourLocLabel}}</div>
       <div class='gear-name centre'>{{item.system.map}}</div>
@@ -68,18 +68,18 @@
       <div class='gear-name centre'>{{item.system.mqPenalty}}</div>
       <div class='gear-name centre' data-action="itemToggle" data-property="equipStatus"><a class="">
           {{#if (eq item.system.equipStatus 1)}}
-          <i class="fas fa-hand-holding" title='{{localize "AOV.carried"}}'></i>
+          <i class="fas fa-hand-holding" data-tooltip='{{localize "AOV.carried"}}'></i>
           {{else}}
             {{#if (eq item.system.equipStatus 2)}}
-              <i class="fas fa-horse" title='{{localize "AOV.packed"}}'></i>
+              <i class="fas fa-horse" data-tooltip='{{localize "AOV.packed"}}'></i>
             {{else}}
-              <i class="fas fa-house" title='{{localize "AOV.stored"}}'></i>
+              <i class="fas fa-house" data-tooltip='{{localize "AOV.stored"}}'></i>
             {{/if}}
           {{/if}}
         </a></div>
       {{#unless ../isLocked}}
       <div class='gear-controls centre'>
-        <a class='item-delete centre' title='{{localize "AOV.deleteDoc" type=(localize "TYPES.Item.weapon")}}'
+        <a class='item-delete centre' data-tooltip='{{localize "AOV.deleteDoc" type=(localize "TYPES.Item.weapon")}}'
           data-action="deleteDoc">
           <i class='fas fa-trash'></i>
         </a>

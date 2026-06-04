@@ -66,6 +66,7 @@ export class AoVActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorSh
       familyroll: this._familyroll,
       npcSections: this._npcSections,
       addWound: this._addWound,
+      openWiki: this._openWiki,
     }
   }
 
@@ -500,6 +501,12 @@ export class AoVActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorSh
       })
     }
       newItem.sheet.render(true);
+  }
+
+  //Open Wiki in web-browser
+  static async _openWiki (event, target) {
+    const url = "https://github.com/cragstone/aov/wiki";
+    window.open(url, "_blank");
   }
 
   //-------------Drag and Drop--------------

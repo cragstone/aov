@@ -61,7 +61,7 @@
 
   .character-header {
     display: grid;
-    grid-template-columns: auto 150px 46px;
+    grid-template-columns: auto 150px 50px;
     grid-column-gap: 4px;
   }
 

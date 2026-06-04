@@ -3,10 +3,10 @@
     <ol class="skill-list">
       <div class='gear-header primBackCol skill-grid'>
         <div class='new-row left'>{{localize 'AOV.name'}}</div>
-        <div class='centre' title="{{localize 'AOV.xpAbbrHint'}}">{{localize 'AOV.xpAbbr'}}</div>
-        <div class='centre' title="{{localize 'AOV.totalScore'}}">%</div>
+        <div class='centre' data-tooltip="{{localize 'AOV.xpAbbrHint'}}">{{localize 'AOV.xpAbbr'}}</div>
+        <div class='centre' data-tooltip="{{localize 'AOV.totalScore'}}">%</div>
         <div class='centre'>
-          <a data-action="toggleActor" data-property = "uncommon" title="{{localize 'AOV.hideUncommon'}}">
+          <a data-action="toggleActor" data-property = "uncommon" data-tooltip="{{localize 'AOV.hideUncommon'}}">
             {{#if system.uncommon}}
               <i class="fa-solid fa-magnifying-glass-plus"></i>
             {{else}}
@@ -17,10 +17,10 @@
       </div>
       <div class='gear-header primBackCol skill-grid'>
         <div class='new-row left'>{{localize 'AOV.name'}}</div>
-        <div class='centre' title="{{localize 'AOV.xpAbbrHint'}}">{{localize 'AOV.xpAbbr'}}</div>
-        <div class='centre' title="{{localize 'AOV.totalScore'}}">%</div>
+        <div class='centre' data-tooltip="{{localize 'AOV.xpAbbrHint'}}">{{localize 'AOV.xpAbbr'}}</div>
+        <div class='centre' data-tooltip="{{localize 'AOV.totalScore'}}">%</div>
         <div class='centre'>
-          <a data-action="toggleActor" data-property = "alphaSkills" title="{{localize 'AOV.alphaSkill'}}">
+          <a data-action="toggleActor" data-property = "alphaSkills" data-tooltip="{{localize 'AOV.alphaSkill'}}">
             {{#if system.alphaSkills}}
               <i class="fa-solid fa-arrow-down-short-wide"></i>
             {{else}}
@@ -43,7 +43,7 @@
             <div></div>
             <div class='gear-name centre upper'>{{item.system.total}}</div>
           {{else}}
-            <div class="new-row gear-name left rollable" title='{{localize "AOV.viewDoc" type=(localize "TYPES.Item.skill")}}'
+            <div class="new-row gear-name left rollable" data-tooltip='{{localize "AOV.viewDoc" type=(localize "TYPES.Item.skill")}}'
               data-action='viewDoc'>{{item.system.label}}</div>
             {{#unless item.system.noXP}}
               <div class='gear-name centre' data-action="itemToggle" data-property="xpCheck"><a>
@@ -60,12 +60,12 @@
             {{#if ../isLocked}}
               <div class='gear-name centre' data-action="itemToggle" data-property="augment"><a>
                 {{#if item.system.augment}}
-                  <i title="{{localize 'AOV.augmentUsed'}}" class="terIcon fa-solid fa-hand-holding-magic"></i>
+                  <i data-tooltip="{{localize 'AOV.augmentUsed'}}" class="terIcon fa-solid fa-hand-holding-magic"></i>
                 {{/if}}
               </div>
             {{else}}
               <div class='gear-controls centre'>
-                <a class='item-toggle centre' title='{{localize "AOV.deleteDoc" type=(localize "TYPES.Item.skill")}}'
+                <a class='item-toggle centre' data-tooltip='{{localize "AOV.deleteDoc" type=(localize "TYPES.Item.skill")}}'
                   data-action="deleteDoc">
                   <i class='fas fa-trash'></i>
                 </a>
@@ -82,20 +82,20 @@
         <div class='centre'>{{localize 'AOV.category'}}</div>
         <div class='centre'>{{localize 'AOV.base'}}</div>
         <div class='centre'>{{localize 'AOV.exp'}}</div>
-        <div class='centre' title="{{localize 'AOV.homeland'}}">{{localize 'AOV.homelandAbbr'}}</div>
-        <div class='centre' title="{{localize 'TYPES.Item.hisotry'}}">{{localize 'AOV.historyAbbr'}}</div>
-        <div class='centre' title="{{localize 'AOV.personal'}}">{{localize 'AOV.personalAbbr'}}</div>
-        <div class='centre' title="{{localize 'TYPES.Item.devotion'}}">{{localize 'AOV.devotionAbbr'}}</div>
-        <div class='centre' title="{{localize 'AOV.effects'}}">{{localize 'AOV.effectsShort'}}</div>
-        <div class='centre' title="{{localize 'AOV.category'}}">{{localize 'AOV.categoryAbbr'}}</div>
+        <div class='centre' data-tooltip="{{localize 'AOV.homeland'}}">{{localize 'AOV.homelandAbbr'}}</div>
+        <div class='centre' data-tooltip="{{localize 'TYPES.Item.hisotry'}}">{{localize 'AOV.historyAbbr'}}</div>
+        <div class='centre' data-tooltip="{{localize 'AOV.personal'}}">{{localize 'AOV.personalAbbr'}}</div>
+        <div class='centre' data-tooltip="{{localize 'TYPES.Item.devotion'}}">{{localize 'AOV.devotionAbbr'}}</div>
+        <div class='centre' data-tooltip="{{localize 'AOV.effects'}}">{{localize 'AOV.effectsShort'}}</div>
+        <div class='centre' data-tooltip="{{localize 'AOV.category'}}">{{localize 'AOV.categoryAbbr'}}</div>
         <div class='centre'>{{localize 'AOV.total'}}</div>
       </div>
       {{#each devSkills as |item id|}}
         {{#if ../isCreate}}
           <li class='item skillDev-grid' data-item-id='{{item._id}}' data-drag='true' data-document-class='Item'>
-            <div class="new-row gear-name left right-line truncate rollable" title='{{item.system.label}}'
+            <div class="new-row gear-name left right-line truncate rollable" data-tooltip='{{item.system.label}}'
               data-action='viewDoc'>{{item.system.label}}</div>
-            <div class='gear-name centre right-line truncate' title='{{item.system.catLabel}}'>{{item.system.catLabel}}</div>
+            <div class='gear-name centre right-line truncate' data-tooltip='{{item.system.catLabel}}'>{{item.system.catLabel}}</div>
             <div class='gear-name centre right-line skill-inline'><input class="skillDev-input centre" name='system.base'
               type='number' value='{{item.system.base}}' data-field="base"/></div>
             <div class='gear-name centre right-line skill-inline'><input class="skillDev-input centre" name='system.xp'
@@ -114,9 +114,9 @@
           </li>
         {{else}}
           <li class='item skillDev-grid' data-item-id='{{item._id}}' data-drag='true' data-document-class='Item'>
-            <div class="new-row gear-name left right-line truncate rollable {{#if item.system.xpCheck}}creation{{/if}}" title='{{item.system.label}}'
+            <div class="new-row gear-name left right-line truncate rollable {{#if item.system.xpCheck}}creation{{/if}}" data-tooltip='{{item.system.label}}'
               data-action='viewDoc'>{{item.system.label}}</div>
-            <div class='gear-name centre right-line truncate' title="{{item.system.catLabel}}">{{item.system.catLabel}}</div>
+            <div class='gear-name centre right-line truncate' data-tooltip="{{item.system.catLabel}}">{{item.system.catLabel}}</div>
             <div class='gear-name centre right-line'>{{item.system.base}}</div>
             <div class='gear-name centre right-line skill-inline'><input class="skillDev-input centre" name='system.xp'
               type='number' value='{{item.system.xp}}' data-field="xp"/></div>

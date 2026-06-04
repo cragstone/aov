@@ -1,7 +1,7 @@
 <section class='item tab details draggable {{tab.cssClass}}' data-group='primary' data-tab='details'>
 
   <div class="gear-detail-grid">
-    <div class="bold" title="{{localize 'AOV.noXPHint'}}">{{localize 'AOV.noXP'}}</div>
+    <div class="bold" data-tooltip="{{localize 'AOV.noXPHint'}}">{{localize 'AOV.noXP'}}</div>
     <div class="centre" {{#if canEdit}}data-action="itemToggle"{{/if}} data-property="noXP"><a class="icon16">
       {{#if system.noXP}}
         <i class="fa-regular fa-square-check"></i>
@@ -14,7 +14,7 @@
     <div class="new-row"></div>
     <br>
 
-    <div class="new-row bold" title="{{localize 'AOV.commonPassionHint'}}">{{localize 'AOV.commonPassion'}}</div>
+    <div class="new-row bold" data-tooltip="{{localize 'AOV.commonPassionHint'}}">{{localize 'AOV.commonPassion'}}</div>
     <div class="centre" {{#if canEdit}}data-action="itemToggle"{{/if}} data-property="common">
       <a class="icon16">
         <i class="fa-regular {{#if system.common}}fa-square-check{{else}}fa-square{{/if}}"></i>
@@ -46,7 +46,7 @@
       <br>
 
       {{#unless system.noXP}}
-        <div class="new-row bold" title="{{localize 'AOV.xpCheckHint'}}">{{localize 'AOV.xpCheck'}}</div>
+        <div class="new-row bold" data-tooltip="{{localize 'AOV.xpCheckHint'}}">{{localize 'AOV.xpCheck'}}</div>
         <div class="centre" data-action="itemToggle" data-property="xpCheck"><a class="icon16">
           {{#if system.xpCheck}}
             <i class="fa-regular fa-square-check"></i>

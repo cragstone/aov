@@ -21,7 +21,7 @@
         <div class='centre'>{{localize 'AOV.status'}}</div>
         <div class='centre'>
           {{#if @root.editable}}
-          <a class='item-control item-create' title='{{localize "AOV.createDoc" type=(localize "TYPES.Item.wound")}}'
+          <a class='item-control item-create' data-tooltip='{{localize "AOV.createDoc" type=(localize "TYPES.Item.wound")}}'
             data-action='createDoc' data-document-class='Item' data-type='wound'>
             <i class='fas fa-plus'></i>
           </a>
@@ -37,7 +37,7 @@
               {{#unless (eq item.system.locType 'general')}}
                 <li class="hitLocGridSmall" data-item-id='{{item._id}}' data-document-class='Item'>
                   <div class="rollable" data-action='viewDoc'>{{item.name}}</div>
-                  <div class="addWndSmall" title="{{localize 'AOV.addWound'}}" data-action='addWound'>
+                  <div class="addWndSmall" data-tooltip="{{localize 'AOV.addWound'}}" data-action='addWound'>
                     <div class="centre">{{item.system.label}}</div>
                     <div class="centre terIcon">{{item.system.map}}</div>
                     <div class="centre terIcon">{{item.system.currHp}}</div>
@@ -46,7 +46,7 @@
                   </div>
                   {{#unless ../isLocked}}
                   <div class='gear-controls centre'>
-                    <a class='item-delete centre' title='{{localize "AOV.deleteDoc" type=(localize "TYPES.Item.hitloc")}}'
+                    <a class='item-delete centre' data-tooltip='{{localize "AOV.deleteDoc" type=(localize "TYPES.Item.hitloc")}}'
                       data-action="deleteDoc">
                       <i class='fas fa-trash'></i>
                     </a>
@@ -77,7 +77,7 @@
                         </a>
                       </div>
                     {{/if}}
-                    <div class="hitLocCellAtt" title="{{localize 'AOV.addWound'}}" data-action='addWound'>
+                    <div class="hitLocCellAtt" data-tooltip="{{localize 'AOV.addWound'}}" data-action='addWound'>
                       <div>{{localize 'AOV.armourPointsAbbr'}}</div>
                       <div class="centre terIcon"></div>
                       <div class="centre terIcon"></div>
@@ -103,7 +103,7 @@
                   <div class="upper rollable" data-action='viewDoc'>{{item.name}}</div>
                   <div>{{item.system.label}}</div>
                   <div class='gear-controls centre'>
-                    <a class='item-delete centre' title='{{localize "AOV.deleteDoc" type=(localize "TYPES.Item.hitloc")}}'
+                    <a class='item-delete centre' data-tooltip='{{localize "AOV.deleteDoc" type=(localize "TYPES.Item.hitloc")}}'
                       data-action="deleteDoc">
                       <i class='fas fa-trash'></i>
                     </a>
@@ -127,13 +127,13 @@
           </div>
           <div class="centre">
             {{#unless item.system.treated}}
-              <a class="secIcon" title="{{localize 'AOV.untreated'}}" data-action="itemToggle" data-property="treated">
+              <a class="secIcon" data-tooltip="{{localize 'AOV.untreated'}}" data-action="itemToggle" data-property="treated">
                 <i class="fa-solid fa-droplet"></i>
               </a>
             {{/unless}}
           </div>
             <div class='gear-controls centre'>
-              <a class='item-delete centre' title='{{localize "AOV.deleteDoc" type=(localize "TYPES.Item.wound")}}'
+              <a class='item-delete centre' data-tooltip='{{localize "AOV.deleteDoc" type=(localize "TYPES.Item.wound")}}'
                 data-action="deleteDoc">
                 <i class='fas fa-trash'></i>
               </a>
@@ -151,14 +151,14 @@
     <div class="gear-header {{#if singleColour}}primBackCol{{else}}terBackCol{{/if}} weapons-list-grid">
       <div class='new-row left'>{{localize 'TYPES.Item.weapon'}}</div>
       <div class='centre'>%</div>
-      <div class='centre' title="{{localize 'AOV.specDamageShow'}}">{{localize 'AOV.damage'}}</div>
+      <div class='centre' data-tooltip="{{localize 'AOV.specDamageShow'}}">{{localize 'AOV.damage'}}</div>
       <div class='centre'>{{localize 'AOV.dmgBonusAbbr'}}</div>
       <div class='centre'>{{localize 'AOV.encumbranceAbbr'}}</div>
       <div class='centre' style="grid-column: 6 / 9;">{{localize 'AOV.hpAbbr'}}</div>
-      <div class='centre' title="{{localize 'AOV.equippedHint'}}">{{localize 'AOV.equippedAbbr'}}</div>
+      <div class='centre' data-tooltip="{{localize 'AOV.equippedHint'}}">{{localize 'AOV.equippedAbbr'}}</div>
       <div class='centre'>{{localize 'AOV.range'}}</div>
       <div class='centre'>
-        <a class='centre rollable' title='{{localize "AOV.dodge"}}'
+        <a class='centre rollable' data-tooltip='{{localize "AOV.dodge"}}'
               data-action="dodge">
               <i class='fas fa-person-running'></i>
             </a>
@@ -167,11 +167,11 @@
 
     {{#each weapons as |item id|}}
       <li class="item weapons-list-grid" data-item-id='{{item._id}}' data-drag="true" data-document-class='Item'>
-        <div class="new-row gear-name left rollable truncate" title='{{localize "AOV.viewDoc" type=(localize "TYPES.Item.weapon")}}'
+        <div class="new-row gear-name left rollable truncate" data-tooltip='{{localize "AOV.viewDoc" type=(localize "TYPES.Item.weapon")}}'
               data-action='viewDoc'>{{item.name}}</div>
         <div class='gear-name centre terIcon rollable' data-action="diceroll" data-property="combat" data-skill-id="{{item._id}}" data-tooltip="AOV.rolls.combatRoll">{{item.system.total}}</div>
         <div class='gear-name centre rollable' data-action="diceroll" data-property="damage" data-skill-id="{{item._id}}" data-tooltip="AOV.rolls.damageRoll">{{item.system.damage}}{{#if item.system.special}}*{{/if}}</div>
-        <div class='gear-name centre terIcon' title="{{item.system.damTypeLabel}}">{{item.system.dbLabel}}</div>
+        <div class='gear-name centre terIcon' data-tooltip="{{item.system.damTypeLabel}}">{{item.system.dbLabel}}</div>
         <div class='gear-name centre terIcon'>{{item.system.actlEnc}}</div>
         <div class="centre skill-inline"><input class="ability-cell centre" name='system.currHP'
           type='number' value='{{item.system.currHP}}' data-field="currHP"/>
@@ -180,12 +180,12 @@
         <div class='gear-name centre'>{{item.system.maxHP}}</div>
         <div class='gear-name centre' data-action="itemToggle" data-property="equipStatus"><a class="">
           {{#if (eq item.system.equipStatus 1)}}
-            <i class="fas fa-hand-holding" title='{{localize "AOV.carried"}}'></i>
+            <i class="fas fa-hand-holding" data-tooltip='{{localize "AOV.carried"}}'></i>
           {{else}}
             {{#if (eq item.system.equipStatus 2)}}
-              <i class="fas fa-horse" title='{{localize "AOV.packed"}}'></i>
+              <i class="fas fa-horse" data-tooltip='{{localize "AOV.packed"}}'></i>
             {{else}}
-            <i class="fas fa-house" title='{{localize "AOV.stored"}}'></i>
+            <i class="fas fa-house" data-tooltip='{{localize "AOV.stored"}}'></i>
             {{/if}}
           {{/if}}
         </a></div>
@@ -196,7 +196,7 @@
         {{/if}}
         {{#unless ../isLocked}}
           <div class='gear-controls centre'>
-            <a class='item-delete centre' title='{{localize "AOV.deleteDoc" type=(localize "TYPES.Item.weapon")}}'
+            <a class='item-delete centre' data-tooltip='{{localize "AOV.deleteDoc" type=(localize "TYPES.Item.weapon")}}'
               data-action="deleteDoc">
               <i class='fas fa-trash'></i>
             </a>

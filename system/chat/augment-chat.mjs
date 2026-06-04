@@ -13,8 +13,8 @@ export class AUCard {
 
     let newchatCards = []
     let augAdj = 0
-    for (let i =1 ; i>=0; i--) {
-      let cCard = chatCards[i]  
+    for (let i = chatCards.length-1 ; i>=0; i--) {
+      let cCard = chatCards[i]
       let roll = new Roll(cCard.rollFormula)
       let revisedtargetScore = cCard.targetScore
       if (i <= 0) {
@@ -38,7 +38,7 @@ export class AUCard {
         targetScore: revisedtargetScore,
         rollResult: rollResult,
         cardType,
-      })        
+      })
 
       cCard.rollResult = rollResult
       cCard.targetScore = revisedtargetScore
@@ -54,15 +54,15 @@ export class AUCard {
           case 1:
             augAdj = -20
             break
-          case 2:  
+          case 2:
             augAdj = 20
-            break     
-          case 3:  
+            break
+          case 3:
             augAdj = 30
-            break     
-          case 2:  
+            break
+          case 2:
             augAdj = 50
-            break                                                     
+            break
         }
       }
       cCard.augAdj = augAdj
@@ -78,5 +78,5 @@ export class AUCard {
     await targetMsg.update({ content: pushhtml })
     return
 
- }   
-}   
+ }
+}

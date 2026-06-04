@@ -8,7 +8,7 @@
             <div>{{member.name}}</div>
             <div>
               {{#if ../isGM}}
-                <a class='deleteMember centre' style="float: right;" title='{{localize "AOV.deleteDoc" type=(localize "AOV.partyMember")}}'>
+                <a class='deleteMember centre' style="float: right;" data-tooltip='{{localize "AOV.deleteDoc" type=(localize "AOV.partyMember")}}'>
                   <i class='fas fa-trash'></i>
                 </a>
               {{/if}}
@@ -16,7 +16,7 @@
           </div>
 
           <div class="party-member-grid">
-            <img class='viewFromUuid' title='{{localize "AOV.viewDoc" type=(localize "AOV.partyMember")}}' src='{{member.image}}' height='80' width='80'/>
+            <img class='viewFromUuid' data-tooltip='{{localize "AOV.viewDoc" type=(localize "AOV.partyMember")}}' src='{{member.image}}' height='80' width='80'/>
             <div class="partybars-multi">
               <div class="partybar" >
                 <span class="hpbar" style="width:{{member.hpPerc}};" >&nbsp{{localize 'AOV.hpAbbr'}}{{#if ../showHPVal}}: {{hpLabel}}{{/if}}</span>

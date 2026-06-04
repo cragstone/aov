@@ -32,10 +32,11 @@ export class RECard {
     if (game.user.isGM) {
       let targetMsg = await game.messages.get(msgId)
       let maxPart = 2
+      if (config.cardType === 'AU') {maxPart = 6}
       if ((targetMsg.flags.aov.chatCard).length >= maxPart) {
         ui.notifications.warn(game.i18n.localize('AOV.card.resolveMax'))
         return
-      } 
+      }
 
       let newChatCards = targetMsg.flags.aov.chatCard
       newChatCards.push(config.chatCard[0])
@@ -54,7 +55,7 @@ export class RECard {
         ui.notifications.warn(game.i18n.localize('AOV.noAvailableGM'))
       }
     }
-  } 
+  }
 
   //Resolve a resistance card - roll dice, update and close
   static async REResolve(config) {
@@ -90,14 +91,14 @@ export class RECard {
     })
 
     for (let i of chatCards) {
-      i.targetScore = targetScore  
+      i.targetScore = targetScore
       i.rollResult = rollResult
       i.diceRolled = diceRolled
       i.rollVal = rollResult
       i.resultLevel = resultLevel
       i.resultLabel = game.i18n.localize('AOV.resultLevel.' + i.resultLevel)
       newchatCards.push(i)
-    }    
+    }
     await OPCard.showDiceRoll(newchatCards[0])
 
     await targetMsg.update({
@@ -110,5 +111,5 @@ export class RECard {
     await targetMsg.update({ content: pushhtml })
 
     return
-  }  
+  }
 }

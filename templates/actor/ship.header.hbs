@@ -16,21 +16,21 @@
     {{!Icons}}
     <div class="right">
       {{#if isLocked}}
-        <div><a class="icon20 terIcon" data-action="toggleActor" data-property="locked" title='{{localize "AOV.unlock"}}'>
+        <div><a class="icon20 terIcon" data-action="toggleActor" data-property="locked" data-tooltip='{{localize "AOV.unlock"}}'>
           <i class="fas fa-lock"></i>
         </a></div>
       {{else}}
-        <div><a class="icon20 terIcon" data-action="toggleActor" data-property="locked" title='{{localize "AOV.lock"}}'>
+        <div><a class="icon20 terIcon" data-action="toggleActor" data-property="locked" data-tooltip='{{localize "AOV.lock"}}'>
           <i class="fas fa-lock-open"></i>
         </a></div>
       {{/if}}
       {{#if isLinked}}
-        <div><a class="icon20 terIcon" title='{{localize "AOV.linked"}}'><i class="fas fa-link"></i></a></div>
+        <div><a class="icon20 terIcon" data-tooltip='{{localize "AOV.linked"}}'><i class="fas fa-link"></i></a></div>
       {{else}}
-        <div><a class="icon20 terIcon" title='{{localize "AOV.unlinked"}}'><i class="fas fa-link-slash"></i></a></div>
+        <div><a class="icon20 terIcon" data-tooltip='{{localize "AOV.unlinked"}}'><i class="fas fa-link-slash"></i></a></div>
       {{/if}}
       {{#if isSynth}}
-        <div><a class="icon20 terIcon" title='{{localize "AOV.synth"}}'><i class="fas fa-people-group"></i></a></div>
+        <div><a class="icon20 terIcon" data-tooltip='{{localize "AOV.synth"}}'><i class="fas fa-people-group"></i></a></div>
       {{/if}}
     </div>
   </div>
@@ -77,15 +77,15 @@
       <div>
         {{#if isLocked}}
           <div class="shipStats">
-            <div class="bold" title="{{localize 'AOV.ship.hullQuality'}}">{{localize "AOV.ship.hullQualityAbbr"}}</div>
+            <div class="bold" data-tooltip="{{localize 'AOV.ship.hullQuality'}}">{{localize "AOV.ship.hullQualityAbbr"}}</div>
             <div class="ability-cell centre bottom-line" style="grid-column: 2 / 5;">{{system.hull.value}}</div>
-            <div class="new-row bold" title="{{localize 'AOV.ship.seaWorthy'}}">{{localize "AOV.ship.seaWorthyAbbr"}}</div>
+            <div class="new-row bold" data-tooltip="{{localize 'AOV.ship.seaWorthy'}}">{{localize "AOV.ship.seaWorthyAbbr"}}</div>
             <div class='ability-cell'><input class="stat-input centre" name='system.seaworthy.value' type='number'
               value='{{actor.system.seaworthy.value}}' />
             </div>
             <div class="centre">/</div>
             <div class="ability-cell centre bottom-line">{{system.seaworthy.max}}</div>
-            <div class="new-row bold" title="{{localize 'AOV.ship.structuralPoints'}}">{{localize "AOV.ship.structuralPointsAbbr"}}</div>
+            <div class="new-row bold" data-tooltip="{{localize 'AOV.ship.structuralPoints'}}">{{localize "AOV.ship.structuralPointsAbbr"}}</div>
             <div class='ability-cell'><input class="stat-input centre" name='system.sp.value' type='number'
               value='{{actor.system.sp.value}}' />
             </div>
@@ -97,24 +97,24 @@
             <div class="ability-cell centre bottom-line" style="grid-column: 2 / 5;">{{system.beam}}</div>
             <div class="bold">{{localize "AOV.Ability.siz"}}</div>
             <div class="ability-cell centre bottom-line" style="grid-column: 2 / 5;">{{system.size}}</div>
-            <div class="bold" title="{{localize "AOV.ship.capacity"}}">{{localize "AOV.ship.capacityAbbr"}}</div>
+            <div class="bold" data-tooltip="{{localize "AOV.ship.capacity"}}">{{localize "AOV.ship.capacityAbbr"}}</div>
             <div class="ability-cell centre bottom-line" style="grid-column: 2 / 5;">{{system.cargo}}</div>
           </div>
         {{else}}
           <div class="shipStats">
-            <div class="bold" title="{{localize 'AOV.ship.hullQuality'}}">{{localize "AOV.ship.hullQualityAbbr"}}</div>
+            <div class="bold" data-tooltip="{{localize 'AOV.ship.hullQuality'}}">{{localize "AOV.ship.hullQualityAbbr"}}</div>
             <div class='ability-cell' style="grid-column: 2 / 5;">
               <input class="stat-input centre" name='system.hull.value' type='number'
               value='{{actor.system.hull.value}}' />
             </div>
-            <div class="new-row bold" title="{{localize 'AOV.ship.seaWorthy'}}">{{localize "AOV.ship.seaWorthyAbbr"}}</div>
+            <div class="new-row bold" data-tooltip="{{localize 'AOV.ship.seaWorthy'}}">{{localize "AOV.ship.seaWorthyAbbr"}}</div>
             <div class="ability-cell"><input class="stat-input centre" name='system.seaworthy.value' type='number'
               value='{{actor.system.seaworthy.value}}' /></div>
             <div class="centre">/</div>
             <div><input class="stat-input centre" name='system.seaworthy.max' type='number'
               value='{{actor.system.seaworthy.max}}' />
             </div>
-            <div class="new-row bold" title="{{localize 'AOV.ship.structuralPoints'}}">{{localize "AOV.ship.structuralPointsAbbr"}}</div>
+            <div class="new-row bold" data-tooltip="{{localize 'AOV.ship.structuralPoints'}}">{{localize "AOV.ship.structuralPointsAbbr"}}</div>
             <div class="ability-cell"><input class="stat-input centre" name='system.sp.value' type='number'
               value='{{actor.system.sp.value}}' /></div>
             <div class="centre">/</div>
@@ -136,7 +136,7 @@
               <input class="stat-input centre" name='system.size' type='number'
               value='{{actor.system.size}}' />
             </div>
-            <div class="bold" title="{{localize "AOV.ship.capacity"}}">{{localize "AOV.ship.capacityAbbr"}}</div>
+            <div class="bold" data-tooltip="{{localize "AOV.ship.capacity"}}">{{localize "AOV.ship.capacityAbbr"}}</div>
             <div class='ability-cell' style="grid-column: 2 / 5;">
               <input class="stat-input centre" name='system.cargo' type='number'
               value='{{actor.system.cargo}}' />
@@ -153,27 +153,27 @@
             <div class="stat-input centre bottom-line" style="grid-column: 2 / 5;">{{hullName}}</div>
             <div class="new-row ability-cell left bold">{{localize "AOV.ship.nation"}}</div>
             <div class="stat-input centre bottom-line" style="grid-column: 2 / 5;">{{system.nation}}</div>
-            <div class="new-row ability-cell left bold" title="{{localize 'AOV.ship.currentMin'}}">{{localize "AOV.ship.rowers"}}</div>
+            <div class="new-row ability-cell left bold" data-tooltip="{{localize 'AOV.ship.currentMin'}}">{{localize "AOV.ship.rowers"}}</div>
             <input class="stat-input centre" name='system.rowers' type='number'
               value='{{actor.system.rowers}}' />
             <div class="centre">/</div>
             <div class="stat-input centre bottom-line">{{system.rowersMin}}</div>
-            <div class="new-row ability-cell left bold" title="{{localize 'AOV.ship.currentMin'}}">{{localize "AOV.ship.sailors"}}</div>
+            <div class="new-row ability-cell left bold" data-tooltip="{{localize 'AOV.ship.currentMin'}}">{{localize "AOV.ship.sailors"}}</div>
             <input class="stat-input centre" name='system.sailors' type='number'
               value='{{actor.system.sailors}}' />
             <div class="centre">/</div>
             <div class="stat-input centre bottom-line">{{system.sailorsMin}}</div>
-            <div class="new-row ability-cell left bold" title="{{localize 'AOV.ship.currentMin'}}">{{localize "AOV.ship.warriors"}}</div>
+            <div class="new-row ability-cell left bold" data-tooltip="{{localize 'AOV.ship.currentMin'}}">{{localize "AOV.ship.warriors"}}</div>
             <input class="stat-input centre" name='system.warriors' type='number'
               value='{{actor.system.warriors}}' />
             <div class="centre">/</div>
             <div class="stat-input centre bottom-line">{{system.warriorsMin}}</div>
-            <div class="new-row ability-cell left bold" title="{{localize 'AOV.ship.currentMin'}}">{{localize "AOV.ship.additionalCrew"}}</div>
+            <div class="new-row ability-cell left bold" data-tooltip="{{localize 'AOV.ship.currentMin'}}">{{localize "AOV.ship.additionalCrew"}}</div>
             <input class="stat-input centre" name='system.additional' type='number'
               value='{{actor.system.additional}}' />
             <div class="centre">/</div>
             <div class="stat-input centre bottom-line">{{system.additionalMin}}</div>
-            <div class="new-row ability-cell left bold" title="{{localize 'AOV.ship.currentMin'}}">{{localize "AOV.ship.passengers"}}</div>
+            <div class="new-row ability-cell left bold" data-tooltip="{{localize 'AOV.ship.currentMin'}}">{{localize "AOV.ship.passengers"}}</div>
             <input class="stat-input centre" name='system.passengers' type='number'
               value='{{actor.system.passengers}}' />
             <div class="centre">/</div>
@@ -192,31 +192,31 @@
               <input class="stat-input centre" name='system.nation' type='text'
                 value='{{actor.system.nation}}' />
             </div>
-            <div class="new-row ability-cell left bold" title="{{localize 'AOV.ship.currentMin'}}">{{localize "AOV.ship.rowers"}}</div>
+            <div class="new-row ability-cell left bold" data-tooltip="{{localize 'AOV.ship.currentMin'}}">{{localize "AOV.ship.rowers"}}</div>
             <input class="stat-input centre" name='system.rowers' type='number'
               value='{{actor.system.rowers}}' />
             <div class="centre">/</div>
             <input class="stat-input centre" name='system.rowersMin' type='number'
               value='{{actor.system.rowersMin}}' />
-            <div class="new-row ability-cell left bold" title="{{localize 'AOV.ship.currentMin'}}">{{localize "AOV.ship.sailors"}}</div>
+            <div class="new-row ability-cell left bold" data-tooltip="{{localize 'AOV.ship.currentMin'}}">{{localize "AOV.ship.sailors"}}</div>
             <input class="stat-input centre" name='system.sailors' type='number'
               value='{{actor.system.sailors}}' />
             <div class="centre">/</div>
             <input class="stat-input centre" name='system.sailorsMin' type='number'
               value='{{actor.system.sailorsMin}}' />
-            <div class="new-row ability-cell left bold" title="{{localize 'AOV.ship.currentMin'}}">{{localize "AOV.ship.warriors"}}</div>
+            <div class="new-row ability-cell left bold" data-tooltip="{{localize 'AOV.ship.currentMin'}}">{{localize "AOV.ship.warriors"}}</div>
             <input class="stat-input centre" name='system.warriors' type='number'
               value='{{actor.system.warriors}}' />
             <div class="centre">/</div>
             <input class="stat-input centre" name='system.warriorsMin' type='number'
               value='{{actor.system.warriorsMin}}' />
-            <div class="new-row ability-cell left bold" title="{{localize 'AOV.ship.currentMin'}}">{{localize "AOV.ship.additionalCrew"}}</div>
+            <div class="new-row ability-cell left bold" data-tooltip="{{localize 'AOV.ship.currentMin'}}">{{localize "AOV.ship.additionalCrew"}}</div>
             <input class="stat-input centre" name='system.additional' type='number'
               value='{{actor.system.additional}}' />
             <div class="centre">/</div>
             <input class="stat-input centre" name='system.additionalMin' type='number'
               value='{{actor.system.additionalMin}}' />
-            <div class="new-row ability-cell left bold" title="{{localize 'AOV.ship.currentMin'}}">{{localize "AOV.ship.passengers"}}</div>
+            <div class="new-row ability-cell left bold" data-tooltip="{{localize 'AOV.ship.currentMin'}}">{{localize "AOV.ship.passengers"}}</div>
             <input class="stat-input centre" name='system.passengers' type='number'
               value='{{actor.system.passengers}}' />
             <div class="centre">/</div>

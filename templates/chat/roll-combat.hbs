@@ -4,7 +4,7 @@
       {{#each chatCard as |c key|}}
         <div class="dice-roll" data-action="expandRoll">
           <li class='actor-roll'>
-            <img class="open-actor" src="{{c.particImg}}" height="53" width="53" title="{{c.particName}}" />
+            <img class="open-actor" src="{{c.particImg}}" height="53" width="53" data-tooltip="{{c.particName}}" />
             <div class="roll-details">
               <div class="header">
                 <div class='name'>
@@ -22,7 +22,7 @@
                   </span>
                 </div>
                 {{#unless (eq ../state 'closed')}}
-                  <a class="gm-visible-only cardbutton" data-rank='{{key}}' data-preset="remove-roll" title="{{localize 'AOV.card.remove'}}"><i class="far fa-times-circle"></i></a>
+                  <a class="gm-visible-only cardbutton" data-rank='{{key}}' data-preset="remove-roll" data-tooltip="{{localize 'AOV.card.remove'}}"><i class="far fa-times-circle"></i></a>
                 {{/unless}}
               </div>
                 {{#if (eq ../state 'closed')}}

@@ -5,7 +5,7 @@
 
   {{#if askDodge}}
     <div class="flexrow">
-      <label title = "{{ localize 'AOV.card.dodgeCombatHint' }}" >{{localize "AOV.card.dodgeCombat"}}</label>
+      <label data-tooltip= "{{ localize 'AOV.card.dodgeCombatHint' }}" >{{localize "AOV.card.dodgeCombat"}}</label>
         <input data-handle-change class="centre" type="checkbox" value="yes" name="dodgeCombat" checked>
     </div>
     <br>
@@ -15,7 +15,7 @@
 
   {{#if askFixed}}
     <div class="flexrow">
-      <label title = "{{ localize 'AOV.card.oppResHint' }}" >{{localize "AOV.card.oppRes"}}</label>
+      <label data-tooltip= "{{ localize 'AOV.card.oppResHint' }}" >{{localize "AOV.card.oppRes"}}</label>
         <input data-handle-change class="centre" type="number" value="{{oppRes}}" name="oppRes">
     </div>
     <br>
@@ -23,7 +23,7 @@
 
   {{#if askDiff}}
     <div class="flexrow">
-      <label title = "{{ localize 'AOV.card.difficultyHint' }}" >{{localize "AOV.card.difficulty"}}</label>
+      <label data-tooltip= "{{ localize 'AOV.card.difficultyHint' }}" >{{localize "AOV.card.difficulty"}}</label>
       <select class="stat-input" data-handle-change name="diffOption">
         {{selectOptions diffOptions selected="simple"}}
       </select>
@@ -33,7 +33,7 @@
 
   {{#if askSuccess}}
     <div class="flexrow">
-      <label title = "{{ localize 'AOV.card.attackSuccessHint' }}" >{{localize "AOV.card.attackSuccess"}}</label>
+      <label data-tooltip= "{{ localize 'AOV.card.attackSuccessHint' }}" >{{localize "AOV.card.attackSuccess"}}</label>
        <select class="stat-input" data-handle-change name="dmgLevel">
         {{selectOptions dmgLevels selected="{{successLevel}}" }}
       </select>
@@ -43,7 +43,7 @@
 
   {{#if askDamType}}
     <div class="flexrow">
-      <label title = "{{ localize 'AOV.card.attackDamTypeHint' }}" >{{localize "AOV.card.attackDamType"}}</label>
+      <label data-tooltip= "{{ localize 'AOV.card.attackDamTypeHint' }}" >{{localize "AOV.card.attackDamType"}}</label>
       <select class="stat-input" data-handle-change name="ctOption">
         {{selectOptions ctOptions selected="i"}}
       </select>
@@ -53,7 +53,7 @@
 
   {{#if askDamBonus}}
     <div class="flexrow">
-      <label title = "{{ localize 'AOV.card.attackDamBonusHint' }}" >{{localize "AOV.card.attackDamBonus"}}</label>
+      <label data-tooltip= "{{ localize 'AOV.card.attackDamBonusHint' }}" >{{localize "AOV.card.attackDamBonus"}}</label>
         <input data-handle-change class="centre" type="number" value="{{damBonus}}" name="damBonus">
     </div>
     <br>
@@ -61,7 +61,7 @@
 
   {{#if askBonus}}
     <div class="flexrow">
-      <label title = "{{ localize 'AOV.card.checkBonusHint' }}" >{{localize "AOV.card.checkBonus"}}</label>
+      <label data-tooltip= "{{ localize 'AOV.card.checkBonusHint' }}" >{{localize "AOV.card.checkBonus"}}</label>
         <input data-handle-change class="centre" type="number" value="{{flatMod}}" name="checkBonus">
     </div>
     <br>

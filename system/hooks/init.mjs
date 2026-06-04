@@ -11,6 +11,7 @@ import { AOVActiveEffect } from "../apps/active-effects.mjs";
 import { AoVCombatTracker } from "../combat/combat-tracker.mjs";
 import { AoVCombat } from "../combat/combat.mjs";
 import { AoVCombatant } from "../combat/combatant.mjs";
+import { AOVPause } from "../apps/pause.mjs";
 
 export default function Init() {
   //Add classes to global game object
@@ -40,6 +41,7 @@ export default function Init() {
   CONFIG.Combat.documentClass = AoVCombat;
   CONFIG.Combatant.documentClass = AoVCombatant;
   CONFIG.ui.combat = AoVCombatTracker;
+  CONFIG.ui.pause = AOVPause;
 
 
   //Declare Data Models

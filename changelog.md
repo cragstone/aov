@@ -1,3 +1,9 @@
+## 13.26
+- Augmentation rolls can now include up to 5 supporting rolls.
+- Links to new repositorities updated in Update message & Game Instructions
+- There is now a "question mark" icon on character sheets that will open the Wiki webpage
+- Pause icon changed to a Viking shield
+
 ## 13.25
 - Added some journal styling
 - Weapons now have a "Special Damage" checkbox - if ticked an "asterisk" will appear after weapon damage on the Character/NPC sheet.
