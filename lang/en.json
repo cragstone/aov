@@ -26,6 +26,7 @@
     "augmentUsed": "Used in Augment",
     "augmentReset": "Reset all passions/skills used in Augments",
     "average": "Average",
+
     "base": "Base",
     "baseScore": "Base Score",
     "baseScoreOption": "Base Score Option",
@@ -37,6 +38,7 @@
     "bonusPenalty": "Bonus/Penalty",
     "born": "Born",
     "boughtVadmal": "Bought Vaðmál",
+
     "cancel": "Cancel",
     "carried": "Carried",
     "catBonus": "Category Bonus",
@@ -77,12 +79,14 @@
     "createDoc": "New {type}",
     "createEnabled": "Character Creation Phase Enabled",
     "createPhase": "Character Creation Phase",
+
     "d20": "D20",
     "damage": "Damage",
     "damageAbbr": "Dmg",
     "damageType": "Damage Type",
     "db": "+dm",
     "dbHalf" : "+½dm",
+    "deleteConfirm":"Press confirm to delete the item",
     "deleteDoc": "Double click to delete {type}",
     "dependent": "Dependent",
     "dependentAbbr": "Dep",
@@ -115,6 +119,7 @@
     "dodge": "Dodge",
     "dottir": "dóttir",
     "dropHere": "Drop {itemType} here",
+
     "effect": "Effect",
     "effects": "Effects",
     "effectsShort": "Eff",
@@ -131,6 +136,7 @@
     "expandSection": "Expand Section",
     "experience": "Experience",
     "experienceHint": "Make Experience Rolls",
+
     "family": "Family",
     "familyCreated": "Family Created",
     "familyEvent": "Family Event",
@@ -153,6 +159,7 @@
     "fixedVal": "Fixed {val}",
     "fixedXP": "Choose improvements to get fixed +3%",
     "freedman": "Freedman",
+
     "gear": "Equipment",
     "gender": "Gender",
     "genderAbbr": "Gender",
@@ -165,6 +172,7 @@
     "grandparent":"Grandparent",
     "gridPos": "Grid Position",
     "gridPosHint": "Choose a number from 1-12 to position the hit location on the character sheet",
+
     "healingAbbr": "Heal",
     "healingPhase": "Apply Healing Rate to characters",
     "healRate": "Healing Rate",
@@ -194,6 +202,7 @@
     "hpCurr": "Current/Max HP",
     "hpMax": "Max HP",
     "human": "Human",
+
     "iceland": "Iceland",
     "ideals": "Ideals",
     "impact": "Impact",
@@ -203,6 +212,7 @@
     "increaseYear": "Increase Year by 1",
     "intent": "Intent",
     "invalid": "Invalid",
+
     "lawspeaker": "Lawspeaker",
     "length": "Length",
     "linked": "The token is not linked to the actor",
@@ -211,6 +221,7 @@
     "locType": "Hit Location Type",
     "loss": "Loss Roll(s)",
     "lostStatus": "Lost Status",
+
     "mainName": "Main Skill Name",
     "makeSelection": "Make Selection",
     "male": "Male",
@@ -243,6 +254,7 @@
     "mrAbbr": "MOV",
     "mythicUser": "Mythic User",
     "mythicUserHint": "Is a Runemaster or Seiðkona",
+
     "name": "Name",
     "nameMean": "Name Meaning",
     "nameMeanAbbr": "Meaning",
@@ -262,10 +274,12 @@
     "notes": "Notes",
     "noXP": "No XP Allowed",
     "noXPHint": "If ticked, these skills can not be improved via experience",
+
     "oddRunes": "Valid Runescript",
     "openWiki": "Click to open the Age of Vikings Wiki",
     "options": "Options",
     "outlaw": "Outlaw/Vagrant",
+
     "packed": "Packed",
     "parent": "Parent",
     "parryBonus": "Parry Bonus",
@@ -289,9 +303,11 @@
     "pointsAllocated": "Stat Points Allocated",
     "prepared": "Prepared",
     "preparedAbbr": "Pd",
+
     "quantity": "Quantity",
     "quantityAbbr": "Qty",
     "quickstart": "Quickstart Sheet",
+
     "random": "Random {formula}",
     "range": "Range",
     "recalcBase": "Recalculate non-fixed Base Scores",
@@ -314,6 +330,7 @@
     "rollPersonality": "Roll Personality",
     "rollRandom": "Roll Stats Randomly",
     "runes": "Runes",
+
     "selectionsMade": "Selections Made",
     "selectItem": "Select {type}",
     "sheep": "Sheep",
@@ -353,6 +370,7 @@
     "subtract": "Subtract",
     "surplusVadmal": "Surplus Vaðmál",
     "synth": "This is a synthetic actor",
+
     "tenant": "Tenant",
     "thrall": "Thrall",
     "thrallHint": "Tick this if the person is a thrall rather than a relative",
@@ -366,6 +384,7 @@
     "treated": "Treated",
     "twinsBorn": "Twins born",
     "type": "Type",
+
     "unlinked": "The token is not linked to the actor",
     "unlock": "Click to unlock the sheet",
     "untreated": "This wound has not been treated",
@@ -374,6 +393,7 @@
     "usePoints": "Allocate points to stats",
     "uses": "Uses",
     "useSon": "Do you want to use the patrionic title 'Son'?",
+
     "vadmal": "Vaðmál Ells",
     "vadmalProd": "Vaðmál Production",
     "vadmalProdHint": "Determine the amount of Vaðmál you have, need and any surplus/shortfall",
@@ -382,9 +402,11 @@
     "vicSacrificeEnabled": "Victory Sacrifice started",
     "victoryPhase": "Victory Sacrifice",
     "viewBaseStat": "View NPC Base Stats",
-    "viewDoc": "View {type}",
+    "viewDoc": "Click to view {type}, hold CTRL to delete it",
     "viewNotes": "View NPC Notes",
+    "viewOnly": "Click to view {type}",
     "viewStat": "View NPC Details",
+
     "weapons": "Weapons",
     "weaponsHint": "Select two weapons, this will remove previously selected weapons",
     "weaponSkill": "Weapon Skill",
@@ -401,10 +423,12 @@
     "wyrdInsufficient": "You don't have that much Wyrd left",
     "wyrdSpendHint": "Double click POW to spend Wyrd",
     "wyrdSpent": "{points} points of Wyrd spent",
+
     "xpAbbr": "XP",
     "xpAbbrHint": "Tick the box to add an XP check.  If there is no box then the skill can improve through XP",
     "xpCheck": "XP Check",
     "xpCheckHint": "If ticked, this skill is ready for an experience check",
+
     "year": "Year",
     "yearIncreased": "Year increased to {year}",
     "yes": "Yes",
@@ -911,6 +935,13 @@
       "title": "Edit Chaosium ID (CID)"
     },
 
+    "ClickableEvents": {
+      "MouseOver.Title": "Permission to click",
+      "MouseOver.Hint": "Return boolean if should allow click and show mouse cursor",
+      "LeftClick.Title": "Left Click Script",
+      "RightClick.Title": "Right Click Script"
+    },
+
     "Combat": {
       "adjInit": "Adjust Initiative",
       "amount": "Other Amount",
@@ -1376,7 +1407,8 @@
       "ChaosiumCanvasInterfaceOpenDocument": "CCI: Open Document",
       "ChaosiumCanvasInterfacePlaySound": "CCI: Play Sound",
       "ChaosiumCanvasInterfaceToScene": "CCI: To Scene",
-      "ChaosiumCanvasInterfaceTileToggle": "CCI: Tile Toggle"
+      "ChaosiumCanvasInterfaceTileToggle": "CCI: Tile Toggle",
+      "aovClickableEvents": "Clickable Events"
     }
   }
 }

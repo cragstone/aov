@@ -9,7 +9,7 @@ export class AoVFamilySheet extends AoVItemSheet {
   static DEFAULT_OPTIONS = {
     classes: ['family'],
     position: {
-      width: 600,
+      width: 610,
       height: 420
     },
   }

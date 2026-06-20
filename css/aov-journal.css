@@ -59,6 +59,29 @@ div.css-adventure-entry.sheet {
     margin: 0px;
   }
 
+  .title4 {
+  color: var(--aov-jnl-pri-col);
+  font-size: 18px;
+  font-family: var(--aov-primary-font);
+  margin: 0px;
+  font-weight: bold;
+  }
+
+  .title5 {
+    color: var(--aov-jnl-pri-col);
+    font-size: 18px;
+    font-weight: bold;
+    font-family: var(--aov-primary-font);
+    margin: 0px;
+  }
+
+  .title6 {
+    font-family: var(--aov-primary-font);
+    color: var(--aov-jnl-main-col);
+    font-size: 18px;
+    margin: 0px;
+  }
+
   .subtitle {
     font-size: 22px;
     font-family: var(--aov-secondary-font);
@@ -110,7 +133,12 @@ div.css-adventure-entry.sheet {
     }
   }
 
-  .object a.content-link {
+  .object {
+    &.space {
+      margin-bottom: 5px;
+    }
+
+    a.content-link {
       background: var(--content-link-background);
       padding: 1px 4px 0;
       border: 1px solid var(--content-link-border-color);
@@ -129,10 +157,18 @@ div.css-adventure-entry.sheet {
       &.broken {
           text-decoration: line-through;
       }
+    }
   }
+
+
 
   .example {
     color: var(--aov-jnl-sec-col);
+    .title3 {
+      color: var(--aov-jnl-sec-col);
+      text-align: center;
+      text-transform:uppercase;
+    }
   }
 
   .rules {
@@ -202,7 +238,78 @@ div.css-adventure-entry.sheet {
     margin-right: auto;
   }
 
+  .action {
+    color: var(--aov-jnl-pri-col);
+    border: 1px black solid;
+    padding:5px;
+    margin: 5px;
+    background-color:cornsilk;
+    .heading {
+      font-family: var(--aov-secondary-font);
+    }
+  }
+
+  .quote {
+    text-align:center;
+    text-transform:uppercase;
+    color: var(--aov-jnl-sec-col);
+    font-family: var(--aov-secondary-font);
+    font-weight: bold;
+  }
+
+  .attrib {
+    font-family: var(--aov-secondary-font);
+    text-align:center;
+    color: var(--aov-jnl-sec-col);
+  }
+
+  .play {
+    color: var(--aov-jnl-sec-col);
+    border: 1px black solid;
+    padding:5px;
+    margin: 5px;
+    background-color:cornsilk;
+    .heading {
+      font-family: var(--aov-secondary-font);
+      text-align: center;
+      font-size:18px;
+    }
+    ul.jnl li::marker {
+      content: 'Þ ';
+      font-size:15px;
+      color:var(--aov-jnl-sec-col);
+    }
+    .title3 {
+      color: var(--aov-jnl-sec-col);
+      text-align: center;
+      text-transform:uppercase;
+    }
+  }
+
+  .glossary p{
+    text-indent: -20px;
+    padding-left: 20px;
+    &.indent {
+      text-indent: 0px;
+    }
+  }
+
+  .timeline p{
+    text-indent: -30px;
+    padding-left: 30px;
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
 
 .aovJnl {
   font-family: var(--aov-primary-font);

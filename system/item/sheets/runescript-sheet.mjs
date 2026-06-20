@@ -11,7 +11,7 @@ export class AoVRuneScriptSheet extends AoVItemSheet {
   static DEFAULT_OPTIONS = {
     classes: ['runescript'],
     position: {
-      width: 600,
+      width: 610,
       height: 700
     },
   }

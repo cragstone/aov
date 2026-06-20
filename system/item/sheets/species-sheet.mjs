@@ -11,7 +11,7 @@ export class AoVSpeciesSheet extends AoVItemSheet {
     classes: ['species'],
     dragDrop: [{ dragSelector: '[data-drag]', dropSelector: '.droppable' }],
     position: {
-      height: 600
+      height: 640
     },
   }
 

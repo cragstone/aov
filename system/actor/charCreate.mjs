@@ -917,7 +917,7 @@ export class AOVCharCreate {
     let chatData = {};
     chatData = {
       user: game.user.id,
-      type: CONST.CHAT_MESSAGE_STYLES.OTHER,
+      //type: CONST.CHAT_MESSAGE_STYLES.OTHER,
       rolls: rolls,
       content: html,
       speaker: {

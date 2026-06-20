@@ -82,8 +82,7 @@
       {{#unless system.quickstart}}
         <div class="ability-cell left bold" data-tooltip="{{localize 'AOV.mp'}}">{{localize 'AOV.mpAbbr'}}</div>
         <div class='stat-grid'>
-          <input class="ability-cell bold" type='text' name='system.mp.value' value='{{system.mp.value}}'
-            data-dtype='Number' />
+          <input class="ability-cell bold" type='number' name='system.mp.value' value='{{system.mp.value}}'/>
           <span class="centre"> / </span>
           <div class="ability-cell centre terIcon bold" data-tooltip="{{localize 'AOV.maxMP' value=system.mp.max}}">{{system.mp.availMax}}</div>
         </div>

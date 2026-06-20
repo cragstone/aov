@@ -341,7 +341,7 @@ export class AOVCheck {
     let chatMsgData = {
       rollType: config.rollType,
       cardType: config.cardType,
-      chatType: config.chatType,
+      //chatType: config.chatType,
       chatTemplate: config.chatTemplate,
       state: config.state,
       wait: config.wait,
@@ -487,7 +487,7 @@ export class AOVCheck {
     let chatData = {};
     chatData = {
       user: game.user.id,
-      type: chatMsgData.chatType,
+      //type: chatMsgData.chatType,
       content: html,
       flags: {
         aov: {

@@ -9,7 +9,7 @@ export class AoVThrallSheet extends AoVItemSheet {
   static DEFAULT_OPTIONS = {
     classes: ['thrall'],
     position: {
-      width: 600,
+      width: 610,
       height: 420
     },
   }

@@ -10,7 +10,7 @@ export class AoVItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemShee
   static DEFAULT_OPTIONS = {
     classes: ['aov', 'sheet', 'item'],
     position: {
-      width: 600,
+      width: 610,
       height: 520
     },
     window: {

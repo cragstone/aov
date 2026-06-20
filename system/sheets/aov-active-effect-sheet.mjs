@@ -48,7 +48,7 @@ export class AOVActiveEffectSheet {
     const effectData = AOVActiveEffectSheet.getAutoEffect(document)
     if (effectData.effect) {
       for (const change of effectData.effect.changes) {
-        if (change.mode === CONST.ACTIVE_EFFECT_MODES.ADD) {
+        if (change.mode === CONST.ACTIVE_EFFECT_CHANGE_TYPES.ADD) {
           effectChanges.push({
             key: change.key,
             name: effectKeys[change.key] ?? change.key,
@@ -103,7 +103,7 @@ export class AOVActiveEffectSheet {
       const effectData = AOVActiveEffectSheet.getAutoEffect(this.document)
       const newChange = {
         key: event.currentTarget.dataset.key,
-        mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+        mode: CONST.ACTIVE_EFFECT_CHANGE_TYPES.ADD,
         value: 0
       }
       if (effectData.effect) {

@@ -12,7 +12,7 @@ export class AoVSkillSheet extends AoVItemSheet {
     classes: ['skill'],
     dragDrop: [{ dragSelector: '[data-drag]', dropSelector: '.droppable' }],
     position: {
-      width: 600,
+      width: 610,
       height: 590
     },
   }

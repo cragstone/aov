@@ -68,8 +68,10 @@ export class AoVActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorSh
       addWound: this._addWound,
       openWiki: this._openWiki,
       wyrd: this._spendWyrd,
+      detach: this._myDetach,
     }
   }
+
 
 
   //Add CID Editor Button as seperate icon on the Window header
@@ -114,7 +116,18 @@ export class AoVActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorSh
     };
   }
 
+
   //------------ACTIONS-------------------
+
+  static async _myDetach (event, target) {
+    if (this.actor.type === "npc") {
+      if (!this.actor.systemnoteView) {
+        await this.actor.update({'system.noteView' : true});
+        this.render["notes"]
+      }
+    }
+    let myWin= await this.detachWindow()
+  }
 
   // Change Image
   static async _onEditImage(event, target) {
@@ -145,7 +158,22 @@ export class AoVActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorSh
   // View Embedded Document
   static async _viewDoc(event, target) {
     const doc = this._getEmbeddedDocument(target);
-    doc.sheet.render(true);
+    if(!doc) {return}
+    if (event.ctrlKey) {
+      if (['armour','devotion','family','gear','history','npcpower','passion','rune','runescript','seidur','skill','weapon'].includes(doc.type)) {
+          const confirmation = await AOVDialog.confirm({
+            window: { title: game.i18n.format("AOV.deleteDoc", {type: game.i18n.localize('TYPES.Item.'+doc.type)}) },
+
+            content: game.i18n.localize("AOV.deleteConfirm") + "<br><strong> " + game.i18n.localize('TYPES.Item.'+doc.type) +": " + doc.name + "</strong>"
+          })
+          if (confirmation) {
+            await doc.delete();
+          }
+          return
+        }
+    } else {
+      doc.sheet.render(true);
+    }
   }
 
   static async _deleteDoc(event, target) {

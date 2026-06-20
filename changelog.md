@@ -1,3 +1,7 @@
+## 14.1
+- Updated system for Foundry V14
+- CCI updated (thanks to James B)
+
 ## 13.29
 - Some more format changes
 - You can now spend Wyrd by double clicking on "POW" on the character sheet

@@ -9,6 +9,7 @@ export class AOVActor extends Actor {
   }
 
   prepareBaseData() {
+    super.prepareBaseData();
     this.system.cidFlagItems = {}
     for (const i of this.items) {
       if (i.flags.aov?.cidFlag?.id) {

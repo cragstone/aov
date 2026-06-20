@@ -54,6 +54,9 @@ export class AOVSystemSocket {
       case 'combatantInit':
         AoVCombatTracker.updateInit(data.value.combatantUuid, data.value.initiative);
         break;
+      case 'toggleMapNotes':
+        game.settings.set('core', NotesLayer.TOGGLE_SETTING, data.toggle === true)
+        break
     }
   }
 }

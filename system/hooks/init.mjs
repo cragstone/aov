@@ -1,7 +1,6 @@
 import { AOV } from "../setup/config.mjs";
 import { AOVActor } from "../actor/actor.mjs";
 import { AOVItem } from "../item/item.mjs";
-import ChaosiumCanvasInterfaceInit from '../apps/chaosium-canvas-interface-init.mjs'
 import { CID } from '../cid/cid.mjs'
 import { handlebarsHelper } from '../setup/handlebar-helpers.mjs';
 import { registerSettings } from '../settings/register-settings.mjs'
@@ -12,6 +11,7 @@ import { AoVCombatTracker } from "../combat/combat-tracker.mjs";
 import { AoVCombat } from "../combat/combat.mjs";
 import { AoVCombatant } from "../combat/combatant.mjs";
 import { AOVPause } from "../apps/pause.mjs";
+import AOVClickableEvents from "../apps/clickable-events.mjs";
 
 export default function Init() {
   //Add classes to global game object
@@ -19,8 +19,14 @@ export default function Init() {
     AOVActor,
     AOVItem,
     rollItemMacro,
-    ClickRegionLeftUuid: ChaosiumCanvasInterfaceInit.ClickRegionLeftUuid,
-    ClickRegionRightUuid: ChaosiumCanvasInterfaceInit.ClickRegionRightUuid
+    ClickRegionLeftUuid: AOVClickableEvents.ClickRegionLeftUuid,
+    ClickRegionRightUuid: AOVClickableEvents.ClickRegionRightUuid,
+    hasPermissionDocument: AOVClickableEvents.hasPermissionDocument,
+    InSceneRelativeTeleport: AOVClickableEvents.InSceneRelativeTeleport,
+    MapPinToggle: AOVClickableEvents.MapPinToggle,
+    openDocument: AOVClickableEvents.openDocument,
+    toggleTileJournalPages: AOVClickableEvents.toggleTileJournalPages,
+    toScene: AOVClickableEvents.toScene
   }
   //Add Custom Configuration
   CONFIG.AOV = AOV;
@@ -69,7 +75,7 @@ export default function Init() {
   CONFIG.Item.dataModels.homeland = models.AOVHomelandModel
   CONFIG.Item.dataModels.history = models.AOVHistoryModel
 
-  ChaosiumCanvasInterfaceInit.initSelf()
+  AOVClickableEvents.initSelf()
   CID.init()
   registerSheets()
 

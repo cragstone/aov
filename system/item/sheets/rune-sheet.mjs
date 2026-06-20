@@ -11,8 +11,8 @@ export class AoVRuneSheet extends AoVItemSheet {
   static DEFAULT_OPTIONS = {
     classes: ['rune'],
     position: {
-      width: 600,
-      height: 700
+      width: 610,
+      height: 710
     },
   }
 

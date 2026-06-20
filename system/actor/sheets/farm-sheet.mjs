@@ -9,7 +9,7 @@ export class AoVFarmSheet extends AoVActorSheet {
   static DEFAULT_OPTIONS = {
     classes: ['farm'],
     position: {
-      width: 600,
+      width: 610,
       height: 570
     },
   }

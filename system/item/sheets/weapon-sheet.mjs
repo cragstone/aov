@@ -9,8 +9,8 @@ export class AoVWeaponSheet extends AoVItemSheet {
   static DEFAULT_OPTIONS = {
     classes: ['weapon'],
     position: {
-      width: 600,
-      height: 620
+      width: 610,
+      height: 670
     },
   }
 

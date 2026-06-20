@@ -8,7 +8,7 @@ export class AoVNPCPowerSheet extends AoVItemSheet {
   static DEFAULT_OPTIONS = {
     classes: ['wound'],
     position: {
-      width: 600,
+      width: 610,
       height: 465
     },
   }

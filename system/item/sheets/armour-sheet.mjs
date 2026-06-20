@@ -9,7 +9,7 @@ export class AoVArmourSheet extends AoVItemSheet {
   static DEFAULT_OPTIONS = {
     classes: ['armour'],
     position: {
-      width: 600,
+      width: 610,
       height: 520
     },
   }
