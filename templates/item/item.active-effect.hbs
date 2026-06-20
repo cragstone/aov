@@ -1,40 +1,22 @@
-<section class='item tab effects draggable {{tab.cssClass}}' data-group='primary' data-tab='effects'>
-  <div class="bold"> {{localize 'DOCUMENT.ActiveEffects'}}:</div>
-
+<section class='item tab effects {{tab.cssClass}}' data-group='primary' data-tab='effects'>
   {{#if isGM}}
-    <div>
-      <div class="base-grid">
-        {{#each effectKeys as |name key|}}
-          <div class="clickable-button" data-action="addItemEffect" data-key="{{key}}">{{localize name}}</div>
-        {{/each}}
-      </div>
-      <br>
-      {{#each effectChanges as |effect|}}
-        <div class="weapon-input active-effect-list active-effect-change-edit" style="align-items: center;" data-key="{{effect.key}}">
-          <div class="truncate" data-tooltip="{{localize effect.name}}">{{localize effect.name}}</div>
-          <select>
-            <option value="+">{{localize 'AOV.add'}}</option>
-            <option value="-" {{#if effect.negative}} selected="selected" {{/if}}>{{localize 'AOV.subtract'}}</option>
-          </select>
-          <input type="number" value="{{effect.value}}"/>
-          <a class="control-button"><i class="item-control fas fa-trash"></i></a>
-        </div>
-      {{/each}}
+    <div class="flexrow">
+      <div></div>
+      <a class="item-control item-create" style="flex: 0 0 auto;" data-tooltip="{{localize 'SIDEBAR.ACTIONS.CREATE.ActiveEffect'}}" data-action="createEffect">
+        <i class="fas fa-plus"></i>
+      </a>
     </div>
-    {{#if effects}}
-      <hr>
-      <div class="bold">{{localize 'AOV.manuallyEditActiveEffects'}}:</div>
-      <div class="base-grid">
-        {{#each effects as |effect|}}
-          <div class="clickable-button" data-action="openActiveEffect" data-uuid="{{effect.uuid}}">{{effect.name}}</div>
-        {{/each}}
-      </div>
-    {{/if}}
-
+    <ol class="gear-list">
+      {{#each effects as |effect|}}
+        <li class="item item-edit effects-grid">
+          <div class="effect-source left rollable" data-tooltip="{{localize 'AOV.viewDoc' type=(localize 'DOCUMENT.ActiveEffect')}}" data-action="openActiveEffect" data-uuid="{{effect.uuid}}">{{effect.name}}</div>
+        </li>
+      {{/each}}
+    </ol>
   {{else}}
     {{#each effectChanges as |effect|}}
-      <div class="weapon-input active-effect-list active-effect-change-edit" style="align-items: center;" data-key="{{effect.key}}">
-        <div class="truncate" data-tooltip="{{localize effect.name}}">{{localize effect.name}}</div>
+      <div class="weapon-input active-effect-list" style="align-items: center;" data-key="{{effect.key}}">
+        <div class="truncate">{{localize effect.name}}</div>
         {{#if effect.negative}}
           <div>-{{effect.value}}</div>
         {{else}}

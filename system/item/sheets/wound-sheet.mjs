@@ -35,7 +35,6 @@ export class AoVWoundSheet extends AoVItemSheet {
     }
     context.effects = AOVActiveEffectSheet.getItemEffectsFromSheet(this.document)
     const changesActiveEffects = AOVActiveEffectSheet.getEffectChangesFromSheet(this.document)
-    context.effectKeys = changesActiveEffects.effectKeys
     context.effectChanges = changesActiveEffects.effectChanges
     return context
   }
