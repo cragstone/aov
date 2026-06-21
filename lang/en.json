@@ -301,6 +301,8 @@
     "persTypeAbbrShort": "Pers",
     "picks": "Number of Optional Skills",
     "pointsAllocated": "Stat Points Allocated",
+    "predefinedActiveEffectKeys": "Predefined Keys",
+    "predefinedActiveEffectKeyHint": "",
     "prepared": "Prepared",
     "preparedAbbr": "Pd",
 
