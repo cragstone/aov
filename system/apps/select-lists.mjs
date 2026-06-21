@@ -190,7 +190,7 @@ export class AOVSelectLists {
     let options = {
       "none": game.i18n.localize("AOV.noneSelected")
     }
-    let effectKeys = await foundry.utils.duplicate(CONFIG.AOV.keysActiveEffects)
+    let effectKeys = foundry.utils.duplicate(CONFIG.AOV.keysActiveEffects)
     let newOption = {}
     for (let [key,name] of Object.entries(effectKeys)) {
       newOption = { [key]: game.i18n.localize(name), };
@@ -209,7 +209,7 @@ export class AOVSelectLists {
 
     options = Object.assign(options, skillList)
 
-    let specialEffectKeys = await foundry.utils.duplicate(CONFIG.AOV.keysSpecialActiveEffects)
+    let specialEffectKeys = foundry.utils.duplicate(CONFIG.AOV.keysSpecialActiveEffects)
     for (let [key,name] of Object.entries(specialEffectKeys)) {
       newOption = { [key]: game.i18n.localize('AOV.special') + ": " + game.i18n.localize(name), };
       options = Object.assign(options, newOption)

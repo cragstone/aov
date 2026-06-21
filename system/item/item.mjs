@@ -103,16 +103,6 @@ constructor(data, context) {
     return super.createDialog(data, createOptions, { types, ...options });
   }
 
-  async _preDelete(options, user) {
-    if (this.parent) {
-      const ids = this.parent.effects.filter(e => e.origin === this.uuid).map(e => e.id)
-      if (ids.length) {
-        await this.parent.deleteEmbeddedDocuments('ActiveEffect', ids)
-      }
-    }
-    return super._preDelete(options, user);
-  }
-
   /** @override */
   static async _onCreateOperation(documents, operation, user) {
     super._onCreateOperation(documents, operation, user)

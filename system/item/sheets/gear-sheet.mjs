@@ -28,7 +28,6 @@ export class AoVGearSheet extends AoVItemSheet {
     context.tabs = this._getTabs(options.parts);
     context.effects = AOVActiveEffectSheet.getItemEffectsFromSheet(this.document)
     const changesActiveEffects = AOVActiveEffectSheet.getEffectChangesFromSheet(this.document)
-    context.effectKeys = changesActiveEffects.effectKeys
     context.effectChanges = changesActiveEffects.effectChanges
     return context
   }

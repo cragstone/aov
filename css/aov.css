@@ -758,24 +758,6 @@ nav.aov.sheet-tabs.tabs {
   padding-right: 10px;
 }
 
-.aov div.active-effect-change-edit {
-  align-items: center;
-  gap: 1rem;
-}
-
-.aov div.active-effect-change-edit select {
-  flex: 0 0 auto;
-}
-
-.aov div.active-effect-change-edit input {
-  flex: 0 0 3rem;
-}
-
-.aov div.active-effect-change-edit a.control-button {
-  flex: 0 0 30px;
-  text-align: center;
-}
-
 .aov .effects-grid {
   display: grid;
   grid-template-columns: 150px 150px auto 70px 50px;
