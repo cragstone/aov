@@ -39,6 +39,7 @@ src: url('../art-assets/FarnhamText-Regular.otf') format('woff2');
   --aov-table-row-colour-even: rgba(0,0,0,0.1);
   --aov-table-row-colour-odd: transparent;
   --aov-background: url('../art-assets/lightstone.jpg');
+  --active-effect-aura: url('../art-assets/inverse-aura.svg');
   --aov-dice-back-colour:rgba(0,0,0,.15);
 }
 
@@ -68,6 +69,7 @@ body.theme-light.application .aov,
   --character-sheet-tab-green: url('../art-assets/ribbon-green.svg');
   --character-sheet-tab-red: url('../art-assets/ribbon-red.svg');
   --character-sheet-tab-yellow: url('../art-assets/ribbon-yellow.svg');
+  --active-effect-aura: url('../art-assets/inverse-aura.svg');
   --aov-table-row-colour-even: rgba(0,0,0,0.1);
   --aov-table-row-colour-odd: transparent;
   --aov-background: url('../art-assets/lightstone.jpg');
@@ -107,6 +109,7 @@ body.theme-dark.application .aov,
   --character-sheet-tab-green: url('../art-assets/ribbon-green.svg');
   --character-sheet-tab-red: url('../art-assets/ribbon-red.svg');
   --character-sheet-tab-yellow: url('../art-assets/ribbon-yellow.svg');
+  --active-effect-aura: url('../art-assets/aura.svg');
   --aov-table-row-colour-even: rgba(0,0,0,0.1);
   --aov-table-row-colour-odd: transparent;
   --aov-background: url('../art-assets/darkstone.jpg');
@@ -760,7 +763,7 @@ nav.aov.sheet-tabs.tabs {
 
 .aov .effects-grid {
   display: grid;
-  grid-template-columns: 150px 150px auto 70px 50px;
+  grid-template-columns: 140px 110px auto 70px 50px 30px;
   padding-left: 5px;
   padding-bottom: 0px;
   margin-bottom: 0px;
@@ -809,6 +812,7 @@ nav.aov.sheet-tabs.tabs {
 
 .aov .aura-img {
   margin: auto;
+  content: var(--active-effect-aura);
 }
 
 .aov .dialog-buttons.flexrow-aov{
@@ -980,7 +984,7 @@ button.resolve.cardbutton {
   line-height: 16px;
 }
 
-.aov .actor-roll span.pending {
+.aov .actor-roll span.pending, .aov .dice-roll .damres.pending {
   width: 100%;
   background: var(--aov-dice-back-colour);
   font-size: 14px;
@@ -1101,3 +1105,4 @@ button.resolve.cardbutton {
     overflow-y: scroll;
   }
 }
+

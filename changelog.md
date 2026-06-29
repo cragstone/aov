@@ -2,6 +2,16 @@
 - Updated system for Foundry V14
 - CCI updated (thanks to James B)
 - Active effects updated (again, massive thanks to James B)
+- Active effects now have their own tab on the character sheet, and a section on the NPC sheets.
+- When making combat rolls you can now select some actions in the roll dialog. I may add more actions in future.
+- When rolling damage, it is reduced for parrying weapons and any damage to the weapons will be applied
+- If you made an Aimed attack then you can select the Hit Location rather than roll it
+- Damage is reduced for the hit location armour (if applicable)
+- There is a game Combat Setting that allows you to apply damage to the opponent.  If active then you'll see the button on the damage card
+- Macro Drop to Hotbar now working (thanks to James B)
+- Big thanks to Varys for testing this and pursuing the combat automation
+- Most items on the character sheet can be viewed by clicking on the name, and deleted by holding CTRL + click the name.
+- Please see the wiki for more details.
 
 ## 13.29
 - Some more format changes

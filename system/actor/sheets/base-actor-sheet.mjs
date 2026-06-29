@@ -8,6 +8,8 @@ import AOVDialog from "../../setup/aov-dialog.mjs"
 import { COCard } from "../../chat/combat-chat.mjs";
 import { AOVCharCreate } from "../charCreate.mjs";
 import { AOVCharDevelop } from "../charDevelop.mjs";
+import { AOVDamage } from "../../apps/damage.mjs";
+import { AOVActiveEffectSheet } from "../../sheets/aov-active-effect-sheet.mjs";
 
 export class AoVActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorSheetV2) {
   constructor(options = {}) {
@@ -72,6 +74,8 @@ export class AoVActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorSh
       createEffect: this._createEffect,
       viewActiveEffect: this._viewActiveEffect,
       toggleEffect: this._toggleEffect,
+      clearEffects: this._clearEffects,
+      triggerEffects: this._triggerEffects,
     }
   }
 
@@ -122,6 +126,7 @@ export class AoVActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorSh
 
   //------------ACTIONS-------------------
 
+  //Toggle Acvtive Effect
   static async _toggleEffect (event, target) {
     const id = target.closest('.item-edit')?.dataset?.effectId
     if (id) {
@@ -134,6 +139,7 @@ export class AoVActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorSh
     }
   }
 
+  //View Active Effect
   static async _viewActiveEffect (event, target) {
     const id = target.closest('.item-edit')?.dataset?.effectId
     if (id) {
@@ -154,8 +160,53 @@ export class AoVActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorSh
     }
   }
 
+  //Create a Direct Active Effect
   static async _createEffect (event, target) {
     this.document.createEmbeddedDocuments('ActiveEffect', [{ name: ActiveEffect.defaultName({ parent: this.document }) }])
+  }
+
+  //Clear All Direct Effects
+  static async _clearEffects (event,target) {
+    if (event.detail === 2) {  //Only perform on double click
+      const docs = (this.document.effects).map((itm) => {
+        return itm.id;
+      });
+      await ActiveEffect.deleteDocuments(docs, { parent: this.document })
+    }
+  }
+
+  //Trigger One Shot Active Effect _ WORK IN PROGRESS
+  static async _triggerEffects (event, target) {
+    const uuid = target.closest('.item-edit')?.dataset?.effUuid
+    const counter = target.closest('.item-edit')?.dataset?.counter
+    if (uuid) {
+      const doc = await fromUuid(uuid)
+      if (doc) {
+        let effects = doc.system.changes
+        let effect = effects[counter]
+        if (effect) {
+          let confirm = false;
+          switch(effect.key) {
+            case 'system.healing':
+              confirm = await AOVDamage.effectHealing(effect, this.document)
+              break;
+            case 'system.injure' :
+              confirm = await AOVDamage.effectDamage(effect, this.document)
+              break;
+            case 'system.damageObject' :
+              confirm = await AOVDamage.damageObject(effect, this.document)
+              break;
+            default:
+              ui.notifications.warn(game.i18n.localize('AOV.aeNotRecognised'))
+              return
+          }
+          if (confirm) {
+              // Delete the active effect as it's a one-shot
+              await AOVActiveEffectSheet._deleteChange(uuid, counter)
+          }
+        }
+      }
+    }
   }
 
   static async _myDetach (event, target) {
@@ -167,6 +218,8 @@ export class AoVActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorSh
     }
     let myWin= await this.detachWindow()
   }
+
+
 
   // Change Image
   static async _onEditImage(event, target) {
@@ -242,7 +295,7 @@ export class AoVActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorSh
     event.stopPropagation();
     let checkProp={}
     let prop = target.dataset.property
-    if (['locked', 'uncommon', 'alphaSkills','showRunes','beserkerOpt','beserkerStat','hitlocView','skillView','weaponView','powerView','equipView','passionView','devotionView','quickstart'].includes(prop)) {
+    if (['locked', 'uncommon', 'alphaSkills','showRunes','beserkerOpt','beserkerStat','hitlocView','skillView','weaponView','powerView','equipView','passionView','devotionView','effectView','quickstart'].includes(prop)) {
       checkProp = { [`system.${prop}`]: !this.actor.system[prop] }
     } else {
       return
@@ -535,6 +588,7 @@ export class AoVActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorSh
       'system.equipView': status,
       'system.passionView': status,
       'system.devotionView': status,
+      'system.effectView': status,
     })
   }
 

@@ -84,7 +84,6 @@ export default function Init() {
       return createItemMacro(data, slot);
     }
   });
-
 }
 
 //  Hotbar Macros
@@ -96,7 +95,7 @@ function createItemMacro(data, slot) {
     return false;
   }
   // If it is, retrieve it based on the uuid.
-  Item.fromDropData(data).then(async (item) => {
+    Item.fromDropData(data).then(async (item) => {
     // Create the macro command using the uuid.
     const command = `game.aov.rollItemMacro("${data.uuid}");`;
     let macro = game.macros.find(

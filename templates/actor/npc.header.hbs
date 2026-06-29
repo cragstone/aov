@@ -490,6 +490,62 @@
         {{/if}}
       </ol>
     {{/if}}
+
+    {{!Active Effects Section}}
+    {{#if showEffects}}
+      <ol class='npc-weapon-grid'>
+        <div class="npc-effect-row primBackCol">
+          <div class="diff-label indent bold rollable" data-action="toggleActor" data-property="effectView" >{{localize 'Active Effect'}}
+              {{#if system.effectView}}
+                <a class='' data-tooltip='{{localize "AOV.collapseSection"}}'><i class='fas fa-chevrons-up'></i></a>
+              {{else}}
+                <a class='' data-tooltip='{{localize "AOV.expandSection"}}'><i class='fas fa-chevrons-down'></i></a>
+              {{/if}}
+          </div>
+          <div class="diff-label centre">{{localize 'AOV.effect'}}</div>
+          <div class="diff-label centre">{{localize 'AOV.amount'}}</div>
+          <div class="diff-label centre">{{localize 'AOV.active'}}</div>
+          <div class="centre">
+            <a class="item-control item-create" data-tooltip="{{localize 'SIDEBAR.ACTIONS.CREATE.ActiveEffect'}}" data-action="createEffect">
+              <i class="fas fa-plus"></i>
+            </a>
+          </div>
+        </div>
+        {{#if system.effectView}}
+          {{#each effects as |effect|}}
+            <li class="item item-edit npc-effect-row" data-item-id = "{{effect.id}}" data-eff-uuid="{{effect.effUuid}}" data-counter="{{effect.counter}}" {{#if effect.sourceItem}} data-document-class='Item'{{/if}}>
+              <div class="effect-source left truncate {{#if effect.sourceItem}}rollable{{/if}}" {{#if effect.sourceItem}} data-tooltip="{{localize 'AOV.viewOnly'}}" data-action="viewDoc" data-preventDel="true"{{/if}}>{{effect.sourceName}}</div>
+              <div class="centre truncate" data-tooltip="{{effect.name}}">{{effect.name}}</div>
+              <div class="centre">{{effect.value}}</div>
+              {{#if effect.isActive}}
+                <div class="centre" data-tooltip="{{localize 'AOV.active'}}">
+                  <img class="aura-img"  height="18" width="18" />
+                </div>
+              {{else}}
+                <div class="centre" data-tooltip="{{localize 'AOV.inactive'}}">
+                  <img class="aura-img fade"  height="18" width="18" />
+                </div>
+              {{/if}}
+              {{#if effect.oneShot}}
+                <div class="centre" data-tooltip="{{localize 'AOV.useEffect'}}" data-action="triggerEffects">
+                  <a class="centre"><i class="fa-solid fa-bullseye"></i></a>
+                </div>
+              {{/if}}
+            </li>
+          {{/each}}
+        {{#each actor.effects as |actEffect|}}
+            <li class="item item-edit npc-effect-row" data-effect-id="{{actEffect.id}}">
+              <div class="effect-source left rollable" data-tooltip="{{localize 'AOV.viewDoc' type=(localize 'DOCUMENT.ActiveEffect')}}" data-action="viewActiveEffect">{{actEffect.name}}</div>
+              <div class="centre" data-tooltip="{{#if actEffect.active}}{{localize 'AOV.active'}}{{else}}{{localize 'AOV.inactive'}}{{/if}}">
+                <a class="item-control item-create" data-action="toggleEffect">
+                  <img class="aura-img{{#unless actEffect.active}} fade{{/unless}}" height="18" width="18" />
+                </a>
+              </div>
+            </li>
+          {{/each}}
+        {{/if}}
+      </ol>
+    {{/if}}
   {{/if}}
 
   {{!Tab View 3 - NPC base stats}}

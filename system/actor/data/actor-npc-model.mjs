@@ -6,11 +6,6 @@ export default class AOVNPCModel extends AOVActorBaseModel {
     const fields = foundry.data.fields;
     const requiredInteger = { required: true, nullable: false, integer: true };
     const schema = super.defineSchema();
-    schema.move = new fields.SchemaField({
-      base: new fields.NumberField({ ...requiredInteger, initial: 10 }),
-      bonus: new fields.NumberField({ ...requiredInteger, initial: 0 }),
-      penalty: new fields.NumberField({ ...requiredInteger, initial: 0 }),
-    });
     schema.movement = new fields.StringField({ required: true, blank: true, initial: "10" });
     schema.persType = new fields.StringField({ required: true, blank: true });
     schema.tabView = new fields.StringField({ required: true, blank: true, initial: "1" });
@@ -22,6 +17,7 @@ export default class AOVNPCModel extends AOVActorBaseModel {
     schema.equipView = new fields.BooleanField({ initial: true }); //Expand NPC equipment
     schema.passionView = new fields.BooleanField({ initial: true }); //Expand NPC passions
     schema.devotionView = new fields.BooleanField({ initial: true }); //Expand NPC devotions
+    schema.effectView = new fields.BooleanField({ initial: true }); //Expand NPC active effects
     schema.spiritAn = new fields.StringField({ required: true, blank: true });
     return schema
   }

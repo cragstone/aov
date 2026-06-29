@@ -26,15 +26,21 @@ export class AOVActiveEffectSheet {
     const effectKeys = foundry.utils.duplicate(CONFIG.AOV.keysActiveEffects)
     for (const effect of document.effects) {
       for (const change of effect.system.changes) {
+        let oneShot = false;
+        if (['system.healing','system.injure','system.damageObject'].includes(change.key)) {oneShot=true}
+        let effValue = change.value
+        if (typeof change.value === 'number') { effValue = Math.abs(change.value)}
         if (change.type === 'add') {
           effectChanges.push({
             key: change.key,
             name: effectKeys[change.key] ?? change.key,
             negative: (change.value < 0),
-            value: Math.abs(change.value),
+            value: effValue,
             source: effect.name,
             itemSource: effect.parent.name,
+            oneShot: oneShot
           })
+
         }
       }
     }
@@ -53,7 +59,10 @@ export class AOVActiveEffectSheet {
         const sourceItem = (aovAE.parent.parent instanceof Item ? aovAE.parent.parent : aovAE.parent instanceof Item ? true : false)
         const sourceName = (aovAE.parent.parent instanceof Item ? aovAE.parent.parent : aovAE.parent instanceof Item ? aovAE.parent.name : game.i18n.localize('AOV.direct'))
         const container = (aovAE.parent.parent instanceof Item ? aovAE.parent.parent : aovAE.parent instanceof Item ? aovAE.parent : aovAE)
+        let count = 0;
         for (let chng of aovAE.changes) {
+          let oneShot = false;
+          if (['system.healing','system.injure','system.damageObject'].includes(chng.key)) {oneShot=true}
           effects.push({
             id: container.id,
             sourceName: sourceName,
@@ -62,8 +71,12 @@ export class AOVActiveEffectSheet {
             key: chng.key,
             name: game.i18n.localize((effectKeys[chng.key] ?? chng.key)),
             value: chng.value,
-            isActive: aovAE.active ?? false
+            isActive: aovAE.active ?? false,
+            oneShot: oneShot,
+            effUuid: eff.uuid,
+            counter: count
           })
+          count++;
         }
       }
     }
@@ -99,5 +112,15 @@ export class AOVActiveEffectSheet {
         }
       }
     }
+  }
+
+  static async _deleteChange(effUuid, counter) {
+    const doc = await fromUuid(effUuid)
+    if (doc) {
+      let changes = doc.system.changes
+      changes.splice(counter, 1);
+      await doc.update({'system.changes': changes});
+    }
+    return
   }
 }

@@ -4,6 +4,7 @@ import { AOVActiveEffect } from '../../apps/active-effects.mjs';
 import { AOVActiveEffectSheet } from '../../sheets/aov-active-effect-sheet.mjs'
 import { AOVActor } from '../actor.mjs';
 
+
 export class AoVNPCSheet extends AoVActorSheet {
   constructor(options = {}) {
     super(options)
@@ -67,6 +68,9 @@ export class AoVNPCSheet extends AoVActorSheet {
         relativeTo: this.actor,
       }
     );
+    context.effects = await AOVActiveEffectSheet.getActorEffectsFromSheet(this.document)
+    context.showEffects = !context.system.locked;
+    if ((context.effects).length > 0 || (this.document.effect).length>0) {context.showEffects = true}
     await this._prepareItems(context);
     return context
   }

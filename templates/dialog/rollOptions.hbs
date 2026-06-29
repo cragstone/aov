@@ -12,6 +12,15 @@
   {{/if}}
 
 
+  {{#if askAction}}
+    <div class="flexrow">
+      <label data-tooltip= "{{ localize 'AOV.card.actionHint' }}" >{{localize "AOV.card.action"}}</label>
+      <select class="stat-input" data-handle-change name="actionOption">
+        {{selectOptions actionOptions selected=combatAction}}
+      </select>
+    </div>
+    <br>
+  {{/if}}
 
   {{#if askFixed}}
     <div class="flexrow">

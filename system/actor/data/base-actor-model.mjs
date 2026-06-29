@@ -1,4 +1,5 @@
 import AOVDataModel from "../../data/base-model.mjs";
+import { AOVActor } from "../actor.mjs";
 
 export default class AOVActorBaseModel extends AOVDataModel {
 
@@ -6,11 +7,25 @@ export default class AOVActorBaseModel extends AOVDataModel {
     const fields = foundry.data.fields;
     const requiredInteger = { required: true, nullable: false, integer: true };
     const schema = {};
-
-
+    schema.move = new fields.SchemaField({
+      base: new fields.NumberField({ ...requiredInteger, initial: 10 }),
+      bonus: new fields.NumberField({ ...requiredInteger, initial: 0 }),
+      penalty: new fields.NumberField({ required: true, nullable: false, integer: false, initial: 0 }),
+    });
+    schema.reputation = new fields.SchemaField({
+      base: new fields.NumberField({ ...requiredInteger, initial: 5 }),
+      history: new fields.NumberField({ ...requiredInteger, initial: 0 }),
+      xp: new fields.NumberField({ ...requiredInteger, initial: 0 }),
+      effects: new fields.NumberField({ ...requiredInteger, initial: 0 }),
+    });
+    schema.status = new fields.SchemaField({
+      base: new fields.NumberField({ ...requiredInteger, initial: 25 }),
+      xp: new fields.NumberField({ ...requiredInteger, initial: 0 }),
+      effects: new fields.NumberField({ ...requiredInteger, initial: 0 }),
+    });
     schema.hp = new fields.SchemaField({
-      value: new fields.NumberField({ ...requiredInteger, initial: 10 }),
-      max: new fields.NumberField({ ...requiredInteger, initial: 10 }),
+      value: new fields.NumberField({ nullable: true, initial: null, integer: true }),
+      max: new fields.NumberField({ nullable: true, initial: null, integer: true }),
       bonus: new fields.NumberField({ ...requiredInteger, initial: 0 }),
       effects: new fields.NumberField({ ...requiredInteger, initial: 0 })
     });
@@ -28,9 +43,14 @@ export default class AOVActorBaseModel extends AOVDataModel {
     schema.showRunes = new fields.BooleanField({ initial: true });  //Flag to show the runes
     schema.parryBonus = new fields.NumberField({ ...requiredInteger, initial: 0  });  //Parry Bonus
     schema.apBonus = new fields.NumberField({ ...requiredInteger, initial: 0  });  //AP Bonus to all hit locations
+    schema.apBestow = new fields.NumberField({ ...requiredInteger, initial: 0  });  //AP Override to all hit locations
+    schema.hrBonus = new fields.NumberField({ ...requiredInteger, initial: 0 }); // Healing Rate Bonus
+    schema.hrAdjust = new fields.NumberField({ required: true, nullable: false, integer: false, initial: 1 }); // Healing Rate Multiplier
     schema.beserkerOpt = new fields.BooleanField({ initial: false });  //Can the actor go beserk
     schema.beserkerStat = new fields.BooleanField({ initial: false });  //Is the actor go beserk
-
+    schema.powResist = new fields.NumberField({ ...requiredInteger, initial: 0 });  //Magical Defence bonus
+    schema.parryBonus = new fields.NumberField({ ...requiredInteger, initial: 0 });  //Parry bonus
+    schema.sizSpecial = new fields.NumberField({ ...requiredInteger, initial: 0 });  //Reverse SIZ adjustment for HP Calc
 
     // Iterate over ability names and create a new SchemaField for each.
     schema.abilities = new fields.SchemaField(Object.keys(CONFIG.AOV.abilities).reduce((obj, ability) => {
@@ -46,9 +66,8 @@ export default class AOVActorBaseModel extends AOVDataModel {
       });
       return obj;
     }, {}));
-
-
     return schema;
   }
+
 
 }

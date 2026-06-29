@@ -88,6 +88,7 @@ export class AOVCheck {
       targetId: options.targetId ?? "",
       targetType: options.targetType ?? "",
       targetLoc: options.targetLoc ?? "",
+      targetWpnId: options.targetWpnId ?? "",
       origID: options.origID,
       characteristic: options.characteristic ?? false,
       skillId: options.skillId ?? false,
@@ -106,6 +107,13 @@ export class AOVCheck {
       augAdj: 0,
       encPenalty: 0,
       mqPenalty: 0,
+      weaponAbsorb: 0,
+      armourAbsorb: 0,
+      combatAction: options.combatAction ?? "",
+      wpnBlock: options.wpnBlock ?? false,
+      wpnDam: options.wpnDam ?? 1,
+      armourBlock: options.armourBlock ?? false,
+      damageCF: options.damageCF ?? false,
       checkDodge: false,
       flatMod: options.flatMod ?? 0,
       damBonus: options.damBonus ?? 0,
@@ -193,6 +201,12 @@ export class AOVCheck {
         config.label = tempItem.name
         config.rawScore = tempItem.system.total
         config.encPenalty = particActor.system.encPenalty
+        let checkMsgId = await AOVCheck.checkNewMsg(config)
+        if (checkMsgId) {
+          config.combatAction = 'parry'
+        } else {
+          config.combatAction = 'attack'
+        }
         break;
       case RollType.STATUS:
         config.label = game.i18n.localize('AOV.status')
@@ -233,23 +247,76 @@ export class AOVCheck {
       let usage = await AOVCheck.RollDialog(config);
       if (usage === null) {return false}
       if (usage) {
-        config.flatMod = Number(usage.checkBonus);
-        config.difficulty = usage.diffOption ?? "";
-        config.successLevel = usage.dmgLevel ?? "2";
+        if (usage.checkBonus) {
+          config.flatMod = Number(usage.checkBonus);
+        }
+        if ((usage.diffOption)) {
+          config.difficulty = usage.diffOption;
+        }
+        if (usage.dmgLevel) {
+          config.successLevel = usage.dmgLevel
+        }
         if (usage.ctOption) {
           config.damType = usage.ctOption
           config.damTypeLabel = game.i18n.localize('AOV.DamType.'+config.damType)
         }
-        config.oppRes = usage.oppRes
-        config.damBonus = usage.damBonus ?? 0;
+        if (usage.oppRes) {
+          config.oppRes = usage.oppRes
+        }
+        if (usage.damBonus) {
+          config.damBonus = usage.damBonus;
+        }
         if (usage.dodgeCombat) {
           if (usage.dodgeCombat === 'yes') {
             config.cardType = CardType.COMBAT
             await AOVCheck.checkCardType(config.cardType,config)
           }
         }
+        if (usage.actionOption) {
+          config.combatAction = usage.actionOption
+        }
       }
     }
+
+
+    //Where Combat Action used
+    switch (config.combatAction) {
+      case "aimedLimb":
+        config.flatMod = config.flatMod - 20;
+        break;
+      case "aimedTorso":
+        config.flatMod = config.flatMod - 40;
+        break;
+      case "dodge":
+        let dodgeItem = await (particActor.items.filter(i=>i.flags.aov?.cidFlag?.id === 'i.skill.dodge'))[0]
+        if (dodgeItem) {
+          config.skillId = dodgeItem.id
+          config.label = dodgeItem.name
+          config.rollType = "SK"
+          if (dodgeItem.system.total) {
+            config.rawScore = dodgeItem.system.total
+          } else {
+            config.rawScore = (dodgeItem.system.base ?? 0) + (dodgeItem.system.xp ?? 0) + (dodgeItem.system.home ?? 0) + (dodgeItem.system.pers ?? 0) + (dodgeItem.system.effects ?? 0)
+            if (config.rawScore > 0) {
+              config.rawScore = config.rawScore + particActor.system[dodgeItem.system.category] ?? 0
+            }
+          }
+          config.targetScore = config.rawScore
+        } else {
+          ui.notifications.warn(game.i18n.localize('AOV.card.noDodge'))
+          config.combatAction = 'parry'
+        }
+        break;
+      case "none":
+          config.rollType = "SK"
+          config.label = game.i18n.localize('AOV.Combat.action.none')
+          config.rawScore = 0
+          config.targetScore = config.rawScore
+          config.flatMod = 0
+        break;
+      }
+
+
 
     //Where difficulty used
     if (config.difficulty !="") {
@@ -273,6 +340,14 @@ export class AOVCheck {
       }
     }
 
+    //If Combat Card and a Parry Bonus
+    if (config.cardType === CardType.COMBAT) {
+      let checkMsgId = await AOVCheck.checkNewMsg(config)
+      if (checkMsgId) {
+          config.flatMod = config.flatMod + (particActor.system.parryBonus ?? 0)
+      }
+    }
+
     //Adjust target Score for check Bonus, ENC Penalty and Move Quietly Penalty
     config.targetScore = config.targetScore + config.flatMod + config.encPenalty + config.mqPenalty
 
@@ -287,6 +362,14 @@ export class AOVCheck {
     //Adjust for Resistance Roll
     if (config.cardType === CardType.RESISTANCE) {
       config.rawScore = config.rawScore/5;
+      //If POW resistance roll and this is second participant then add magic defence
+      if (config.characteristic === 'pow') {
+        let checkMsgId = await AOVCheck.checkNewMsg(config)
+        if (checkMsgId) {
+           config.flatMod = config.flatMod + (particActor.system.powResist ?? 0)
+           config.targetScore = config.targetScore + (particActor.system.powResist ?? 0)
+        }
+      }
     }
 
     //If damage type is still Cut and Thrust default to Impale
@@ -359,6 +442,7 @@ export class AOVCheck {
           targetId: config.targetId,
           targetType: config.targetType,
           targetLoc: config.targetLoc,
+          targetWpnId: config.targetWpnId,
           characteristic: config.characteristic ?? false,
           label: config.label,
           targetScore: config.targetScore,
@@ -373,6 +457,8 @@ export class AOVCheck {
           rollResult: config.rollResult,
           rollVal: config.rollVal,
           roll: config.roll,
+          weaponAbsorb: config.weaponAbsorb,
+          armourAbsorb: config.armourAbsorb,
           oppRes: config.oppRes,
           damTypeLabel: config.damTypeLabel,
           damBonus: config.damBonus,
@@ -381,9 +467,17 @@ export class AOVCheck {
           augAdj: config.augAdj,
           diceRolled: config.diceRolled,
           skillId: config.skillId,
+          combatAction: config.combatAction,
+          combatActionLabel: game.i18n.localize(
+            "AOV.Combat.action." + config.combatAction
+          ),
+          wpnBlock: config.wpnBlock,
+          wpnDam: config.wpnDam,
+          armourBlock: config.armourBlock,
+          damageCF: config.damageCF,
           resultLevel: config.resultLevel,
           resultLabel: game.i18n.localize(
-            "AOV.resultLevel." + config.resultLevel,
+            "AOV.resultLevel." + config.resultLevel
           ),
           userID: config.userID,
           origID: config.origID
@@ -433,7 +527,38 @@ export class AOVCheck {
 
     //Don't need success levels in some cases
     if ([RollType.DAMAGE].includes(config.rollType)) {
-      config.rollVal = config.rollVal + config.damBonus
+      config.rollVal = Math.max(config.rollVal + config.damBonus,0)
+      config.damageBeforeAbsorb = config.rollVal;
+
+      //If Weapon Blocks then reduce damage by Current HP of Weapon
+      if (config.wpnBlock) {
+        let targetActor = await AOVactorDetails._getParticipant(
+          config.targetId,
+          config.targetType,
+        );
+        let targetWeapon = await targetActor.items.get(config.targetWpnId)
+        config.weaponAbsorb = Math.min(config.rollVal,Math.max(targetWeapon.system.currHP,0))
+
+        //If damage > weapon current HP apply damage to weapon
+        if (config.rollVal > targetWeapon.system.currHP) {
+          if (game.user.isGM) {
+            COCard.COWeaponDamaged(config)
+          } else {
+            const availableGM = game.users.find(d => d.active && d.isGM)?.id
+            if (availableGM) {
+              game.socket.emit('system.aov', {
+                type: 'weaponDamaged',
+                to: availableGM,
+                value: { config }
+              })
+            } else {
+              ui.notifications.warn(game.i18n.localize('AOV.noAvailableGM'))
+            }
+          }
+        }
+        // Reduce damage done by amount absorbed
+        config.rollVal = config.rollVal - config.weaponAbsorb
+      }
       return;
     }
     //Get the level of Success
@@ -487,7 +612,7 @@ export class AOVCheck {
     let chatData = {};
     chatData = {
       user: game.user.id,
-      //type: chatMsgData.chatType,
+      style: chatMsgData.chatType,
       content: html,
       flags: {
         aov: {
@@ -514,7 +639,7 @@ export class AOVCheck {
     }
     let msg = await ChatMessage.create(chatData);
     ui.chat.render();  //Sometimes chat messages weren't showing - hopefully this solves it
-    return msg._id;
+    return msg?.id ?? msg?._id ?? null;
   }
 
   static async checkCardType(cardType, config) {
@@ -578,6 +703,8 @@ export class AOVCheck {
     let askDamBonus = false
     let askBonus = true
     let askDodge = options.checkDodge
+    let askAction = false
+    let actionOptions = await AOVSelectLists.attackOptions()
     if (options.rollType === 'DM') {
       cardLabel = game.i18n.localize('AOV.rolls.DM')
       askBonus = false
@@ -594,6 +721,29 @@ export class AOVCheck {
     }
     if (options.cardType === 'NO' && options.rollType === 'CH') {
       askDiff = true
+    }
+    if (options.cardType === 'CO' && options.rollType === 'WP') {
+      askAction = true
+      let openCard = await AOVCheck.checkNewMsg(options);
+      if (openCard) {
+        let targetCard = await (game.messages.get(openCard)).flags.aov.chatCard[0]
+        let weaponType = ""
+        let targetActor = await AOVactorDetails._getParticipant(
+          targetCard.particId,
+          targetCard.particType,
+        );
+        if (targetActor) {
+          let targetWeapon = await targetActor.items.get(targetCard.skillId)
+          if (targetWeapon){
+
+            if (targetWeapon.system.weaponType === 'missile') {
+              weaponType = 'missile'
+            }
+          }
+        }
+            actionOptions = await AOVSelectLists.defendOptions(weaponType);
+      }
+
     }
 
     const data = {
@@ -612,6 +762,9 @@ export class AOVCheck {
       askDamBonus,
       askBonus,
       askDodge,
+      askAction,
+      actionOptions,
+      combatAction: options.combatAction,
       diffOptions,
       ctOptions,
       successLevel: options.successLevel
@@ -728,6 +881,7 @@ export class AOVCheck {
     await targetMsg.update({ content: pushhtml })
     return
   }
+
 
 }
 

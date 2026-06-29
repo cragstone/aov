@@ -465,9 +465,9 @@
   border: none;
   position: absolute;
   left: 0;
-  top: 600px;
+  top: 650px;
   z-index: -5;
-  width: 730px;
+  width: 775px;
   height: 160px;
   transform: rotate(-90deg);
   transform-origin: bottom left;
@@ -771,5 +771,12 @@ nav.aov.characterSmall.tabs [data-tab]{
     }
 
   }
+}
+
+.aov .npc-effect-row {
+  display: grid;
+  grid-template-columns:150px 130px 50px 50px 30px;
+  grid-column-gap:5px;
+  margin: 0px;
 }
 

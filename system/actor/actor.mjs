@@ -161,6 +161,9 @@ export class AOVActor extends Actor {
           }
         }
 
+        //Check Armour Override Active Effect
+        itm.system.map = Math.max(itm.system.map, actorData.system.apBestow)
+
         //Calc Max HP
         let totalWnds = 0
         if (itm.system.locType ===  'general') {
@@ -293,13 +296,13 @@ export class AOVActor extends Actor {
       systemData.mp.availMax = systemData.mp.max - (systemData.mp.locked ?? 0);
       systemData.dmgBonus = AOVActor._damMod(systemData);
       if (this.type === 'character') {
-      systemData.moveRate = (systemData.move.base ?? 0) + (systemData.move.bonus ?? 0);
+      systemData.moveRate = (systemData.move.base ?? 0) + (systemData.move.bonus ?? 0) + (systemData.move.effects ?? 0) + (systemData.move.effects ?? 0);
       if (systemData.move.penalty !=0) {
         systemData.moveRate = Math.ceil(systemData.moveRate * systemData.move.penalty)
       }
       systemData.healRate = AOVActor._calcHealRate(systemData);
-      systemData.reputation.total = (systemData.reputation.base ?? 0) + (systemData.reputation.xp ?? 0) + (systemData.reputation.history ?? 0);
-      systemData.status.total = (systemData.status.base ?? 0) + (systemData.status.xp ?? 0);
+      systemData.reputation.total = (systemData.reputation.base ?? 0) + (systemData.reputation.xp ?? 0) + (systemData.reputation.effects ?? 0) + (systemData.reputation.history ?? 0);
+      systemData.status.total = (systemData.status.base ?? 0) + (systemData.status.xp ?? 0) + (systemData.status.effects ?? 0);
       systemData.maxEnc = AOVActor._maxEnc(systemData);
       systemData.age = game.settings.get('aov', 'gameYear') - systemData.birthYear;
 
@@ -404,55 +407,65 @@ _eNCPenalty (actorData) {
 
     //Add CID based on actor name if the game setting is flagged.
     if (game.settings.get('aov', "actorCID")) {
-      let tempID = await CID.guessId(actor)
-      let priority = data.flags?.aov?.cidFlag?.priority ?? 0
-      if (tempID) {
-        await actor.update({
-          'flags.aov.cidFlag.id': tempID,
-          'flags.aov.cidFlag.lang': game.i18n.lang,
-          'flags.aov.cidFlag.priority': priority
-        })
-        const html = $(actor.sheet.element).find('header.window-header .edit-cid-warning,header.window-header .edit-cid-exisiting')
-        if (html.length) {
-          html.css({
-            color: (tempID ? 'orange' : 'red')
+      let currID = data.flags?.aov?.cidFlag?.id ?? ""
+      if (currID != "") {
+        let tempID = await CID.guessId(actor)
+        let priority = data.flags?.aov?.cidFlag?.priority ?? 0
+        if (tempID) {
+          await actor.update({
+            'flags.aov.cidFlag.id': tempID,
+            'flags.aov.cidFlag.lang': game.i18n.lang,
+            'flags.aov.cidFlag.priority': priority
           })
+          const html = $(actor.sheet.element).find('header.window-header .edit-cid-warning,header.window-header .edit-cid-exisiting')
+          if (html.length) {
+            html.css({
+              color: (tempID ? 'orange' : 'red')
+            })
+          }
+          actor.render()
         }
-        actor.render()
       }
     }
 
     if (data.type === 'character') {
-      //Get list of skills
-      let skillList = await AOVSelectLists.preLoadCategoriesCategories()
-      skillList = skillList.filter(itm=>itm.type==='skill').filter(itm=>itm.system.common).filter(itm=>itm.system.category !='zzz')
-      let commonSkills=[];
-      for (let thisItem of skillList) {
-        //if (!thisItem.system.common) {continue}
-        let skillCount = await actor.items.filter(itm=>itm.flags.aov?.cidFlag?.id === thisItem.flags.aov?.cidFlag?.id)
-        if (skillCount.length > 0) {continue}
-        let nItm = thisItem.toObject()
-        nItm.system.base = await AOVActorItemDrop._AOVcalcBase(nItm, actor);
-        commonSkills.push(nItm)
-      }
-      let newSkills = await actor.createEmbeddedDocuments("Item", commonSkills);
+      //if (!actor.system.quickstart) {
+        //Get list of skills
+        let skillList = await AOVSelectLists.preLoadCategoriesCategories()
+        skillList = skillList.filter(itm=>itm.type==='skill').filter(itm=>itm.system.common).filter(itm=>itm.system.category !='zzz')
+        let commonSkills=[];
+        for (let thisItem of skillList) {
+          //if (!thisItem.system.common) {continue}
+          let skillCount = await actor.items.filter(itm=>itm.flags.aov?.cidFlag?.id === thisItem.flags.aov?.cidFlag?.id)
+          if (skillCount.length > 0) {continue}
+          let nItm = thisItem.toObject()
+          nItm.system.base = await AOVActorItemDrop._AOVcalcBase(nItm, actor);
+          commonSkills.push(nItm)
+        }
+        let newSkills = await actor.createEmbeddedDocuments("Item", commonSkills);
 
-    let changes = {}
-    for (let [key, ability] of Object.entries(actor.system.abilities)) {
-      let formula = "3D6"
-      let min = 3
-      let max = 21
-      if (['int', 'siz'].includes(key)) {
-        formula = "2D6+6"
-        min = 8
-      }
-      changes = Object.assign(changes, {
-        [`system.abilities.${key}.formula`]: formula,
-        [`system.abilities.${key}.min`]: min,
-        [`system.abilities.${key}.max`]: max
-      })
-    }
-    await actor.update(changes)
+        let changes = {}
+        for (let [key, ability] of Object.entries(actor.system.abilities)) {
+          let formula = "3D6"
+          let min = 3
+          let max = 21
+          if (['int', 'siz'].includes(key)) {
+            formula = "2D6+6"
+            min = 8
+          }
+
+          if (ability.formula != "") {formula = ability.formula}
+          if (ability.min != 0) {min = ability.min}
+          if (ability.max != 0) {max = ability.max}
+
+          changes = Object.assign(changes, {
+            [`system.abilities.${key}.formula`]: formula,
+            [`system.abilities.${key}.min`]: min,
+            [`system.abilities.${key}.max`]: max
+          })
+        }
+        await actor.update(changes)
+      //}
     }
 
 
@@ -462,7 +475,7 @@ _eNCPenalty (actorData) {
   //Calculate Max Hit Points
   static _calcMaxHP(systemData) {
     let maxHP = systemData.abilities.con.total;
-    let sizBonus = Math.floor((systemData.abilities.siz.total - 1) / 4) - 2;
+    let sizBonus = Math.floor((systemData.abilities.siz.total + systemData.sizSpecial - 1) / 4) - 2;
     let powBonus = Math.floor((systemData.abilities.pow.total - 1) / 4) - 2;
     if (powBonus < 0) {
       powBonus++;
@@ -486,7 +499,7 @@ _eNCPenalty (actorData) {
 
   //Calculate Heal Rate
   static _calcHealRate(systemData) {
-    let hr = Math.floor((systemData.abilities.con.total - 1) / 6) + 1 + systemData.hrBonus;
+    let hr = ((Math.floor((systemData.abilities.con.total - 1) / 6) + 1) * systemData.hrAdjust) + systemData.hrBonus;
     return hr
   }
 

@@ -64,6 +64,10 @@ export class AoVCharacterSheet extends AoVActorSheet {
       template: 'systems/aov/templates/actor/character.history.hbs',
       scrollable: [''],
     },
+    effects: {
+      template: 'systems/aov/templates/actor/character.effects.hbs',
+      scrollable: [''],
+    },
   }
 
   _configureRenderOptions(options) {
@@ -83,7 +87,7 @@ export class AoVCharacterSheet extends AoVActorSheet {
         options.parts.push('gmTab');
       }
       //Last tab is at the top of the list on the character sheet
-      options.parts.push('stats','notes','history','family', 'gear', 'devotions', 'runes', 'combat', 'skills')
+      options.parts.push('stats','effects','notes','history','family', 'gear', 'devotions', 'runes', 'combat', 'skills')
 
       if (game.settings.get('aov','smallScreen')){
         options.parts.push('tabsSmall','headerSmall')
@@ -157,24 +161,31 @@ export class AoVCharacterSheet extends AoVActorSheet {
           if (singleColour) tab.colour = 'tab-green'
           break;
 
-          case 'history':
-          tab.id = 'history';
-          tab.label += 'history';
-          tab.colour = 'tab-green';
-          if (singleColour) tab.colour = 'tab-green'
-          break;
+        case 'history':
+        tab.id = 'history';
+        tab.label += 'history';
+        tab.colour = 'tab-green';
+        if (singleColour) tab.colour = 'tab-green'
+        break;
 
-          case 'notes':
-          tab.id = 'notes';
-          tab.label += 'notes';
-          tab.colour = 'tab-blue';
+        case 'notes':
+        tab.id = 'notes';
+        tab.label += 'notes';
+        tab.colour = 'tab-blue';
+        if (singleColour) tab.colour = 'tab-green'
+        break;
+
+        case 'effects':
+          tab.id = 'effects';
+          tab.label += 'effects';
+          tab.colour = 'tab-red';
           if (singleColour) tab.colour = 'tab-green'
           break;
 
         case 'stats':
           tab.id = 'stats';
           tab.label += 'stats';
-          tab.colour = 'tab-red';
+          tab.colour = 'tab-green';
           if (singleColour) tab.colour = 'tab-green'
           break;
 
@@ -241,6 +252,7 @@ export class AoVCharacterSheet extends AoVActorSheet {
       case 'runes':
       case 'devotions':
       case 'history':
+      case 'stats':
         context.tab = context.tabs[partId];
         break;
       case 'notes':
@@ -255,7 +267,7 @@ export class AoVCharacterSheet extends AoVActorSheet {
           }
         );
         break;
-      case 'stats':
+      case 'effects':
         context.tab = context.tabs[partId];
         context.effects = await AOVActiveEffectSheet.getActorEffectsFromSheet(this.document)
         break;

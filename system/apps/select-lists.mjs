@@ -209,13 +209,6 @@ export class AOVSelectLists {
 
     options = Object.assign(options, skillList)
 
-    let specialEffectKeys = foundry.utils.duplicate(CONFIG.AOV.keysSpecialActiveEffects)
-    for (let [key,name] of Object.entries(specialEffectKeys)) {
-      newOption = { [key]: game.i18n.localize('AOV.special') + ": " + game.i18n.localize(name), };
-      options = Object.assign(options, newOption)
-    }
-
-
     return options;
   }
 
@@ -373,6 +366,30 @@ export class AOVSelectLists {
       "godi": game.i18n.localize("AOV.godi"),
       "lawspeaker": game.i18n.localize("AOV.lawspeaker"),
     };
+    return options;
+  }
+
+  //Attack Options List
+  static attackOptions() {
+    let options = {
+      "aimedLimb": game.i18n.localize("AOV.Combat.action.aimedLimb"),
+      "aimedTorso": game.i18n.localize("AOV.Combat.action.aimedTorso"),
+      "attack": game.i18n.localize("AOV.Combat.action.attack"),
+    };
+    return options;
+  }
+
+  //Defend Options List
+  static defendOptions(weaponType) {
+    let options = {
+      "dodge": game.i18n.localize("AOV.Combat.action.dodge"),
+      "none": game.i18n.localize("AOV.Combat.action.none"),
+    };
+    if (weaponType != 'missile') {
+      options = Object.assign(options,
+              {"parry": game.i18n.localize("AOV.Combat.action.parry")}
+      )
+    }
     return options;
   }
 

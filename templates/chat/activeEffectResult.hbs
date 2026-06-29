@@ -1,0 +1,29 @@
+<form class="aov">
+  <div class="">
+    <ol class="op-list">
+      <div class="dice-roll" data-action="expandRoll">
+        <li class='actor-roll'>
+          <img class="open-actor" src="{{particImg}}" height="53" width="53" data-tooltip="{{particName}}"/>
+          <div class="roll-details">
+            <div class="header">
+              <div class='name'>
+                <span class="tag">{{localize 'AOV.from'}}: {{particName}}</span>
+              </div>
+            </div>
+              {{#unless (eq targetName '')}}
+                <div class="header">
+                  <div class='name'><span class="tag">{{localize 'AOV.to'}}: {{targetName}}</span></div>
+                </div>
+                <div class="header">
+                  <div class='name'><span class="tag">{{hitLocName}}</span></div>
+                </div>
+              {{/unless}}
+          </div>
+        </li>
+        <div class="damres pending">
+          <span class="pending">{{title}} ({{formula}}): {{rollResult}}</span>
+        </div>
+    </ol>
+  </div>
+
+</form>

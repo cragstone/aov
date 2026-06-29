@@ -6,23 +6,6 @@ export default class AOVCharacterModel extends AOVActorBaseModel {
     const fields = foundry.data.fields;
     const requiredInteger = { required: true, nullable: false, integer: true };
     const schema = super.defineSchema();
-    schema.move = new fields.SchemaField({
-      base: new fields.NumberField({ ...requiredInteger, initial: 10 }),
-      bonus: new fields.NumberField({ ...requiredInteger, initial: 0 }),
-      penalty: new fields.NumberField({ ...requiredInteger, initial: 0 }),
-    });
-    schema.reputation = new fields.SchemaField({
-      base: new fields.NumberField({ ...requiredInteger, initial: 5 }),
-      history: new fields.NumberField({ ...requiredInteger, initial: 0 }),
-      xp: new fields.NumberField({ ...requiredInteger, initial: 0 }),
-      effects: new fields.NumberField({ ...requiredInteger, initial: 0 }),
-    });
-    schema.status = new fields.SchemaField({
-      base: new fields.NumberField({ ...requiredInteger, initial: 25 }),
-      xp: new fields.NumberField({ ...requiredInteger, initial: 0 }),
-      effects: new fields.NumberField({ ...requiredInteger, initial: 0 }),
-    });
-    schema.hrBonus = new fields.NumberField({ ...requiredInteger, initial: 0 }); // Healing Rate Bonus
     schema.birthYear = new fields.NumberField({ ...requiredInteger, initial: 955 });
     schema.nickname = new fields.StringField({ required: true, blank: true });
     schema.gender = new fields.StringField({ required: true, blank: true });

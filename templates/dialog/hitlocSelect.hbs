@@ -1,0 +1,28 @@
+<section id="hitloc-options-form">
+
+  <div style="display: block">
+      <div class="stat-name flavour-result bold">
+        {{#if healing}}
+          {{localize 'AOV.selectHitLocHeal'}}
+        {{else}}
+          {{localize 'AOV.selectHitLoc'}}
+        {{/if}}
+      </div>
+      <div class="radioList">
+        {{#each locList as | line key|}}
+          <div class="stat-name">
+            <label>
+              <input type="radio" name="selectItem" value={{line._id}} {{#if (eq @index 0)}}checked{{/if}}></input>
+              {{line.name}}
+              {{#if ../healing}}
+                ({{localize 'AOV.hpAbbr'}}:{{line.currHp}}/{{line.hpMax}})
+              {{/if}}
+            </label>
+          </div>
+        {{/each}}
+      </div>
+  </div>
+  <br>
+
+
+  </section>

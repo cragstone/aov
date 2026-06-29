@@ -14,7 +14,7 @@ export default class AOVWeaponModel extends AOVItemBaseModel {
     schema.damage =  new fields.StringField({ required: true, blank: true, initial: "" }); //Damage formula
     schema.damMod = new fields.StringField({ required: true, blank: true, initial: "d" }); //Damage Modifier type
     schema.damType =  new fields.StringField({ required: true, blank: true, initial: "s" }); //Damage type
-    schema.maxHP = new fields.NumberField({ ...requiredInteger, initial: 0 });  //Max HP of weapon
+    schema.maxHP = new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 });  //Max HP of weapon
     schema.currHP = new fields.NumberField({ ...requiredInteger, initial: 0 });   //Current HP of weapon
     schema.length = new fields.StringField({ required: true, blank: true, initial: "" });  //Length of weapon or Range
     schema.cost = new fields.NumberField({ ...requiredInteger, initial: 0 });     //Cost of weapon

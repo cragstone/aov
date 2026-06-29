@@ -1,0 +1,21 @@
+<section id="target-options-form">
+
+  <div style="display: block">
+      <div class="stat-name flavour-result bold">
+        {{localize 'AOV.selectTarget'}}
+      </div>
+      <div class="radioList">
+        {{#each locList as | line key|}}
+          <div class="stat-name">
+            <label>
+              <input type="radio" name="selectItem" value={{line._id}} {{#if (eq @index 0)}}checked{{/if}}></input>
+              {{line.name}}
+            </label>
+          </div>
+        {{/each}}
+      </div>
+  </div>
+  <br>
+
+
+  </section>
