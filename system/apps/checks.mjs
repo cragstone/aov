@@ -383,8 +383,9 @@ export class AOVCheck {
       config.successLevel = 2
     }
 
+
     //For Critical and Special Successes
-    if (["3","4"].includes(config.successLevel)) {
+    if (["3","4"].includes(String(config.successLevel))) {
         switch (config.damType) {
           case "i":
             config.rollFormula = config.rollFormula + "+" + config.rollFormula
@@ -403,10 +404,10 @@ export class AOVCheck {
         }
     }
 
-    if (["4"].includes(config.successLevel)) {
+    if (["4"].includes(String(config.successLevel))) {
       let maxDamRoll = new Roll(config.rollFormula)
       await maxDamRoll.evaluateSync({maximize: true})
-      config.rollFormula = maxDamRoll.total
+      config.rollFormula = String(maxDamRoll.total)
     }
 
     //If there is a damage bonus add it
@@ -508,7 +509,7 @@ export class AOVCheck {
 
   //Call Dice Roll, calculate Result and store original results in rollVal
   static async makeRoll(config) {
-    let roll = new Roll(config.rollFormula);
+    let roll = new Roll(String(config.rollFormula ?? "0"));
     await roll.evaluate();
     config.roll = roll;
     config.rollResult = Math.ceil(Number(roll.total));

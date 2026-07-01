@@ -1,3 +1,6 @@
+## 14.3
+- Critical Damage rolls are working properly now (thanks to Varys)
+
 ## 14.2
 - Fixed an error with Active Effects for NPCs stopping the NPC sheet being opened.
 
