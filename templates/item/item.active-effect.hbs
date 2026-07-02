@@ -1,4 +1,4 @@
-<section class='item tab effects {{tab.cssClass}} {{#if isGM}}droppable{{/if}}' data-group='primary' data-tab='effects'>
+<section class='item tab effects {{tab.cssClass}} {{#if isGM}}droppable data-drag{{/if}}' data-group='primary' data-tab='effects'>
     <br>
     <div class="weapon-input active-effect-list primBackCol">
       <div class="truncate bold">{{localize 'AOV.effectName'}}</div>
@@ -27,8 +27,11 @@
     </div>
     <ol class="gear-list">
       {{#each effects as |effect|}}
-        <li class="item item-edit active-effect-list">
-          <div class="effect-source left rollable" data-tooltip="{{localize 'AOV.viewDoc' type=(localize 'DOCUMENT.ActiveEffect')}}" data-action="openActiveEffect" data-uuid="{{effect.uuid}}">{{effect.name}}</div>
+        <li class="item item-edit active-effect-list" draggable="true" data-drag="true" data-effect-id="{{effect.id}}">
+          <div class="effect-source left rollable" style="grid-column: 1 / span 3;" data-tooltip="{{localize 'AOV.viewDoc' type=(localize 'DOCUMENT.ActiveEffect')}}" data-action="openActiveEffect" data-uuid="{{effect.uuid}}">
+            <i class="fas fa-grip-vertical" aria-hidden="true"></i>
+            {{effect.name}}
+          </div>
         </li>
       {{/each}}
     </ol>

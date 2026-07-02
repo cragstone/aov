@@ -5,6 +5,7 @@ export class AOVActiveEffectSheet {
   static getItemEffectsFromSheet(document) {
     let thisDocument = document.effects.reduce((c, i) => {
       c.push({
+        id: i.id,
         uuid: i.uuid,
         name: i.name
       })
@@ -13,6 +14,7 @@ export class AOVActiveEffectSheet {
     return (document.items ?? []).reduce((c, i) => {
       for (const effect of i.effects) {
         c.push({
+          id: effect.id,
           uuid: effect.uuid,
           name: effect.name
         })
@@ -30,7 +32,7 @@ export class AOVActiveEffectSheet {
         if (['system.healing','system.injure','system.damageObject'].includes(change.key)) {oneShot=true}
         let effValue = change.value
         if (typeof change.value === 'number') { effValue = Math.abs(change.value)}
-        if (change.type === 'add') {
+//        if (change.type === 'add') {
           effectChanges.push({
             key: change.key,
             name: effectKeys[change.key] ?? change.key,
@@ -41,7 +43,7 @@ export class AOVActiveEffectSheet {
             oneShot: oneShot
           })
 
-        }
+  //      }
       }
     }
     return {

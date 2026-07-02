@@ -584,10 +584,14 @@ export class AOVCheck {
 
   // Calculate Success Level
   static async successLevel(config) {
-    let critical = Math.min(10,Math.max(Math.round(config.targetScore*(config.critChance??5)/100),1))
-    let special = Math.max(Math.round(config.targetScore/5),1)
-    let fumble = Math.max(90,Math.min((101-Math.round((100 - config.targetScore)*(config.fumbleChance??5)/100,1)),100))
-    // let fumble = Math.min(96+Math.round(config.targetScore/20),100)
+    const critChance = Math.clamp?.(Number(config.critChance ?? 5), 0, 10)
+      ?? Math.min(Math.max(Number(config.critChance ?? 5), 0), 10);
+    const fumbleChance = Math.min(Math.max(Number(config.fumbleChance ?? 5), 0), 10);
+    const critical = Math.max(Math.round(config.targetScore * critChance / 100), 1);
+    const special = Math.max(Math.round(config.targetScore / 5), 1);
+    const fumble = Math.max(
+      90, Math.min(101 - Math.round((100 - config.targetScore) * fumbleChance / 100), 100)
+    );
     //Min success of 5% and capped at 95%
     let success = Math.min(Math.max(config.targetScore,5),95)
 

@@ -142,6 +142,7 @@ export class AoVArmourSheet extends AoVItemSheet {
 
 
   _onDragStart(event) {
+    console.log("PING")
     const li = event.currentTarget;
     if ('link' in event.target.dataset) return;
 
@@ -150,6 +151,7 @@ export class AoVArmourSheet extends AoVItemSheet {
     // Active Effect
     if (li.dataset.effectId) {
       const effect = this.item.effects.get(li.dataset.effectId);
+      if (!effect) return;
       dragData = effect.toDragData();
     }
 

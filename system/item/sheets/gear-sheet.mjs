@@ -146,6 +146,7 @@ export class AoVGearSheet extends AoVItemSheet {
     // Active Effect
     if (li.dataset.effectId) {
       const effect = this.item.effects.get(li.dataset.effectId);
+      if (!effect) return;
       dragData = effect.toDragData();
     }
 

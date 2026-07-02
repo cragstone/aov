@@ -469,7 +469,7 @@ export class AOVDamage {
       return false
     }
     let chatMsgData = {
-      chatTemplate: 'systems/aov/templates/chat/rolLHitLoc.hbs',
+      chatTemplate: 'systems/aov/templates/chat/rollHitLoc.hbs',
       title: game.i18n.localize('AOV.rollHitLoc'),
       rolls: roll,
       particName: actor.name,

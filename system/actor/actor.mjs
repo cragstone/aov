@@ -301,7 +301,7 @@ export class AOVActor extends Actor {
       systemData.mp.availMax = systemData.mp.max - (systemData.mp.locked ?? 0);
       systemData.dmgBonus = AOVActor._damMod(systemData);
       if (this.type === 'character') {
-      systemData.moveRate = (systemData.move.base ?? 0) + (systemData.move.bonus ?? 0) + (systemData.move.effects ?? 0) + (systemData.move.effects ?? 0);
+      systemData.moveRate = (systemData.move.base ?? 0) + (systemData.move.bonus ?? 0) + (systemData.move.effects ?? 0);
       if (systemData.move.penalty !=0) {
         systemData.moveRate = Math.ceil(systemData.moveRate * systemData.move.penalty)
       }
