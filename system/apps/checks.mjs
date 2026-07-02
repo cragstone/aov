@@ -100,6 +100,8 @@ export class AOVCheck {
       db : "",
       difficulty: "",
       diffLabel: "",
+      critChance: options.critChance ?? 5,
+      fumbleChance: options.fumbleChance ?? 5,
       targetScore: 0,
       rawScore: 0,
       oppRes: 0,
@@ -145,6 +147,8 @@ export class AOVCheck {
             config.rawScore = config.rawScore + particActor.system[tempItem.system.category] ?? 0
           }
         }
+        config.critChance = 5 * tempItem.system.critMult
+        config.fumbleChance = 5 * tempItem.system.fumbleMult
         //Check for specific Skill Options
         let skillFlag = tempItem.flags.aov?.cidFlag?.id
 
@@ -198,9 +202,14 @@ export class AOVCheck {
         break;
       case RollType.WEAPON:
         tempItem = await particActor.items.get(config.skillId)
+        let tempSkill = (await particActor.items.filter(i=>i.flags.aov?.cidFlag?.id === tempItem.system.skillCID))[0]
         config.label = tempItem.name
         config.rawScore = tempItem.system.total
         config.encPenalty = particActor.system.encPenalty
+        if (tempSkill) {
+          config.critChance = 5 * tempSkill.system.critMult
+          config.fumbleChance = 5 * tempSkill.system.fumbleMult
+        }
         let checkMsgId = await AOVCheck.checkNewMsg(config)
         if (checkMsgId) {
           config.combatAction = 'parry'
@@ -292,6 +301,8 @@ export class AOVCheck {
         if (dodgeItem) {
           config.skillId = dodgeItem.id
           config.label = dodgeItem.name
+          config.critChance = 5 * dodgeItem.system.critMult
+          config.fumbleChance = 5 * dodgeItem.system.fumbleMult
           config.rollType = "SK"
           if (dodgeItem.system.total) {
             config.rawScore = dodgeItem.system.total
@@ -446,6 +457,8 @@ export class AOVCheck {
           targetWpnId: config.targetWpnId,
           characteristic: config.characteristic ?? false,
           label: config.label,
+          critChance: config.critChance,
+          fumbleChance: config.fumbleChance,
           targetScore: config.targetScore,
           rawScore: config.rawScore,
           difficulty: config.difficulty,
@@ -571,10 +584,10 @@ export class AOVCheck {
 
   // Calculate Success Level
   static async successLevel(config) {
-
-    let critical = Math.max(Math.round(config.targetScore/20),1)
+    let critical = Math.min(10,Math.max(Math.round(config.targetScore*(config.critChance??5)/100),1))
     let special = Math.max(Math.round(config.targetScore/5),1)
-    let fumble = Math.min(96+Math.round(config.targetScore/20),100)
+    let fumble = Math.max(90,Math.min((101-Math.round((100 - config.targetScore)*(config.fumbleChance??5)/100,1)),100))
+    // let fumble = Math.min(96+Math.round(config.targetScore/20),100)
     //Min success of 5% and capped at 95%
     let success = Math.min(Math.max(config.targetScore,5),95)
 
@@ -584,14 +597,13 @@ export class AOVCheck {
       resultLevel = RollResult.CRITICAL;
     } else if (config.rollResult <= special) {
       resultLevel = RollResult.SPECIAL;
-    } else if (config.rollResult <= success) {
-      resultLevel = RollResult.SUCCESS;
     } else if (config.rollResult >= fumble) {
       resultLevel = RollResult.FUMBLE;
-    } else {
+    } else if (config.rollResult <= success) {
+      resultLevel = RollResult.SUCCESS;
+    }  else {
       resultLevel = RollResult.FAIL;
     }
-
     return resultLevel;
   }
 

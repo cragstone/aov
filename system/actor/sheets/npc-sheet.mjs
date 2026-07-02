@@ -69,7 +69,6 @@ export class AoVNPCSheet extends AoVActorSheet {
       }
     );
     context.effects = await AOVActiveEffectSheet.getActorEffectsFromSheet(this.document)
-    console.log(context.effects, context.effects.length)
     context.showEffects = !context.system.locked;
     if ((context.effects).length > 0 || (this.document.effects).length>0) {context.showEffects = true}
     await this._prepareItems(context);

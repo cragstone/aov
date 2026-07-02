@@ -1,3 +1,14 @@
+## 14.4
+- Stat variants for NPCs now rolling properly
+- You can now have Active Effects that impact Passions in the same way they impact Skills
+- There are two new "elements" to add on to a skill or passion Active Effects (https://github.com/cragstone/aov/wiki/Active-Effects)
+- Use "critMult" and "fumbleMult" with a multiplier of 2 to double than chance of Critical Success or Fumble for a skill
+- The normal chance is 5%.  The increased chances max out at 10%
+- This score is now shown in the expanded roll chats (the 5/10% mentioned above not the dice roll needed for a critical/fumble)
+- e.g. system.cidFlagItems.i.skill.animal-lore.system.critMult
+- You can now add Active Effects to Weapons, Armour and Hit Locations.
+- When the character/NPC sheet is locked there is a D20 icon at the top of the hit location grid/paper doll.  This will roll a random hit location for this Character/NPC
+
 ## 14.3
 - Critical Damage rolls are working properly now (thanks to Varys)
 

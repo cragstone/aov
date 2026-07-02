@@ -88,6 +88,8 @@ export class RECard {
         targetScore: targetScore,
         rollResult: rollResult,
         cardType,
+        critChance: 5,
+        fumbleChance: 5
     })
 
     for (let i of chatCards) {

@@ -157,7 +157,15 @@ export class AoVGearSheet extends AoVItemSheet {
 
   _onDragOver(event) {}
 
-
+  //Handle the dropping of ActiveEffect data onto an Item Sheet
+  async _onDropActiveEffect(event, effect) {
+    let newEffect = effect.toObject();
+    newEffect.transfer = true
+    const item = this.document;
+    if ( !this.isEditable || !item.isOwner || (item === effect.parent) ) return null;
+    const result = await ActiveEffect.implementation.create(newEffect, {parent: item});
+    return result ?? null;
+  }
 
    async _onDropItem(event, data) {
     if (!this.item.isOwner) return false;
@@ -189,8 +197,5 @@ export class AoVGearSheet extends AoVItemSheet {
       return new foundry.applications.ux.DragDrop.implementation(d);
     });
   }
-
-
-
 
 }

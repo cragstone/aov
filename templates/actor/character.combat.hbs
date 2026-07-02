@@ -5,14 +5,20 @@
   <div class="skill-grid-header">
       {{#if isSmall}}
         <div class='gear-header primBackCol hitLocHeaderSmall'>
-          <div class=''>{{localize 'AOV.hitLocation'}}</div>
+          <div class=''>
+            <span>{{localize 'AOV.hitLocation'}}</span>
+            <span class="centre" data-tooltip="{{localize 'AOV.rollHitLoc'}}"><a data-action="rollHitLoc"><i class="fas fa-dice-d20"></i></a></span>
+            </div>
           <div class='centre'>{{localize 'AOV.d20'}}</div>
           <div class='centre'>{{localize 'AOV.armourPointsAbbr'}}</div>
           <div class='centre'style="grid-column: 4 / span3;">{{localize 'AOV.hpAbbr'}}</div>
         </div>
       {{else}}
         <div class='gear-header primBackCol skill-grid'>
-          <div class='centre' style="grid-column: 1 / span4;">{{localize 'AOV.hitLocations'}}</div>
+          <div class='centre' style="grid-column: 1 / span 3;">{{localize 'AOV.hitLocations'}}</div>
+          <div class="centre" data-tooltip="{{localize 'AOV.rollHitLoc'}}">
+            <a data-action="rollHitLoc"><i class="fas fa-dice-d20"></i></a>
+          </div>
         </div>
       {{/if}}
       <div class='gear-header {{#if singleColour}}primBackCol{{else}}secBackCol{{/if}} wounds-grid'>

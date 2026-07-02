@@ -59,6 +59,9 @@ export class COCard {
           targetScore: revisedtargetScore,
           rollResult: rollResult,
           cardType,
+          critChance: i.critChance,
+          fumbleChance: i.fumbleChance
+
         })
       }
 

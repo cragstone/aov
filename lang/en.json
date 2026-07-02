@@ -86,6 +86,7 @@
     "createDoc": "New {type}",
     "createEnabled": "Character Creation Phase Enabled",
     "createPhase": "Character Creation Phase",
+    "critChance": "Critical Chance",
 
     "d20": "D20",
     "damage": "Damage",
@@ -172,6 +173,7 @@
     "fixedXP": "Choose improvements to get fixed +3%",
     "freedman": "Freedman",
     "from": "From",
+    "fumbleChance": "Fumble Chance",
 
     "gear": "Equipment",
     "gender": "Gender",
@@ -286,6 +288,7 @@
     "noFamily": "No spouse or children",
     "noHitLoc": "{name} has no hit locations",
     "noHitLocID": "Can't find hit location with that ID",
+    "noHitLocRange": "Can't find a hit location with range of {score}",
     "noMacroItemFound":"No Item found for this Macro",
     "noMacroItemOwner": "This macro doesn't have an Actor owner",
     "noSkillFound": "No Skill with CID '{cid}' found",
@@ -349,6 +352,7 @@
     "ritualTime": "Ritual Time (mins)",
     "roll": "Roll",
     "rollDice": "Roll Dice",
+    "rollHitLoc": "Roll Hit Location",
     "rollName": "Roll Name",
     "rollNickname": "Roll Nickname",
     "rollOmens": "Roll Omens for the new Year",

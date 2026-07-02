@@ -38,6 +38,8 @@ export class AUCard {
         targetScore: revisedtargetScore,
         rollResult: rollResult,
         cardType,
+        critChance: cCard.critChance,
+        fumbleChance: cCard.fumbleChance
       })
 
       cCard.rollResult = rollResult

@@ -453,4 +453,46 @@ export class AOVDamage {
     }
     let msg = await ChatMessage.create(chatData);
   }
+
+  //Roll Random Hit Location for an actor
+  static async rollHitLoc(actor) {
+    let hitlocs = await actor.items.filter(i=>i.type==='hitloc').filter(i=>i.system.locType != 'general')
+    if (hitlocs.length === 0) {
+      ui.notifications.warn(game.i18n.format('AOV.noHitLoc', {name: actor.name}))
+      return false
+    }
+    let roll = new Roll("1D20")
+    await roll.evaluate()
+    let hitloc = await hitlocs.filter(i=>(roll.total >= i.system.lowRoll) && (roll.total <= i.system.highRoll))
+    if (hitloc.length === 0) {
+      ui.notifications.warn(game.i18n.format('AOV.noHitLocRange', {score: roll.total}))
+      return false
+    }
+    let chatMsgData = {
+      chatTemplate: 'systems/aov/templates/chat/rolLHitLoc.hbs',
+      title: game.i18n.localize('AOV.rollHitLoc'),
+      rolls: roll,
+      particName: actor.name,
+      particImg: actor.img,
+      rollResult: roll.total,
+      locName: hitloc[0].name,
+    }
+    let html = await foundry.applications.handlebars.renderTemplate(chatMsgData.chatTemplate, chatMsgData);
+    let alias = game.i18n.localize('AOV.rollHitLoc');
+    let chatData = {};
+    chatData = {
+      user: game.user.id,
+      style: CONST.CHAT_MESSAGE_STYLES.OTHER,
+      content: html,
+      speaker: {
+        actor: actor.id,
+        alias: alias,
+      },
+    }
+    if (game.modules.get('dice-so-nice')?.active) {
+      game.dice3d.showForRoll(roll, game.user, true, null, false)
+    }
+    let msg = await ChatMessage.create(chatData);
+    return true
+  }
 }

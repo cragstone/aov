@@ -27,6 +27,8 @@ export default class AOVSkillModel extends AOVItemBaseModel {
     schema.common = new fields.BooleanField({ initial: true }); //Is this a common skill
     schema.picks = new fields.NumberField({ ...requiredInteger, initial: 0 });  //Number of optional skills for group skill
     schema.skills = new fields.ArrayField(new fields.DataField(), { initial: [] }); //List of skills in Group skills
+    schema.critMult = new fields.NumberField({ required: true, nullable: false, integer: false, initial: 1 }); //Crit Chance multiplier.  Driven by Active Effects.
+    schema.fumbleMult = new fields.NumberField({ required: true, nullable: false, integer: false, initial: 1 }); //Fumble Chance multiplier.  Driven by Active Effects.
     return schema
   }
 

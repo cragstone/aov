@@ -135,7 +135,7 @@
         <div class="centre hit-loc-cell bold">{{localize 'AOV.hpAbbr'}}</div>
         <div class="centre hit-loc-cell bold">
           {{#if isLocked}}
-            <div></div>
+            <a data-action="rollHitLoc" data-tooltip="{{localize 'AOV.rollHitLoc'}}"><i class="fas fa-dice-d20"></i></a>
           {{else}}
             <a class='item-control item-create' data-tooltip='{{localize "AOV.createDoc" type=(localize "TYPES.Item.hitloc")}}'
               data-action='createDoc' data-document-class='Item' data-type='hitloc'>

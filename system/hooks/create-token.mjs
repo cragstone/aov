@@ -73,12 +73,12 @@ export default async function (document, options, userId) {
     //Apply the Stat Creation Option
     switch (dropM) {
       case 'roll':
-        document._object.actor.rollCharacteristicsValue()
+        await document._object.actor.rollCharacteristicsValue()
         ui.notifications.info(game.i18n.format('AOV.TokenCreationRoll.Rolled', { name: document.object.actor.name }))
         document._object.actor.locked = true
         break
       case 'average':
-        document._object.actor.averageCharacteristicsValue()
+        await document._object.actor.averageCharacteristicsValue()
         ui.notifications.info(game.i18n.format('AOV.TokenCreationRoll.Averaged', { name: document.object.actor.name }))
         document._object.actor.locked = true
         break
@@ -89,7 +89,7 @@ export default async function (document, options, userId) {
     //Apply the Stat Variant Option
     switch (statV) {
       case 'roll':
-        document._object.actor.rollCharacteristicsVariant()
+        await document._object.actor.rollCharacteristicsVariant()
         ui.notifications.info(game.i18n.format('AOV.TokenCreationRoll.StatVariantRolled', { name: document.object.actor.name }))
         document._object.actor.locked = true
         break
@@ -100,7 +100,7 @@ export default async function (document, options, userId) {
     //Apply the Stat Variant Option
     switch (skillV) {
       case 'roll':
-        document._object.actor.rollSkillsVariant()
+        await document._object.actor.rollSkillsVariant()
         ui.notifications.info(game.i18n.format('AOV.TokenCreationRoll.SkillVariantRolled', { name: document.object.actor.name }))
         document._object.actor.locked = true
         break

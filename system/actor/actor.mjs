@@ -74,7 +74,7 @@ export class AOVActor extends Actor {
 
     for (let itm of actorData.items) {
       //Does the item have transferrable effects
-      if (['gear'].includes(itm.type)) {
+      if (['gear','armour','weapon','hitloc'].includes(itm.type)) {
         if (itm.transferredEffects.length > 0) {
           itm.system.hasEffects = true;
         } else {
@@ -106,7 +106,7 @@ export class AOVActor extends Actor {
         }
 
       } else if (itm.type === 'passion') {
-        itm.system.total = Number(itm.system.base ?? 0) + Number(itm.system.home ?? 0) + Number(itm.system.history ?? 0) + Number(itm.system.family ?? 0) + Number(itm.system.xp ?? 0);
+        itm.system.total = Number(itm.system.base ?? 0) + Number(itm.system.home ?? 0) + Number(itm.system.history ?? 0) + Number(itm.system.family ?? 0) + Number(itm.system.xp ?? 0) + Number(itm.system.effects ?? 0);
       } else if (itm.type === 'wound') {
         let loc = actorData.items.get(itm.system.hitLocId)
         if (loc) {itm.system.label = loc.name ?? ""}
@@ -246,6 +246,11 @@ export class AOVActor extends Actor {
         itm.system.total = (itm.system.base ?? 0) + (itm.system.effects ?? 0)
       } else if (itm.type === 'weapon') {
         itm.system.total = (itm.system.npcBase ?? 0) + (itm.system.effects ?? 0)
+        let weaponSkill = actorData.items.filter(i=>i.flags.aov?.cidFlag?.id === itm.system.skillCID)
+        let weaponScore = 0
+        if (weaponSkill.length > 0) {
+          itm.system.total = itm.system.total + weaponSkill[0].system.effects
+        }
       } else if (itm.type === 'passion'){
         itm.system.total = (itm.system.base ?? 0) + (itm.system.effects ?? 0)
       }
@@ -706,7 +711,7 @@ _eNCPenalty (actorData) {
   async rollCharacteristicsVariant() {
     const abilities = {}
     for (const [key, value] of Object.entries(this.system.abilities)) {
-      let mod = Math.max(Math.ceil(value.formula.toUpperCase().split("D6")[0]/3),1)
+      let mod = Math.max(Math.ceil(value.formula.toUpperCase().split("D")[0]/3),1)
       if (this.system.abilities[key].value === 0) {continue}
       const r = new Roll("1D10")
       await r.evaluate()
@@ -716,7 +721,7 @@ _eNCPenalty (actorData) {
       } else if (r.total > 7) {
         variance = Number(r.total - 7);
       }
-      abilities[`system.abilities.${key}.value`] = Math.max(this.system.abilities[key].value + (variance*mod),0)
+      abilities[`system.abilities.${key}.value`] = Math.max((this.system.abilities[key].value + (variance*mod)),1)
       }
     await this.update(abilities)
     await this.updateVitals()

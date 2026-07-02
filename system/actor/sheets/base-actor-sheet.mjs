@@ -76,6 +76,7 @@ export class AoVActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorSh
       toggleEffect: this._toggleEffect,
       clearEffects: this._clearEffects,
       triggerEffects: this._triggerEffects,
+      rollHitLoc: this._rollHitLoc,
     }
   }
 
@@ -656,7 +657,10 @@ export class AoVActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorSh
     }
   }
 
-
+  //Roll Hit Location
+  static async _rollHitLoc(event, target) {
+    await AOVDamage.rollHitLoc(this.document)
+  }
 
   //-------------Drag and Drop--------------
 
